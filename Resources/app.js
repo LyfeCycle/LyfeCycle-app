@@ -3,6 +3,16 @@ var Map = require('/views/map');
 var mainMap = new Map();
 
 
+
+// ***** Controller Objects *****
+var Session = require('/controllers/session');
+var userSession = new Session();
+var CrashDetect = require('/controllers/crashdetect');
+var userCrashDetect = new CrashDetect();
+
+
+// ***** Windows *****
+
 // Main Window -------------------------------
 var main = Titanium.UI.createWindow();
 
@@ -18,8 +28,10 @@ var settings = Titanium.UI.createWindow();
 // Login Window ------------------------------
 var login = Titanium.UI.createWindow();
 
-if (logged_in_state = false) {
+
+
+// If not logged in, open Login window
+if (userSession.getLoginState == false) {
 	login.open();
 }
 
-// If not logged in, open Login window

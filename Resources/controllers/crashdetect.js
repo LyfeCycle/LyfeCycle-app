@@ -7,19 +7,21 @@
 // Crash Detection using Core Motion
 var CoreMotion = require('ti.coremotion');
 
-if (CoreMotion.isAccelerometerAvailable()) {
-    // Start the service
-    accelerometer_state = true;
-    // Send data at 1 s (1000 ms) intervals
-    CoreMotion.setAccelerometerUpdateInterval(1000);
-    // Start with a callback
-    CoreMotion.startAccelerometerUpdates(updateAccelData);
-}
-
 var accelX = accelY = accelZ = 0;
 var lastX = lastY = lastZ = 0;
 var CRASH_THRESHOLD = 2;
 
+function CrashDetect() {
+
+    if (CoreMotion.isAccelerometerAvailable()) {
+        // Start the service
+        accelerometer_state = true;
+        // Send data at 1 s (1000 ms) intervals
+        CoreMotion.setAccelerometerUpdateInterval(1000);
+        // Start with a callback
+        CoreMotion.startAccelerometerUpdates(updateAccelData);
+    }
+}
 
 function updateAccelData (e) {
     
@@ -59,3 +61,5 @@ function updateAccelData (e) {
         if (e.error) Ti.API.error(e.error);
     }
 }
+
+module.exports = CrashDetect;
