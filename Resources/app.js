@@ -1,13 +1,18 @@
-// ***** View Objects *****
+// ***** View Requires *****
 var Map = require('/views/map');
+var HomeView = require('/views/HomeView');
+
+// ***** Controller Requires *****
+var Session = require('/controllers/session');
+var CrashDetect = require('/controllers/crashdetect');
+
+
+// ***** View Objects *****
 var mainMap = new Map();
-
-
+var homeView = new HomeView();
 
 // ***** Controller Objects *****
-var Session = require('/controllers/session');
 var userSession = new Session();
-var CrashDetect = require('/controllers/crashdetect');
 var userCrashDetect = new CrashDetect();
 
 
@@ -18,7 +23,8 @@ var main = Titanium.UI.createWindow();
 
 var mainWindowMapView = mainMap.getMapView();
 
-main.add(mainWindowMapView);
+// main.add(mainWindowMapView);
+main.add(homeView.main);
 main.open();
 
 // Settings Window ---------------------------
