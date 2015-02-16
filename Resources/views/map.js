@@ -3,6 +3,7 @@ var map = require('ti.map');
 function Map() {
 	this.mapView;
 	this.createMapView();
+	this.view = this.createMapView();
 }
 
 Map.prototype.createMapView = function() {
