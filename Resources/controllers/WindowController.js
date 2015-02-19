@@ -2,16 +2,6 @@ function WindowController() {
 	
 };
 
-// ***** View Requires *****
-var Map = require('/views/Map');
-var HomeMenu = require('/views/HomeMenu');
-
-
-// ***** View Objects *****
-var map = new Map();
-var homeMenu = new HomeMenu();
-
-
 function WindowController() {
 	// Create windows for all sections of the app
 	this.main = Titanium.UI.createWindow();

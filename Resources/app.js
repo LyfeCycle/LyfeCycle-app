@@ -1,6 +1,6 @@
 // ***** View Requires *****
 var Map = require('/views/MapView');
-var HomeView = require('/views/HomeView');
+var HomeMenuView = require('/views/HomeMenuView');
 
 // ***** Controller Requires *****
 var Session = require('/controllers/SessionController');
@@ -13,6 +13,9 @@ var userSession = new Session();
 var userCrashDetect = new CrashDetect();
 var windowController = new WindowController();
 
+// ***** View Objects *****
+var map = new Map();
+var homeMenu = new HomeMenuView();
 
 windowController.goToMain();
 
