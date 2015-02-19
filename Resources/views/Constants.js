@@ -12,5 +12,6 @@ module.exports.cream = '#F1ECD6';
 
 // HomeView
 module.exports.homeViewButtonWidth = module.exports.deviceWidth * 0.7;
+module.exports.bannerHeight = 110;
 
 // module.exports.standardFont = module.exports.fontMillion;

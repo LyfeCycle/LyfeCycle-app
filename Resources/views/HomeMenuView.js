@@ -8,7 +8,7 @@ function HomeMenuView() {
 };
 
 HomeMenuView.prototype.createHomeView = function(){
-	var bannerHeight = 110;
+	var bannerHeight = Constants.bannerHeight;
 
 	var banner = createBanner(bannerHeight);
 	this.mapButton = createButton('Maps', '/images/compass-black.png', bannerHeight + 50);
@@ -29,7 +29,8 @@ HomeMenuView.prototype.createHomeView = function(){
 	// Events
 
 	this.mapButton.addEventListener('click', function() {
-
+		console.log("Clicking map button");
+		windowController.goToDirectionView();
 	});
 
 	this.reportButton.addEventListener('click', function() {
