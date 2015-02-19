@@ -1,13 +1,13 @@
 var Constants = require('/views/Constants');
 
-function HomeView() {
+function HomeMenu() {
 	this.mapButton;
 	this.reportButton;
 	this.socialButton;
-	this.main = this.createHomeView();
+	this.view = this.createHomeView();
 };
 
-HomeView.prototype.createHomeView = function(){
+HomeMenu.prototype.createHomeView = function(){
 	var bannerHeight = 110;
 
 	var banner = createBanner(bannerHeight);
@@ -119,4 +119,4 @@ HomeView.prototype.createHomeView = function(){
 	}
 };
 
-module.exports = HomeView;
+module.exports = HomeMenu;
