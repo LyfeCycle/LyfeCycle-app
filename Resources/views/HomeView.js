@@ -26,6 +26,20 @@ HomeView.prototype.createHomeView = function(){
 	main.add(this.reportButton);
 	main.add(this.socialButton);
 
+	// Events
+
+	this.mapButton.addEventListener('click', function() {
+
+	});
+
+	this.reportButton.addEventListener('click', function() {
+
+	});
+
+	this.socialButton.addEventListener('click', function() {
+
+	});
+
 	return main;
 
 
@@ -61,7 +75,7 @@ HomeView.prototype.createHomeView = function(){
 
 		var label = Ti.UI.createLabel({
 			text: title,
-			left: 90,
+			left: 100,
 			font: {fontSize: 25, fontFamily: Constants.standardFont}
 		});
 
