@@ -1,7 +1,11 @@
+// ***** View Requires *****
+var Map = require('/views/MapView');
+var HomeMenuView = require('/views/HomeMenuView');
+
 // ***** Controller Requires *****
-var WindowController = require('controllers/WindowController');
-var Session = require('/controllers/Session');
-var CrashDetect = require('/controllers/CrashDetect');
+var Session = require('/controllers/SessionController');
+var CrashDetect = require('/controllers/CrashDetectController');
+var WindowController = require('/controllers/WindowController');
 
 
 // ***** Controller Objects *****
@@ -9,6 +13,9 @@ var userSession = new Session();
 var userCrashDetect = new CrashDetect();
 var windowController = new WindowController();
 
+// ***** View Objects *****
+var map = new Map();
+var homeMenu = new HomeMenuView();
 
 // ***** Windows *****
 

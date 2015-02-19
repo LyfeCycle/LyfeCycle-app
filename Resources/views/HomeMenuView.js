@@ -1,13 +1,13 @@
 var Constants = require('/views/Constants');
 
-function HomeMenu() {
+function HomeMenuView() {
 	this.mapButton;
 	this.reportButton;
 	this.socialButton;
 	this.view = this.createHomeView();
 };
 
-HomeMenu.prototype.createHomeView = function(){
+HomeMenuView.prototype.createHomeView = function(){
 	var bannerHeight = 110;
 
 	var banner = createBanner(bannerHeight);
@@ -25,6 +25,20 @@ HomeMenu.prototype.createHomeView = function(){
 	main.add(this.mapButton);
 	main.add(this.reportButton);
 	main.add(this.socialButton);
+
+	// Events
+
+	this.mapButton.addEventListener('click', function() {
+
+	});
+
+	this.reportButton.addEventListener('click', function() {
+
+	});
+
+	this.socialButton.addEventListener('click', function() {
+
+	});
 
 	return main;
 
@@ -61,7 +75,7 @@ HomeMenu.prototype.createHomeView = function(){
 
 		var label = Ti.UI.createLabel({
 			text: title,
-			left: 90,
+			left: 100,
 			font: {fontSize: 25, fontFamily: Constants.standardFont}
 		});
 
@@ -105,4 +119,4 @@ HomeMenu.prototype.createHomeView = function(){
 	}
 };
 
-module.exports = HomeMenu;
+module.exports = HomeMenuView;
