@@ -1,9 +1,10 @@
 // ***** View Requires *****
+var Constants = require('/views/Constants');
 var HomeMenuView = require('/views/HomeMenuView');
 var DirectionView = require('/views/DirectionView');
-var LoginView = require('/views/LoginView')
+var LoginView = require('/views/LoginView');
 
-;// ***** Controller Requires *****
+// ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
 var CrashDetectController = require('/controllers/CrashDetectController');
 var WindowController = require('/controllers/WindowController');

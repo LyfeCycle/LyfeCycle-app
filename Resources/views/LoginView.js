@@ -1,5 +1,3 @@
-var Constants = require('/views/Constants');
-
 function LoginView() {
 	this.view = this.createLoginView();
 };

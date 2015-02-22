@@ -1,5 +1,3 @@
-var Constants = require('/views/Constants');
-
 function HomeMenuView() {
 	this.mapButton;
 	this.reportButton;
