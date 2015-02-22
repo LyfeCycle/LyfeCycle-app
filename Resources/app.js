@@ -3,6 +3,7 @@ var Constants = require('/views/Constants');
 var HomeMenuView = require('/views/HomeMenuView');
 var DirectionView = require('/views/DirectionView');
 var LoginView = require('/views/LoginView');
+var TopBarView = require('/views/TopBarView');
 
 // ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
@@ -13,6 +14,7 @@ var WindowController = require('/controllers/WindowController');
 var homeMenuView = new HomeMenuView();
 var directionView = new DirectionView();
 var loginView = new LoginView();
+var topBar = new TopBarView();
 
 // ***** Controller Objects *****
 var sessionController = new SessionController();

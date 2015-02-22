@@ -8,17 +8,14 @@ function DirectionView() {
 }
 
 DirectionView.prototype.createDirectionView = function() {
-	var bannerHeight = 65;
-
 	var main = Ti.UI.createView({
-		width: '100%', height: '100%'
+		width: '100%', height: Constants.viewHeight, bottom: 0
 	});
 
 	var routeListComponent = new RouteListComponent();
-	var mapComponent = new MapComponent(bannerHeight, routeListComponent);
+	var mapComponent = new MapComponent(0);
 
 	main.add(mapComponent.view);
-	main.add(createBanner(bannerHeight));
 	main.add(routeListComponent.view);
 
 	return main;

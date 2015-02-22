@@ -6,20 +6,18 @@ function HomeMenuView() {
 };
 
 HomeMenuView.prototype.createHomeView = function(){
-	var bannerHeight = Constants.bannerHeight;
 
-	var banner = createBanner(bannerHeight);
-	this.mapButton = createButton('Maps', '/images/compass-black.png', bannerHeight + 50);
-	this.reportButton = createButton('Reports', '/images/traffic-cone-black.png', bannerHeight + 140);
-	this.socialButton = createButton('Social', '/images/comment-black.png', bannerHeight + 230);
+	this.mapButton = createButton('Maps', '/images/compass-black.png', '10%');
+	this.reportButton = createButton('Reports', '/images/traffic-cone-black.png', '30%');
+	this.socialButton = createButton('Social', '/images/comment-black.png', '50%');
 
 	var main = Ti.UI.createView({
-		height: Constants.deviceHeight,
+		height: Constants.viewHeight,
 		width: Constants.deviceWidth,
-		backgroundColor: '#ddd'
+		backgroundColor: '#ddd',
+		bottom: 0
 	});
 
-	main.add(banner);
 	main.add(this.mapButton);
 	main.add(this.reportButton);
 	main.add(this.socialButton);
