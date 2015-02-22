@@ -8,16 +8,18 @@ function DirectionView() {
 }
 
 DirectionView.prototype.createDirectionView = function() {
-	var bannerHeight = 50;
+	var bannerHeight = 65;
 
 	var main = Ti.UI.createView({
 		width: '100%', height: '100%'
 	});
 
-	var mapComponent = new MapComponent(bannerHeight);
+	var routeListComponent = new RouteListComponent();
+	var mapComponent = new MapComponent(bannerHeight, routeListComponent);
 
 	main.add(mapComponent.view);
 	main.add(createBanner(bannerHeight));
+	main.add(routeListComponent.view);
 
 	return main;
 
@@ -36,7 +38,7 @@ DirectionView.prototype.createDirectionView = function() {
 			image: '/images/mag_glass.png'
 		});
 
-		view.add(searchButton);
+		// view.add(searchButton);
 
 		// Events
 		searchButton.addEventListener('click', function() {
