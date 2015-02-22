@@ -2,7 +2,7 @@
 
 function Session() {
 	this.logged_in_state = false;
-}
+};
 
 Session.prototype.getLoginStatus = function() {
 	if (logged_in_state == true) {
@@ -12,7 +12,11 @@ Session.prototype.getLoginStatus = function() {
 };
 
 Session.prototype.Login = function() {
-	loginwindow = Titanium.UI.createWindow();
-}
+	windowController.goToLoginWindow();
+};
+
+Session.prototype.Logout = function() {
+
+};
 
 module.exports = Session;

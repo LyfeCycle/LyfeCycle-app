@@ -60,6 +60,7 @@ WindowController.prototype.goToLoginWindow = function() {
 	this.socialWindow.close();
 	this.reportWindow.close();
 
+	this.loginWindow.add(loginView.view);
 	this.loginWindow.open();
 }
 
