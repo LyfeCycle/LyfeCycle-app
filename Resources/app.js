@@ -16,7 +16,7 @@ var userSession = new Session();
 var userCrashDetect = new CrashDetect();
 var windowController = new WindowController();
 
-windowController.goToHomeView();
+windowController.goToHomeWindow();
 
 
 

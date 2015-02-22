@@ -30,7 +30,7 @@ HomeMenuView.prototype.createHomeView = function(){
 
 	this.mapButton.addEventListener('click', function() {
 		console.log("Clicking map button");
-		windowController.goToDirectionView();
+		windowController.goToDirectionWindow();
 	});
 
 	this.reportButton.addEventListener('click', function() {
@@ -38,7 +38,7 @@ HomeMenuView.prototype.createHomeView = function(){
 	});
 
 	this.socialButton.addEventListener('click', function() {
-
+		windowController.goToSocialWindow();
 	});
 
 	return main;

@@ -12,22 +12,65 @@ function WindowController() {
 	this.directionWindow.add(directionView.view);
 };
 
-WindowController.prototype.goToHomeView = function() {
-	this.homeWindow.open();
+WindowController.prototype.goToHomeWindow = function() {
 	this.settingsWindow.close();
 	this.loginWindow.close();
 	this.socialWindow.close();
 	this.directionWindow.close();
 	this.reportWindow.close();
-}
 
-WindowController.prototype.goToDirectionView = function() {
-	this.directionWindow.open();
+	this.homeWindow.open();
+};
+
+WindowController.prototype.goToDirectionWindow = function() {
 	this.homeWindow.close();
 	this.settingsWindow.close();
 	this.loginWindow.close();
 	this.socialWindow.close();
 	this.reportWindow.close();
+
+	this.directionWindow.open();
+
 };
+
+WindowController.prototype.goToSocialWindow = function() {
+	this.homeWindow.close();
+	this.settingsWindow.close();
+	this.loginWindow.close();
+	this.directionWindow.close();
+	this.reportWindow.close();
+
+	this.socialWindow.open();
+}
+
+WindowController.prototype.goToSettingsWindow = function() {
+	this.homeWindow.close();
+	this.directionWindow.close();
+	this.loginWindow.close();
+	this.socialWindow.close();
+	this.reportWindow.close();
+
+	this.settingsWindow.open();
+}
+
+WindowController.prototype.goToLoginWindow = function() {
+	this.homeWindow.close();
+	this.directionWindow.close();
+	this.settingsWindow.close();
+	this.socialWindow.close();
+	this.reportWindow.close();
+
+	this.loginWindow.open();
+}
+
+WindowController.prototype.goToReportWindow = function() {
+	this.homeWindow.close();
+	this.directionWindow.close();
+	this.settingsWindow.close();
+	this.socialWindow.close();
+	this.loginWindow.close();
+
+	this.reportWindow.open();
+}
 
 module.exports = WindowController;
