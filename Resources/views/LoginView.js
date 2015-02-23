@@ -36,6 +36,7 @@ LoginView.prototype.createLoginView = function() {
 	loginButton.addEventListener('click',function(e)
 	{
 		Titanium.API.info("You clicked the button");
+		windowController.goToHomeWindow();
 	});
 
 	main.add(userNameTextField);
