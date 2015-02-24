@@ -1,9 +1,7 @@
-var Constants = require('/views/Constants');
 var map = require('ti.map');
 
-function MapComponent(top, routeListComponent) {
+function MapComponent(top) {
 	this.view = this.createMapView(top);
-	this.routeListComponent = routeListComponent;
 }
 
 MapComponent.prototype.createMapView = function(top) {
