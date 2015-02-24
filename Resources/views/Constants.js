@@ -9,8 +9,8 @@ module.exports.fontMillion = 'THE MILLION MILE MAN';
 module.exports.standardFont = module.exports.fontKG;
 module.exports.green = '#9ae588';
 module.exports.cream = '#F1ECD6';
-module.exports.topBarHeight = '8%';
-module.exports.viewHeight = '92%';
+module.exports.topBarHeight = '12%';
+module.exports.viewHeight = '88%';
 
 // HomeView
 module.exports.homeViewButtonWidth = module.exports.deviceWidth * 0.7;

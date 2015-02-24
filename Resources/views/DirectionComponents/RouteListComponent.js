@@ -1,17 +1,20 @@
 var Constants = require('/views/Constants');
 
 function RouteListComponent() {
+	this.tableHeader = this.createDirectionTableHeader();
 	this.view = this.createDirectionTable();
 }
 
 RouteListComponent.prototype.generateRouteList = function(directions) {
-	var jsonParsed = JSON.parse(directions);
-	if (jsonParsed.routes && jsonParsed.routes.length > 0 && jsonParsed.routes[0].legs.length > 0) {
-		var route = jsonParsed.routes[0].legs[0];
-		this.updateDirectionTableData(route.steps, route);
-	} else {
-		Ti.API.info("No routes to add");
-	}
+	// var jsonParsed = JSON.parse(directions);
+	// if (jsonParsed.routes && jsonParsed.routes.length > 0 && jsonParsed.routes[0].legs.length > 0) {
+	// 	var route = jsonParsed.routes[0].legs[0];
+	// 	this.updateDirectionTableData(route.steps, route);
+	// } else {
+	// 	Ti.API.info("No routes to add");
+	// }
+	// this.updateDirectionTableData(route.steps, route);
+	this.updateDirectionTableData();
 }
 
 RouteListComponent.prototype.createDirectionRow = function(step) {
@@ -60,10 +63,10 @@ RouteListComponent.prototype.updateDirectionTableData = function(directions, met
 	var directionSection = Ti.UI.createTableViewSection({
 		headerTitle: 'Directions'
 	});
-	for (var i = 0; i < directions.length; i++) {
-		directionSection.add(this.createDirectionRow(directions[i]));
-	}
-	this.view.setData([directionSection]);
+	// for (var i = 0; i < directions.length; i++) {
+	// 	directionSection.add(this.createDirectionRow(directions[i]));
+	// }
+	this.view.setData([this.tableHeader, directionSection]);
 	this.view.show();
 };
 
@@ -71,26 +74,30 @@ RouteListComponent.prototype.createDirectionTableHeader = function(meta) {
 	var row = Ti.UI.createTableViewRow({
 		className: 'header',
 		backgroundColor: Constants.green,
-		height: 110
+		height: 50
 	});
-	var distanceText = Ti.UI.createLabel({
-		text: 'Total distance: ' + meta.distance.text,
-		top: 70,
+	var ok = Ti.UI.createLabel({
+		right: '5%',
+		text: 'Ok!',
+		font: {fontSize:14, fontFamily: 'Helvetica Neue'},
 		color: 'white'
 	});
-	var destinationText = Ti.UI.createLabel({
-		text: 'To ' + meta.end_address,
-		top: 30,
-		color: 'white'
-	});
-	var timeText = Ti.UI.createLabel({
-		text: 'Will take ' + meta.duration.text,
-		top: 90,
-		color: 'white'
-	});
-	row.add(distanceText);
-	row.add(destinationText);
-	row.add(timeText);
+	// var distanceText = Ti.UI.createLabel({
+	// 	text: 'Total distance: ' + meta.distance.text,
+	// 	color: 'white'
+	// });
+	// var destinationText = Ti.UI.createLabel({
+	// 	text: 'To ' + meta.end_address,
+	// 	color: 'white'
+	// });
+	// var timeText = Ti.UI.createLabel({
+	// 	text: 'Will take ' + meta.duration.text,
+	// 	color: 'white'
+	// });
+	// row.add(distanceText);
+	// row.add(destinationText);
+	// row.add(timeText);
+	row.add(ok);
 	return row;
 
 }

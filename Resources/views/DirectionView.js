@@ -1,6 +1,7 @@
 var Constants = require('/views/Constants');
 var MapComponent = require('/views/DirectionComponents/MapComponent');
 var RouteListComponent = require('/views/DirectionComponents/RouteListComponent');
+var NavSearchComponent = require('/views/DirectionComponents/NavSearchComponent');
 
 
 function DirectionView() {
@@ -13,10 +14,17 @@ DirectionView.prototype.createDirectionView = function() {
 	});
 
 	var routeListComponent = new RouteListComponent();
-	var mapComponent = new MapComponent(0);
+	var mapComponent = new MapComponent(0, routeListComponent);
+	var navSearchComponent = new NavSearchComponent();
 
 	main.add(mapComponent.view);
 	main.add(routeListComponent.view);
+	main.add(navSearchComponent.view);
+
+	// Event Handlers
+	navSearchComponent.navSearchButton.addEventListener('click', function(){
+		routeListComponent.generateRouteList();
+	});
 
 	return main;
 
