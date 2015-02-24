@@ -29,7 +29,8 @@ EnableLocationServicesView.prototype.createEnableLocationServicesView = function
 		text: 'Please enable Location Services to use LyfeCycle',
 		bottom: '20%',
 		textAlign: 'center',
-		backgroundColor: '#fff'
+		color: '#fff',
+		width: '90%'
 	});
 
 	main.add(img);

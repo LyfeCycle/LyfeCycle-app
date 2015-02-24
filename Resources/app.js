@@ -27,7 +27,7 @@ var gpsLocationController = new GPSLocationController();
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');
-if (Ti.Geolocation.locationServicesEnabled) {	
+if (!Ti.Geolocation.locationServicesEnabled) {	
 	gpsLocationController.initGPS();
 	if (!usedBefore){
 		Ti.App.Properties.setBool('usedBefore', true);
