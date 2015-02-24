@@ -10,6 +10,7 @@ var EnableLocationView = require('/views/EnableLocationServicesView');
 var SessionController = require('/controllers/SessionController');
 var CrashDetectController = require('/controllers/CrashDetectController');
 var WindowController = require('/controllers/WindowController');
+var GPSLocationController = require('/controllers/GPSLocationController');
 
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
@@ -22,18 +23,16 @@ var enableLocationView = new EnableLocationView();
 var sessionController = new SessionController();
 var crashDetectController = new CrashDetectController();
 var windowController = new WindowController();
+var gpsLocationController = new GPSLocationController();
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');
-console.log("Location " + Ti.Geolocation.locationServicesEnabled);
-if (Ti.Geolocation.locationServicesEnabled) {
-	console.log("Used before " + usedBefore);
+if (Ti.Geolocation.locationServicesEnabled) {	
+	gpsLocationController.initGPS();
 	if (!usedBefore){
 		Ti.App.Properties.setBool('usedBefore', true);
 		sessionController.Login();
-	} else {
-		windowController.goToHomeWindow();
-	}
+	} else windowController.goToHomeWindow();
 } else {
     windowController.goToEnableLocationWindow();
 }
