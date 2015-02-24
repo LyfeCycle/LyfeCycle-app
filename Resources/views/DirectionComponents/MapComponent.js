@@ -17,6 +17,6 @@ MapComponent.prototype.createMapView = function(top) {
 	    top: top,
 	    height: Constants.deviceHeight - top
 	});
-}
+};
 
 module.exports = MapComponent;

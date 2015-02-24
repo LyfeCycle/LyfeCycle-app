@@ -13,7 +13,7 @@ RouteListComponent.prototype.generateRouteList = function(directions) {
 	// }
 	// this.updateDirectionTableData(route.steps, route);
 	this.updateDirectionTableData();
-}
+};
 
 RouteListComponent.prototype.createDirectionRow = function(step) {
 	var row = Ti.UI.createTableViewRow({
