@@ -1,5 +1,3 @@
-var Constants = require('/views/Constants');
-
 function RouteListComponent() {
 	this.tableHeader = this.createDirectionTableHeader();
 	this.view = this.createDirectionTable();

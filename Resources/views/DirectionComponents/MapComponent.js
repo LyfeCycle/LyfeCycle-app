@@ -1,4 +1,3 @@
-var Constants = require('/views/Constants');
 var map = require('ti.map');
 
 function MapComponent(top) {

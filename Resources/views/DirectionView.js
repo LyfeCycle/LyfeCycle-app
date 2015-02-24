@@ -26,32 +26,6 @@ DirectionView.prototype.createDirectionView = function() {
 	});
 
 	return main;
-
-	function createBanner(height) {
-
-		var view = Ti.UI.createView({
-			width: Constants.deviceWidth,
-			height: height,
-			top: 0,
-			backgroundColor: Constants.green
-		});
-
-		var searchButton = Ti.UI.createImageView({
-			right: 15,
-			height: height*0.6,
-			image: '/images/mag_glass.png'
-		});
-
-		// view.add(searchButton);
-
-		// Events
-		searchButton.addEventListener('click', function() {
-			mapComponent.addRouteToMap();
-		});
-
-		return view;
-
-	}
 };
 
 module.exports = DirectionView;

@@ -6,6 +6,7 @@ function WindowController() {
 	this.socialWindow = Titanium.UI.createWindow();
 	this.directionWindow = Titanium.UI.createWindow();
 	this.reportWindow = Titanium.UI.createWindow();
+	this.enableLocationServicesWindow = Titanium.UI.createWindow();
 
 	// Add top bar
 	this.homeWindow.add(topBar.view);
@@ -14,6 +15,8 @@ function WindowController() {
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
 	this.directionWindow.add(directionView.view);
+	this.loginWindow.add(loginView.view);
+	this.enableLocationServicesWindow.add(enableLocationView.view);
 };
 
 WindowController.prototype.goToHomeWindow = function() {
@@ -33,12 +36,15 @@ WindowController.prototype.goToSettingsWindow = function() {
 }
 
 WindowController.prototype.goToLoginWindow = function() {
-	this.loginWindow.add(loginView.view);
 	this.loginWindow.open();
 }
 
 WindowController.prototype.goToReportWindow = function() {
 	this.reportWindow.open();
+}
+
+WindowController.prototype.goToEnableLocationWindow = function(){
+	this.enableLocationServicesWindow.open();
 }
 
 module.exports = WindowController;
