@@ -32,14 +32,6 @@ NavSearchComponent.prototype.createNavSearchBar = function(){
 };
 
 NavSearchComponent.prototype.createNavSearchButton = function(){
-	// var bg = Ti.UI.createView({
-	// 	backgroundColor: Constants.green,
-	// 	borderRadius: '50%',
-	// 	width: '15%',
-	// 	height: '100%',
-	// 	right: 0,
-	// 	top: 0
-	// });
 	var button = Ti.UI.createImageView({
 		height: '100%',
 		image: '/images/mag_glass.png',
@@ -48,9 +40,6 @@ NavSearchComponent.prototype.createNavSearchButton = function(){
 		width: '15%'
 	});
 	return button;
-
-	// bg.add(button);
-	// return bg;
 };
 
 module.exports = NavSearchComponent;

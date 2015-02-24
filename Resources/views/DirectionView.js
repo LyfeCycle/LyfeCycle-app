@@ -1,4 +1,3 @@
-var Constants = require('/views/Constants');
 var MapComponent = require('/views/DirectionComponents/MapComponent');
 var RouteListComponent = require('/views/DirectionComponents/RouteListComponent');
 var NavSearchComponent = require('/views/DirectionComponents/NavSearchComponent');
