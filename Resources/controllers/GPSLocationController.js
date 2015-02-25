@@ -30,6 +30,18 @@ GPSLocationController.prototype.initGPS = function(){
             this.currentLocationTimestamp = e.coords.timestamp;
         }
     });
-}
+};
+
+GPSLocationController.prototype.getCurrentLatitude = function(){
+	return this.currentLatitude;
+};
+
+GPSLocationController.prototype.getCurrentLongitude = function(){
+	return this.currentLongitude;
+};
+
+GPSLocationController.prototype.getCurrentCoordinates = function(){
+	return {latitude: this.currentLatitude, longitude: this.currentLongitude};
+};
 
 module.exports = GPSLocationController;

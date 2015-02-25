@@ -11,6 +11,7 @@ var SessionController = require('/controllers/SessionController');
 var CrashDetectController = require('/controllers/CrashDetectController');
 var WindowController = require('/controllers/WindowController');
 var GPSLocationController = require('/controllers/GPSLocationController');
+var DirectionController = require('/controllers/DirectionController');
 
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
@@ -22,8 +23,9 @@ var enableLocationView = new EnableLocationView();
 // ***** Controller Objects *****
 var sessionController = new SessionController();
 var crashDetectController = new CrashDetectController();
-var windowController = new WindowController();
 var gpsLocationController = new GPSLocationController();
+var directionController = new DirectionController();
+var windowController = new WindowController();
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');

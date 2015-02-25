@@ -12,20 +12,24 @@ DirectionView.prototype.createDirectionView = function() {
 		width: '100%', height: Constants.viewHeight, bottom: 0
 	});
 
-	var routeListComponent = new RouteListComponent();
-	var mapComponent = new MapComponent(0, routeListComponent);
-	var navSearchComponent = new NavSearchComponent();
+	this.routeListComponent = new RouteListComponent();
+	this.mapComponent = new MapComponent(0);
+	this.navSearchComponent = new NavSearchComponent();
 
-	main.add(mapComponent.view);
-	main.add(routeListComponent.view);
-	main.add(navSearchComponent.view);
+	main.add(this.mapComponent.view);
+	main.add(this.routeListComponent.view);
+	main.add(this.navSearchComponent.view);
 
 	// Event Handlers
-	navSearchComponent.navSearchButton.addEventListener('click', function(){
+	this.navSearchComponent.navSearchButton.addEventListener('click', function(){
 		routeListComponent.generateRouteList();
 	});
 
 	return main;
+};
+
+DirectionView.prototype.addPinToMap = function(coordinates, image) {
+	console.log(this.routeListComponent);
 };
 
 module.exports = DirectionView;

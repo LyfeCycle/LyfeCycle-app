@@ -11,7 +11,6 @@ function WindowController() {
 	// Add top bar
 	this.homeWindow.add(topBar.view);
 	this.directionWindow.add(topBar.view);
-
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
 	this.directionWindow.add(directionView.view);
@@ -26,6 +25,7 @@ WindowController.prototype.goToHomeWindow = function() {
 
 WindowController.prototype.goToDirectionWindow = function() {
 	topBar.setText('Directions');
+	directionController.setUserPin();
 	this.directionWindow.open();
 };
 

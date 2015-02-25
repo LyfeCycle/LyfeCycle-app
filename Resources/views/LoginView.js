@@ -4,8 +4,7 @@ function LoginView() {
 
 LoginView.prototype.createLoginView = function() {
 	var main = Ti.UI.createView({
-		height: '90%',
-		top: '10%',
+		height: '100%',
 		width: Constants.deviceWidth,
 		backgroundColor: '#acdf6b'
 	});
