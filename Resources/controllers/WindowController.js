@@ -20,18 +20,22 @@ function WindowController() {
 };
 
 WindowController.prototype.goToHomeWindow = function() {
+	topBar.setText('Home');
 	this.homeWindow.open();
 };
 
 WindowController.prototype.goToDirectionWindow = function() {
+	topBar.setText('Directions');
 	this.directionWindow.open();
 };
 
 WindowController.prototype.goToSocialWindow = function() {
+	topBar.setText('Social');
 	this.socialWindow.open();
 }
 
 WindowController.prototype.goToSettingsWindow = function() {
+	topBar.setText('Settings');
 	this.settingsWindow.open();
 }
 

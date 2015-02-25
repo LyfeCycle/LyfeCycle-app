@@ -29,7 +29,7 @@ var gpsLocationController = new GPSLocationController();
 var usedBefore = Ti.App.Properties.getBool('usedBefore');
 if (Ti.Geolocation.locationServicesEnabled) {	
 	gpsLocationController.initGPS();
-	if (!usedBefore){
+	if (usedBefore){
 		Ti.App.Properties.setBool('usedBefore', true);
 		sessionController.Login();
 	} else windowController.goToHomeWindow();
