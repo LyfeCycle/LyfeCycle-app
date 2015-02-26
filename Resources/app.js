@@ -1,4 +1,7 @@
+var MapModule = require('ti.map');
+
 // ***** View Requires *****
+var APIConstants = require('./APIConstants');
 var Constants = require('./Constants');
 var HomeMenuView = require('/views/HomeMenuView');
 var DirectionView = require('/views/DirectionView');

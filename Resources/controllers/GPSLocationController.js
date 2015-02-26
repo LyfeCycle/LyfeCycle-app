@@ -5,6 +5,7 @@ function GPSLocationController(){
 };
 
 GPSLocationController.prototype.initGPS = function(){
+    var self = this;
 	Ti.Geolocation.purpose = 'Get Current Location';
     Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
     Ti.Geolocation.distanceFilter = 10;
@@ -14,9 +15,9 @@ GPSLocationController.prototype.initGPS = function(){
         if (e.error) {
             console.log('Couldn\'t get location');
         } else {
-           	this.currentLatitude = e.coords.latitude;
-            this.currentLatitude = e.coords.longitude;
-            this.currentLocationTimestamp = e.coords.timestamp;
+           	self.currentLatitude = e.coords.latitude;
+            self.currentLongitude = e.coords.longitude;
+            self.currentLocationTimestamp = e.coords.timestamp;
         }
     });
 
@@ -25,9 +26,9 @@ GPSLocationController.prototype.initGPS = function(){
         if (e.error) {
             console.log('Couldn\'t get location');
         } else {
-            this.currentLatitude = e.coords.latitude;
-            this.currentLatitude = e.coords.longitude;
-            this.currentLocationTimestamp = e.coords.timestamp;
+            self.currentLatitude = e.coords.latitude;
+            self.currentLongitude = e.coords.longitude;
+            self.currentLocationTimestamp = e.coords.timestamp;
         }
     });
 };

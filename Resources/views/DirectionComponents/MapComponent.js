@@ -1,5 +1,3 @@
-var map = require('ti.map');
-
 function MapComponent(top) {
 	this.view = this.createMapView(top);
 }
@@ -9,8 +7,8 @@ MapComponent.prototype.createMapView = function(top) {
     var startLong = -71.1255678;
 	var delta = 0.005;
 
-	return map.createView({
-		mapType: map.NORMAL_TYPE,
+	return MapModule.createView({
+		mapType: MapModule.NORMAL_TYPE,
 	    animate:true,
 	    regionFit:true,
 	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},

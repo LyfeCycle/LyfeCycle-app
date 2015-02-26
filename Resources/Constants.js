@@ -17,4 +17,8 @@ module.exports.viewHeight = '88%';
 module.exports.homeViewButtonWidth = module.exports.deviceWidth * 0.7;
 module.exports.bannerHeight = 110;
 
+// DirectionsController
+module.exports.GoogleDirectionsStartReq = 'https://maps.googleapis.com/maps/api/directions/json?origin=';
+module.exports.GoogleDirectionsEndReq = '&key=' + APIConstants.GoogleDirectionsKey + '&avoid=highways&mode=bicycling&sensor=false';
+
 // module.exports.standardFont = module.exports.fontMillion;

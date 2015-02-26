@@ -8,6 +8,8 @@ function DirectionView() {
 }
 
 DirectionView.prototype.createDirectionView = function() {
+	var self = this;
+
 	var main = Ti.UI.createView({
 		width: '100%', height: Constants.viewHeight, bottom: 0
 	});
@@ -22,14 +24,24 @@ DirectionView.prototype.createDirectionView = function() {
 
 	// Event Handlers
 	this.navSearchComponent.navSearchButton.addEventListener('click', function(){
-		routeListComponent.generateRouteList();
+		if (self.navSearchComponent.navSearchBar.value)
+			directionController.getDirections(self.navSearchComponent.navSearchBar.value);
 	});
 
 	return main;
 };
 
-DirectionView.prototype.addPinToMap = function(coordinates, image) {
-	console.log(this.routeListComponent);
+DirectionView.prototype.addPinToMap = function(coordinates, id, image) {
+
+	var pin = MapModule.createAnnotation({
+	    latitude: gpsLocationController.getCurrentLatitude(),
+	    longitude: gpsLocationController.getCurrentLongitude(),
+	    title:"You are here!",
+	    image: image,
+	    myid:  id ? id : null// Custom property to uniquely identify this annotation.
+	});
+	console.log("ADDING ANNOTATION " + gpsLocationController.getCurrentLatitude() + " " + gpsLocationController.getCurrentLongitude());
+	this.mapComponent.view.addAnnotation(pin);
 };
 
 module.exports = DirectionView;
