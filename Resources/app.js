@@ -8,6 +8,7 @@ var DirectionView = require('/views/DirectionView');
 var LoginView = require('/views/LoginView');
 var TopBarView = require('/views/TopBarView');
 var EnableLocationView = require('/views/EnableLocationServicesView');
+var SocialView = require('/views/SocialView');
 
 // ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
@@ -25,6 +26,7 @@ var directionView = new DirectionView();
 var loginView = new LoginView();
 var topBar = new TopBarView();
 var enableLocationView = new EnableLocationView();
+var socialView = new SocialView();
 
 // ***** Controller Objects *****
 var sessionController = new SessionController();
