@@ -36,11 +36,10 @@ DirectionView.prototype.addPinToMap = function(coordinates, id, image) {
 	var pin = MapModule.createAnnotation({
 	    latitude: gpsLocationController.getCurrentLatitude(),
 	    longitude: gpsLocationController.getCurrentLongitude(),
-	    title:"You are here!",
+	    title: "You are here!",
 	    image: image,
 	    myid:  id ? id : null// Custom property to uniquely identify this annotation.
 	});
-	console.log("ADDING ANNOTATION " + gpsLocationController.getCurrentLatitude() + " " + gpsLocationController.getCurrentLongitude());
 	this.mapComponent.view.addAnnotation(pin);
 };
 

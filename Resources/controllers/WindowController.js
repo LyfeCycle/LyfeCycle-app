@@ -25,6 +25,7 @@ WindowController.prototype.goToHomeWindow = function() {
 
 WindowController.prototype.goToDirectionWindow = function() {
 	topBar.setText('Directions');
+	directionController.showCurrentLocation();
 	directionController.setUserPin();
 	this.directionWindow.open();
 };

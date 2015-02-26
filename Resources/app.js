@@ -16,6 +16,9 @@ var WindowController = require('/controllers/WindowController');
 var GPSLocationController = require('/controllers/GPSLocationController');
 var DirectionController = require('/controllers/DirectionController');
 
+// ***** Model Requires *****
+var StepModel = require('/models/StepModel');
+
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
 var directionView = new DirectionView();
