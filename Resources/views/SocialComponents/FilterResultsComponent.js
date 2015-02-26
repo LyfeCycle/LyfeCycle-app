@@ -20,8 +20,7 @@ FilterResultsComponent.prototype.createFilterResultsComponent = function(){
 
 	main.addEventListener('scrollEnd', function (e){
 		// Call controller here to make REST calls
-		console.log("Here on the SCROLL");
-		console.log(e);
+		socialController.refreshProfileCardTable(e.view.id);
 	});
 
 	return main;

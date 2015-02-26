@@ -16,6 +16,7 @@ var CrashDetectController = require('/controllers/CrashDetectController');
 var WindowController = require('/controllers/WindowController');
 var GPSLocationController = require('/controllers/GPSLocationController');
 var DirectionController = require('/controllers/DirectionController');
+var SocialController = require('/controllers/SocialController');
 
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
@@ -33,7 +34,9 @@ var sessionController = new SessionController();
 var crashDetectController = new CrashDetectController();
 var gpsLocationController = new GPSLocationController();
 var directionController = new DirectionController();
+var socialController = new SocialController();
 var windowController = new WindowController();
+
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');

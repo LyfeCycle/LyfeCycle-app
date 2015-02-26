@@ -1,5 +1,5 @@
 var FilterResultsComponent = require('/views/SocialComponents/FilterResultsComponent');
-var ScrollingCardsComponent = require('/views/SocialComponents/ScrollingCardsComponent');
+var ScrollingProfileCardsComponent = require('/views/SocialComponents/ScrollingProfileCardsComponent');
 
 function SocialView() {
 	this.view = this.createSocialView();
@@ -13,10 +13,10 @@ SocialView.prototype.createSocialView = function(){
 	});
 
 	this.filterResultsComponent = new FilterResultsComponent();
-	this.scrollingCardsComponent = new ScrollingCardsComponent();
+	this.scrollingProfileCardsComponent = new ScrollingProfileCardsComponent();
 
 	main.add(this.filterResultsComponent.view);
-	main.add(this.scrollingCardsComponent.view);
+	main.add(this.scrollingProfileCardsComponent.view);
 
 	return main;
 };

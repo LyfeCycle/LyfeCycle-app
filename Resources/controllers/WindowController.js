@@ -11,7 +11,7 @@ function WindowController() {
 	// Add top bar
 	this.homeWindow.add(topBar.view);
 	this.directionWindow.add(topBar.view);
-	this.socialWindow.add(socialView.view);
+	this.socialWindow.add(topBar.view);
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
 	this.directionWindow.add(directionView.view);
