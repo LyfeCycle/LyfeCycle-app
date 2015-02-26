@@ -1,4 +1,5 @@
 var FilterResultsComponent = require('/views/SocialComponents/FilterResultsComponent');
+var ScrollingCardsComponent = require('/views/SocialComponents/ScrollingCardsComponent');
 
 function SocialView() {
 	this.view = this.createSocialView();
@@ -12,8 +13,10 @@ SocialView.prototype.createSocialView = function(){
 	});
 
 	this.filterResultsComponent = new FilterResultsComponent();
+	this.scrollingCardsComponent = new ScrollingCardsComponent();
 
 	main.add(this.filterResultsComponent.view);
+	main.add(this.scrollingCardsComponent.view);
 
 	return main;
 };
