@@ -12,6 +12,7 @@ function WindowController() {
 	this.homeWindow.add(topBar.view);
 	this.directionWindow.add(topBar.view);
 	this.socialWindow.add(topBar.view);
+	
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
 	this.directionWindow.add(directionView.view);
@@ -35,6 +36,7 @@ WindowController.prototype.goToDirectionWindow = function() {
 WindowController.prototype.goToSocialWindow = function() {
 	topBar.setText('Social');
 	this.socialWindow.open();
+	socialController.refreshProfileCardTable();
 }
 
 WindowController.prototype.goToSettingsWindow = function() {

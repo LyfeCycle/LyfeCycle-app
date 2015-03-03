@@ -1,3 +1,5 @@
+var FullProfileView = require('/views/SocialComponents/FullProfileComponent');
+
 function ProfileCard(userObj){
 	this.name = userObj.name;
 	this.miles = userObj.miles;
@@ -6,12 +8,14 @@ function ProfileCard(userObj){
 	this.achievements = userObj.achievements;
 	this.profPic = userObj.profPic;
 	this.view = this.generateProfileCard();
+	this.fullProfileView = new FullProfileView(userObj);
 };
 
 ProfileCard.prototype.generateProfileCard = function(){
+	var self = this;
 	var row = Ti.UI.createTableViewRow({
 		top: 20,
-		
+		selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
 
 	var view = Ti.UI.createView({
@@ -96,6 +100,12 @@ ProfileCard.prototype.generateProfileCard = function(){
 	view.add(totalTimeLabel);
 	view.add(totalTimeValue);
 	row.add(view);
+
+	// Events
+	row.addEventListener('click', function(){
+		self.fullProfileView.render();
+	});
+
 	return row;
 };
 

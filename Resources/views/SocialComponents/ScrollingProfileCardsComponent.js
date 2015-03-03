@@ -36,7 +36,8 @@ ScrollingProfileCardsComponent.prototype.createScrollingProfileCardsComponent = 
 };
 
 ScrollingProfileCardsComponent.prototype.addRowToTable = function(row){
-	this.table.appendRow(row);
+	socialView.view.add(row.fullProfileView.view);
+	this.table.appendRow(row.view);
 };
 
 ScrollingProfileCardsComponent.prototype.clearTable = function(){
