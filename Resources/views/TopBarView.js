@@ -18,6 +18,10 @@ TopBarView.prototype.createTopBarView = function() {
 	main.add(bikeIcon);
 	main.add(this.sideMenuButton);
 
+	this.sideMenuButton.addEventListener('click', function(){
+		sideMenuController.toggleSideMenu();
+	});
+
 	return main;
 
 	function createLogoIcon() {

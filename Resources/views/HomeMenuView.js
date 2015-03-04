@@ -13,7 +13,7 @@ HomeMenuView.prototype.createHomeView = function(){
 
 	var main = Ti.UI.createView({
 		height: Constants.viewHeight,
-		width: Constants.deviceWidth,
+		width: '100%',
 		backgroundColor: '#ddd',
 		bottom: 0
 	});
