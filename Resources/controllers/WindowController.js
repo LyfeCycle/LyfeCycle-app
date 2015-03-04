@@ -15,10 +15,13 @@ function WindowController() {
 	this.directionWindow.add(topBar.view);
 	this.socialWindow.add(topBar.view);
 
-	// Add side menu
+	// Add side menu & overlay
 	this.homeWindow.add(sideMenuView.view);
 	this.directionWindow.add(sideMenuView.view);
 	this.socialWindow.add(sideMenuView.view);
+	this.homeWindow.add(sideMenuView.overlay);
+	this.directionWindow.add(sideMenuView.overlay);
+	this.socialWindow.add(sideMenuView.overlay);
 
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
@@ -35,13 +38,13 @@ function WindowController() {
 	});
 
 	// Create listeners to grab current window
-	this.homeWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
-	this.settingsWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
+	this.homeWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
+	this.settingsWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.loginWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
-	this.socialWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
-	this.directionWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
-	this.reportWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
-	this.enableLocationServicesWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
+	this.socialWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
+	this.directionWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
+	this.reportWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
+	this.enableLocationServicesWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 
 };
 

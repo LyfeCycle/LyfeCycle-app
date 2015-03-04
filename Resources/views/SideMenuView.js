@@ -1,46 +1,84 @@
 var SideMenuView = function(){
+	this.viewWidth = 100;
+	this.overlay = this.generateOverlay();
 	this.view = this.generateSideMenuView();
+};
+
+SideMenuView.prototype.generateOverlay = function(){
+	var overlay = Ti.UI.createView({
+		height: '100%',
+		width: '100%',
+		backgroundColor: 'rgba(0,0,0,0.4)',
+		zIndex: 50,
+		opacity: 0
+	});
+
+	overlay.addEventListener('click', function(){
+		sideMenuController.closeSideMenu();
+	});
+
+	return overlay;
 };
 
 SideMenuView.prototype.generateSideMenuView = function(){
 	var main = Ti.UI.createView({
 		height: '100%',
-		width: 80,
-		left: -80
-	});
-
-	var table = Ti.UI.createTableView({
-		height: '100%',
-		width: '100%',
+		width: this.viewWidth,
+		left: -1*this.viewWidth,
 		backgroundColor: '#555',
-		separatorColor: '#eee'
+		zIndex: 100
 	});
 
-	var home = generateTableRow('Home');
-	home.top = 50;
-	table.appendRow(home);
-	table.appendRow(generateTableRow('Maps'));
-	table.appendRow(generateTableRow('Reports'));
-	table.appendRow(generateTableRow('Social'));
-
-	main.add(table);
-
+	main.add(generateTableRow('Home', 0));
+	main.add(generateTableRow('Maps', 1));
+	main.add(generateTableRow('Reports', 2));
+	main.add(generateTableRow('Social', 3));
 	return main;
 
 	// HELPER FUNCTIONS
 
-	function generateTableRow(name){
-		var row = Ti.UI.createTableViewRow({
-			height: 30,
+	function generateTableRow(name, index){
+		var autoTop = 50;
+		var height = 30;
+		var row = Ti.UI.createView({
+			height: height,
 			width: '100%',
-			title: name,
-			selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.NONE,
-			color: 'white',
-			font: {fontSize: 14}
+			id: name,
+			top: autoTop + index*height
 		});
 
+		row.add(
+			Ti.UI.createLabel({
+				text: name,
+				color: 'white',
+				font: {fontSize: 14},
+				width: '100%',
+				textAlign: 'center'
+			})
+		);
+
+		row.add(
+			Ti.UI.createView({
+				backgroundColor: 'white',
+				bottom: 0,
+				width: '100%',
+				height: 1
+			})
+		);
+
+		if (index === 0) {
+			row.add(
+				Ti.UI.createView({
+					backgroundColor: 'white',
+					top: 0,
+					width: '100%',
+					height: 1
+				})
+			);
+		}
+
 		row.addEventListener('click', function(){
-			switch (row.title) {
+			switch (row.id) {
 				case 'Home':
 					windowController.goToHomeWindow();
 					break;
