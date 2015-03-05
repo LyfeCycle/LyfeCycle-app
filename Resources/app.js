@@ -10,6 +10,7 @@ var TopBarView = require('/views/TopBarView');
 var EnableLocationView = require('/views/EnableLocationServicesView');
 var SocialView = require('/views/SocialView');
 var SideMenuView = require('/views/SideMenuView');
+var ReportView = require('/views/ReportView');
 
 // ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
@@ -19,6 +20,7 @@ var GPSLocationController = require('/controllers/GPSLocationController');
 var DirectionController = require('/controllers/DirectionController');
 var SocialController = require('/controllers/SocialController');
 var SideMenuController = require('/controllers/SideMenuController');
+var ReportController = require('/controllers/ReportController');
 
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
@@ -31,6 +33,7 @@ var topBar = new TopBarView();
 var enableLocationView = new EnableLocationView();
 var socialView = new SocialView();
 var sideMenuView = new SideMenuView();
+var reportView = new ReportView();
 
 // ***** Controller Objects *****
 var sessionController = new SessionController();
@@ -39,6 +42,7 @@ var gpsLocationController = new GPSLocationController();
 var directionController = new DirectionController();
 var socialController = new SocialController();
 var sideMenuController = new SideMenuController();
+var reportController = new ReportController();
 var windowController = new WindowController();
 
 

@@ -80,15 +80,19 @@ SideMenuView.prototype.generateSideMenuView = function(){
 		row.addEventListener('click', function(){
 			switch (row.id) {
 				case 'Home':
+					console.log("GO TO HOME");
 					windowController.goToHomeWindow();
 					break;
 				case 'Maps':
+					console.log("GO TO MAPS");
 					windowController.goToDirectionWindow();
 					break;
 				case 'Reports':
+					console.log("GO TO REPORTS");
 					windowController.goToReportWindow();
 					break;
 				case 'Social':
+					console.log("GO TO SOCIAL");
 					windowController.goToSocialWindow();
 					break;
 			}

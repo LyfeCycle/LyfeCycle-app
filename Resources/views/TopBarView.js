@@ -9,7 +9,8 @@ TopBarView.prototype.createTopBarView = function() {
 		backgroundColor: Constants.green,
 		width: '100%',
 		height: Constants.topBarHeight,
-		top: 0
+		top: 0,
+		zIndex: 100
 	});
 
 	var bikeIcon = createLogoIcon();

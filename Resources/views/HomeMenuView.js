@@ -25,12 +25,11 @@ HomeMenuView.prototype.createHomeView = function(){
 	// Events
 
 	this.mapButton.addEventListener('click', function() {
-		console.log("Clicking map button");
 		windowController.goToDirectionWindow();
 	});
 
 	this.reportButton.addEventListener('click', function() {
-
+		windowController.goToReportWindow();
 	});
 
 	this.socialButton.addEventListener('click', function() {

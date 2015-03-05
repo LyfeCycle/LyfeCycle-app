@@ -14,28 +14,25 @@ function WindowController() {
 	this.homeWindow.add(topBar.view);
 	this.directionWindow.add(topBar.view);
 	this.socialWindow.add(topBar.view);
+	this.reportWindow.add(topBar.view);
 
 	// Add side menu & overlay
 	this.homeWindow.add(sideMenuView.view);
 	this.directionWindow.add(sideMenuView.view);
 	this.socialWindow.add(sideMenuView.view);
+	this.reportWindow.add(sideMenuView.view);
 	this.homeWindow.add(sideMenuView.overlay);
 	this.directionWindow.add(sideMenuView.overlay);
 	this.socialWindow.add(sideMenuView.overlay);
+	this.reportWindow.add(sideMenuView.overlay);
 
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
 	this.directionWindow.add(directionView.view);
 	this.loginWindow.add(loginView.view);
-	this.enableLocationServicesWindow.add(enableLocationView.view);
 	this.socialWindow.add(socialView.view);
-
-	// Create animations
-	this.resetWindowAnimation = Ti.UI.createAnimation({
-		left: 0,
-		duration: 200,
-		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
-	});
+	this.reportWindow.add(reportView.view);
+	this.enableLocationServicesWindow.add(enableLocationView.view);
 
 	// Create listeners to grab current window
 	this.homeWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
@@ -50,19 +47,19 @@ function WindowController() {
 
 WindowController.prototype.goToHomeWindow = function() {
 	topBar.setText('Home');
-	this.homeWindow.open(this.resetWindowAnimation);
+	this.homeWindow.open();
 };
 
 WindowController.prototype.goToDirectionWindow = function() {
 	topBar.setText('Directions');
 	directionController.showCurrentLocation();
 	directionController.setUserPin();
-	this.directionWindow.open(this.resetWindowAnimation);
+	this.directionWindow.open();
 };
 
 WindowController.prototype.goToSocialWindow = function() {
 	topBar.setText('Social');
-	this.socialWindow.open(this.resetWindowAnimation);
+	this.socialWindow.open();
 	socialController.refreshProfileCardTable();
 };
 
@@ -76,7 +73,7 @@ WindowController.prototype.goToLoginWindow = function() {
 };
 
 WindowController.prototype.goToReportWindow = function() {
-	this.reportWindow.open(this.resetWindowAnimation);
+	this.reportWindow.open();
 };
 
 WindowController.prototype.goToEnableLocationWindow = function(){

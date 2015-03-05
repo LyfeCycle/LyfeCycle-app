@@ -50,13 +50,16 @@ MapComponentController.prototype.setRouteAnnotations = function(steps){
 }
 
 MapComponentController.prototype.showCurrentLocation = function(){
-	directionView.mapComponent.view.setLocation({
-        animate : true,
-        latitude: gpsLocationController.getCurrentLatitude(),
-        longitude: gpsLocationController.getCurrentLongitude(),
-        latitudeDelta: 1,
-        longitudeDelta: 1
-    });
+	console.log("Current place: " +  gpsLocationController.getCurrentLatitude() + " " + gpsLocationController.getCurrentLongitude());
+	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
+		directionView.mapComponent.view.setLocation({
+	        animate : true,
+	        latitude: gpsLocationController.getCurrentLatitude(),
+	        longitude: gpsLocationController.getCurrentLongitude(),
+	        latitudeDelta: 1,
+	        longitudeDelta: 1
+	    });
+	}
 };
 
 module.exports = MapComponentController;
