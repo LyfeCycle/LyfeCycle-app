@@ -21,6 +21,9 @@ ReportButtonComponent.prototype.createReportButtonComponent = function(){
 	main.add(label);
 
 	// Events
+	main.addEventListener('click', function(){
+		reportController.reportIncident();
+	});
 
 	return main;
 };

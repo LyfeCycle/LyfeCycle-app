@@ -110,9 +110,14 @@ IncidentPanelComponent.prototype.generateIcon = function(key, num, backgroundCol
 	// Events
 
 	mainCircle.addEventListener('click', function (e){
-		self.clearPanelChildren();
-		this.backgroundColor = 'yellow';
-		reportController.selectIncident(this.id);
+		if (this.backgroundColor === 'yellow') {
+			self.clearPanelChildren();
+			reportController.selectIncident();
+		} else {
+			self.clearPanelChildren();
+			this.backgroundColor = 'yellow';
+			reportController.selectIncident(this.id);
+		}
 	});
 
 	return mainCircle;

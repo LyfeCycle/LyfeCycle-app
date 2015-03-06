@@ -17,3 +17,4 @@ http://thenounproject.com/term/traffic/40500/
 http://thenounproject.com/term/construction/2029/
 http://thenounproject.com/term/transportation/1576/
 http://thenounproject.com/term/arrow/6488/
+http://thenounproject.com/term/triangle/12990/
