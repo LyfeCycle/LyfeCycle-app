@@ -24,6 +24,7 @@ var ReportController = require('/controllers/ReportController');
 
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
+var IncidentTypeModel = require('/models/IncidentTypeModel');
 
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
