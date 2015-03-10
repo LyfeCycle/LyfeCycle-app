@@ -17,11 +17,21 @@ ReportMapComponent.prototype.createReportMapView = function(){
 	});
 };
 
+ReportMapComponent.prototype.addIncident = function(incident){
+	var annotation = MapModule.createAnnotation({
+		latitude: incident.latitude,
+		longitude: incident.longitude,
+		image: IncidentTypeModel.IMAGES[incident.tag]
+	});
+	this.view.addAnnotation(annotation);
+};
+
 ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key){
 
 	var incident = Ti.UI.createView({
 		height: 52,
-		bottom: '100%'
+		bottom: '100%',
+		id: key
 	});
 
 	var img = Ti.UI.createImageView({

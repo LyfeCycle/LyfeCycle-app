@@ -40,7 +40,9 @@ function WindowController() {
 	this.loginWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
 	this.socialWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.directionWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
-	this.reportWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
+	this.reportWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); 
+		reportController.addNearbyIncidents(); 
+	});
 	this.enableLocationServicesWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 
 };

@@ -2,6 +2,7 @@ var MapModule = require('ti.map');
 
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');
+var Settings = require('./Settings');
 var Constants = require('./Constants');
 var HomeMenuView = require('/views/HomeMenuView');
 var DirectionView = require('/views/DirectionView');
@@ -26,6 +27,9 @@ var ReportController = require('/controllers/ReportController');
 var StepModel = require('/models/StepModel');
 var IncidentTypeModel = require('/models/IncidentTypeModel');
 
+// ***** Client Requires *****
+var IncidentClient = require('/clients/incidentClient');
+
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
 var directionView = new DirectionView();
@@ -45,6 +49,9 @@ var socialController = new SocialController();
 var sideMenuController = new SideMenuController();
 var reportController = new ReportController();
 var windowController = new WindowController();
+
+// ***** Clients Objects *****
+var incidentClient = new IncidentClient();
 
 
 // Uncomment the next line to test Login Screen

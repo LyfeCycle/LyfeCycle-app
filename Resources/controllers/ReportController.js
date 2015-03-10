@@ -22,10 +22,26 @@ ReportController.prototype.reportIncident = function(){
 ReportController.prototype.confirmReport = function(){
 
 	// Send report to backend
+ 
 	if (this.currentIncident) {
+		var type = this.currentIncident.id;
+		var coords = getMapCoordinates();
+		incidentClient.postIncident(type, coords.lat, coords.lon);
 		reportView.reportMapComponent.view.remove(this.currentIncident);
 		this.currentIncident = null;
 		reportView.incidentPanelComponent.clearPanelChildren();
+	}
+
+	function getMapCoordinates() {
+		var region = reportView.reportMapComponent.view.actualRegion || reportView.reportMapComponent.view.region;
+	    var widthInPixels = reportView.reportMapComponent.view.rect.width;
+	    var heightInPixels = reportView.reportMapComponent.view.rect.height;
+	    // should invert because of the pixel reference frame
+	    heightDegPerPixel = -region.latitudeDelta / heightInPixels; 
+	    widthDegPerPixel = region.longitudeDelta / widthInPixels;
+	    var lat = (heightInPixels / 2) * heightDegPerPixel + region.latitude;
+	    var lon = (widthInPixels / 2) * widthDegPerPixel + region.longitude;
+	    return {'lat': lat, 'lon': lon};
 	}
 };
 
@@ -48,5 +64,15 @@ ReportController.prototype.closeConfirmModal = function(){
 	reportView.confirmReportComponent.overlay.animate(animation);
 	reportView.confirmReportComponent.modal.animate(animation);
 };	
+
+ReportController.prototype.addNearbyIncidents = function(){
+	console.log("GET INCIDENTS");
+	incidentClient.getAllIncidents(function (results){
+		console.log(results);
+		for (var key in results) {
+			reportView.reportMapComponent.addIncident(results[key]);
+		}
+	});
+};
 
 module.exports = ReportController;
