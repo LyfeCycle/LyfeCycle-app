@@ -6,7 +6,6 @@ function FilterResultsComponent(){
 };
 
 FilterResultsComponent.prototype.createFilterResultsComponent = function(){
-	console.log("Make these ");
 	var main = Ti.UI.createScrollableView({
 		height: '15%',
 		top: '4%',

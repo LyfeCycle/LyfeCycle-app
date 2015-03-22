@@ -1,3 +1,8 @@
+// Need a /nearby endpoint
+// Need a /neighborhoods endpoint
+	// This is so we can fill the scroll view list
+// Need an /all sorted
+
 var FilterResultsComponent = require('/views/SocialComponents/FilterResultsComponent');
 var ScrollingProfileCardsComponent = require('/views/SocialComponents/ScrollingProfileCardsComponent');
 

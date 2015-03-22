@@ -28,7 +28,8 @@ var StepModel = require('/models/StepModel');
 var IncidentTypeModel = require('/models/IncidentTypeModel');
 
 // ***** Client Requires *****
-var IncidentClient = require('/clients/incidentClient');
+var IncidentClient = require('/clients/IncidentClient');
+var UserClient = require('/clients/UserClient');
 
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
@@ -52,7 +53,7 @@ var windowController = new WindowController();
 
 // ***** Clients Objects *****
 var incidentClient = new IncidentClient();
-
+var userClient = new UserClient();
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');

@@ -68,6 +68,7 @@ ReportController.prototype.closeConfirmModal = function(){
 ReportController.prototype.addNearbyIncidents = function(){
 	console.log("GET INCIDENTS");
 	incidentClient.getAllIncidents(function (results){
+		console.log("INCIDENTS");
 		console.log(results);
 		for (var key in results) {
 			reportView.reportMapComponent.addIncident(results[key]);

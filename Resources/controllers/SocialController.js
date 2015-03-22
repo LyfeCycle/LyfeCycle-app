@@ -28,11 +28,28 @@ function SocialController(){
 };
 
 SocialController.prototype.refreshProfileCardTable = function(type){
-	if (type) console.log("Grab the profiles via REST call based on type");
-	else console.log("Grab all profiles (or default page) view REST call");
-	for (var key in mockUsers) {
+	if (type) {
+		console.log("Grab the profiles via REST call based on type");
+		switch (type) {
+			case 'ALL':
+				break;
+			default:
+				break;
+		}
+	}
+	else {
+		console.log("Grab all profiles (or default page) view REST call");
+		userClient.getAllUsers(function (results) {
+			console.log(results);
+		});
+	}
+	
+};
+
+SocialController.prototype.addRows = function(users) {
+	for (var key in users) {
 		socialView.scrollingProfileCardsComponent.addRowToTable(new ProfileCard(mockUsers[key]));
 	}
-};
+}
 
 module.exports = SocialController;
