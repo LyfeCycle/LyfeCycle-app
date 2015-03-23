@@ -24,6 +24,8 @@ RouteListComponent.prototype.createDirectionTable = function() {
 };
 
 RouteListComponent.prototype.createDirectionTableHeader = function(destinationText) {
+
+	// Green part of header
 	this.tableHeader = Ti.UI.createView({
 		top: activeRouteBarHeight,
 		backgroundColor: Constants.green,
@@ -37,7 +39,7 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 		font: {fontSize: 16, fontFamily: 'Helvetica Neue'},
 		color: 'white'
 	});
-	var startButton = Ti.UI.createView({
+	this.startButton = Ti.UI.createView({
 		height: '80%',
 		width: Constants.deviceWidth*.2,
 		right: 10,
@@ -51,11 +53,34 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 		font: {fontSize: 19, fontFamily: 'Helvetica Neue'},
 		color: 'black'
 	});
-	startButton.add(startLabel);
 
+	// Yellow active ride bar
+	this.activeRouteBar = Ti.UI.createView({
+		width: '100%',
+		height: activeRouteBarHeight,
+		backgroundColor: 'yellow',
+		visible: false,
+		top: 0
+	});
+
+	var activeLabel = Ti.UI.createLabel({
+		font: {fontFamily: Constants.fontKG, fontSize: 10, fontStyle: 'italic'},
+		text: 'Currently on route',
+		left: 10,
+		color: 'black'
+	});
+
+	this.startButton.add(startLabel);
+	this.activeRouteBar.add(activeLabel);
 	this.tableHeader.add(destination);
-	this.tableHeader.add(startButton);
+	this.tableHeader.add(this.startButton);
+	this.view.add(this.activeRouteBar);
 	this.view.add(this.tableHeader);
+
+	// Events
+	this.startButton.addEventListener('click', function(){
+		directionController.routeListComponentController.toggleRide();
+	});
 };
 
 RouteListComponent.prototype.createDirectionRow = function(step) {

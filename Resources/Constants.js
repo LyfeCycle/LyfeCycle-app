@@ -1,3 +1,5 @@
+module.exports.backendURL = 'http://lyfecycle-api.herokuapp.com/';
+
 
 // Device Stats
 module.exports.deviceWidth = Titanium.Platform.displayCaps.platformWidth;

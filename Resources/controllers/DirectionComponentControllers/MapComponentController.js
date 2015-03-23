@@ -4,6 +4,19 @@ function MapComponentController(){
 	this.destinationLocationAnnotation;
 };
 
+MapComponentController.prototype.showCurrentLocation = function(){
+	console.log("Current place: " +  gpsLocationController.getCurrentLatitude() + " " + gpsLocationController.getCurrentLongitude());
+	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
+		directionView.mapComponent.view.setLocation({
+	        animate : true,
+	        latitude: gpsLocationController.getCurrentLatitude(),
+	        longitude: gpsLocationController.getCurrentLongitude(),
+	        latitudeDelta: 1,
+	        longitudeDelta: 1
+	    });
+	}
+};
+
 MapComponentController.prototype.setNewDelta = function(steps){
 	var end_location = steps[steps.length-1];
 	var ltDiff = Math.abs(end_location.latitude - gpsLocationController.getCurrentLatitude());
@@ -23,10 +36,10 @@ MapComponentController.prototype.setPolyline = function(steps){
 	directionView.mapComponent.view.addRoute(this.currentPolyline);
 };
 
-MapComponentController.prototype.removeRouteAnnotations = function(){
-	if (this.currentLocationAnnotation) directionView.mapComponent.view.removeAnnotation(this.currentLocationAnnotation);
-	if (this.destinationLocationAnnotation) directionView.mapComponent.view.removeAnnotation(this.destinationLocationAnnotation);
-};
+MapComponentController.prototype.removePolyline = function(){
+	if (this.currentPolyline) directionView.mapComponent.view.removeRoute(this.currentPolyline);
+	this.currentPolyline = null;
+}
 
 MapComponentController.prototype.setRouteAnnotations = function(steps){
 	this.removeRouteAnnotations();
@@ -47,19 +60,11 @@ MapComponentController.prototype.setRouteAnnotations = function(steps){
 	});
 	directionView.mapComponent.view.addAnnotation(this.currentLocationAnnotation);
 	directionView.mapComponent.view.addAnnotation(this.destinationLocationAnnotation);
-}
+};
 
-MapComponentController.prototype.showCurrentLocation = function(){
-	console.log("Current place: " +  gpsLocationController.getCurrentLatitude() + " " + gpsLocationController.getCurrentLongitude());
-	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
-		directionView.mapComponent.view.setLocation({
-	        animate : true,
-	        latitude: gpsLocationController.getCurrentLatitude(),
-	        longitude: gpsLocationController.getCurrentLongitude(),
-	        latitudeDelta: 1,
-	        longitudeDelta: 1
-	    });
-	}
+MapComponentController.prototype.removeRouteAnnotations = function(){
+	if (this.currentLocationAnnotation) directionView.mapComponent.view.removeAnnotation(this.currentLocationAnnotation);
+	if (this.destinationLocationAnnotation) directionView.mapComponent.view.removeAnnotation(this.destinationLocationAnnotation);
 };
 
 module.exports = MapComponentController;
