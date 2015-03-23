@@ -29,7 +29,7 @@ HomeMenuView.prototype.createHomeView = function(){
 	});
 
 	this.freeRideButton.addEventListener('click', function() {
-		windowController.goToReportWindow();
+		windowController.goToFreeRideWindow();
 	});
 
 	this.socialButton.addEventListener('click', function() {

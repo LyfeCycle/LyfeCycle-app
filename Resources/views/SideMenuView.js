@@ -31,7 +31,7 @@ SideMenuView.prototype.generateSideMenuView = function(){
 
 	main.add(generateTableRow('Home', 0));
 	main.add(generateTableRow('Maps', 1));
-	main.add(generateTableRow('Reports', 2));
+	main.add(generateTableRow('Free Ride', 2));
 	main.add(generateTableRow('Social', 3));
 	return main;
 
@@ -87,9 +87,9 @@ SideMenuView.prototype.generateSideMenuView = function(){
 					console.log("GO TO MAPS");
 					windowController.goToDirectionWindow();
 					break;
-				case 'Reports':
+				case 'Free Ride':
 					console.log("GO TO REPORTS");
-					windowController.goToReportWindow();
+					windowController.goToFreeRideWindow();
 					break;
 				case 'Social':
 					console.log("GO TO SOCIAL");

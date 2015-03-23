@@ -8,7 +8,11 @@ ReportMapComponent.prototype.createReportMapView = function(){
     var startLong = -71.1255678;
 	var delta = 0.005;
 
-	return MapModule.createView({
+	var view = Ti.UI.createView({
+		height: '100%', width: '100%'
+	});
+
+	var map = MapModule.createView({
 		mapType: MapModule.NORMAL_TYPE,
 	    animate:true,
 	    regionFit:true,
@@ -16,6 +20,8 @@ ReportMapComponent.prototype.createReportMapView = function(){
 	    top: 0,
 	    height: Constants.deviceHeight
 	});
+
+	return map;
 };
 
 ReportMapComponent.prototype.addIncident = function(incident){
@@ -38,7 +44,7 @@ ReportMapComponent.prototype.removePolyline = function(){
 	this.currentPolyline = null;
 };
 
-ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key){
+ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key, source){
 
 	var incident = Ti.UI.createView({
 		height: 52,
@@ -75,11 +81,11 @@ ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key){
 	this.view.add(incident);
 
 	// Animations
-
 	incident.animate(
 		Ti.UI.createAnimation({
 			duration: 150,
-			bottom: '50%'
+			top: source.y - Constants.deviceHeight*0.11,
+			left: 40
 		})
 	);
 	return incident;
