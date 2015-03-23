@@ -14,9 +14,10 @@ RouteListComponentController.prototype.showList = function(stepsObject){
 RouteListComponentController.prototype.hideList = function(){
 	directionView.routeListComponent.table.setData([]);
 	directionView.routeListComponent.view.hide();
+	var polyline = directionController.mapComponentController.currentPolyline;
 	directionController.mapComponentController.removePolyline();
 	directionController.mapComponentController.removeRouteAnnotations();
-	directionController.mapComponentController.showCurrentLocation();
+	windowController.goToFreeRideWindow(polyline);
 };
 
 RouteListComponentController.prototype.toggleRide = function(){

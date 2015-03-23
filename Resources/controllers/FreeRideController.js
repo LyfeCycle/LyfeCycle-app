@@ -22,7 +22,6 @@ FreeRideController.prototype.reportIncident = function(){
 FreeRideController.prototype.confirmReport = function(){
 
 	// Send report to backend
- 
 	if (this.currentIncident) {
 		var type = this.currentIncident.id;
 		var coords = getMapCoordinates();
@@ -82,6 +81,27 @@ FreeRideController.prototype.toggleFreeRideButton = function(){
 	} else {
 		freeRideView.freeRideButtonComponent.label.setText('Start!');
 	}
-}
+};
+
+// Special functions for when a ride from Direction view is over and it navigates to FreeRide
+
+FreeRideController.prototype.fromDirectionWindow = function(polyline){
+	// Place polyline on the map
+	freeRideView.reportMapComponent.addPolyline(polyline);
+	// Put modal about incidents
+	freeRideView.fromDirectionComponent.render('','');
+	// Show 'done' button
+	freeRideView.doneButtonComponent.render();
+};
+
+FreeRideController.prototype.closeFromDirectionWindow = function(){
+	freeRideView.reportMapComponent.removePolyline();
+	freeRideView.doneButtonComponent.hide();
+};
+
+
+
+
+
 
 module.exports = FreeRideController;

@@ -1,4 +1,5 @@
 function ReportMapComponent(){
+	this.currentPolyline;
 	this.view = this.createReportMapView();
 };
 
@@ -24,6 +25,17 @@ ReportMapComponent.prototype.addIncident = function(incident){
 		image: IncidentTypeModel.IMAGES[incident.tag]
 	});
 	this.view.addAnnotation(annotation);
+};
+
+ReportMapComponent.prototype.addPolyline = function(polyline){
+	if (this.currentPolyline) this.view.removeRoute(this.currentPolyline);
+	this.currentPolyline = polyline;
+	this.view.addRoute(this.currentPolyline);
+};
+
+ReportMapComponent.prototype.removePolyline = function(){
+	if (this.currentPolyline) this.view.removeRoute(this.currentPolyline);
+	this.currentPolyline = null;
 };
 
 ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key){

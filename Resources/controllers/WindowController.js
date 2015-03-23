@@ -86,10 +86,11 @@ WindowController.prototype.goToLoginWindow = function() {
 	sideMenuController.closeSideMenu(); 
 };
 
-WindowController.prototype.goToFreeRideWindow = function() {
+WindowController.prototype.goToFreeRideWindow = function(polyline) {
 	if (gpsLocationController.currentLatitude && gpsLocationController.currentLongitude) {
 		topBar.setText('Free Ride');
 		this.freeRideWindow.open();
+		if (polyline) freeRideController.fromDirectionWindow(polyline);
 		sideMenuController.closeSideMenu();
 	} else {
 		alert("We couldn't get your location. Do you have GPS turned on or connection to the internet?");
