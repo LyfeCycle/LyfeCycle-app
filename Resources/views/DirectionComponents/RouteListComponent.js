@@ -85,7 +85,6 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 
 RouteListComponent.prototype.createDirectionRow = function(step) {
 	// Seperate helper instruction from main string if one exists
-	console.log(step);
 	var helperInstructionText = step.text.indexOf('<div') > -1 ? step.text.match(/(<div.*>)(.*)(<\/div>)/)[0] : '';
 	if (helperInstructionText) step.text = step.text.substring(0, step.text.indexOf('<div'));
 
@@ -97,38 +96,54 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 	});
 
 	// This is where we change the icon for each row
-	var descriptionImage = Ti.UI.createImageView({
+	var descriptionImage = ManeuverModel.validType(step.maneuver) ? Ti.UI.createImageView({
 		right: 10,
 		height: 50,
 		width: 50,
 		top: 10,
-		image: (Math.random()<.5) ? 'images/comment-black.png' : 'images/traffic-cone-black.png'
-	});
+		image: ManeuverModel.IMAGES[step.maneuver]
+	}) : null;
 
-	var distance = Ti.UI.createLabel({
-		right: 10,
-		top: 70,
-		text: step.distance
-	});
-	var instruction = Ti.UI.createLabel({
-		top: 10,
+	// Add incidents to bottom
+	// top: 70, height: 15
+	var incidents = [0, 3, 5]; // This is mocked, and will be gotten from the JSON
+	var incidentRow = Ti.UI.createScrollView({
+		contentHeight: 15, 
+		height: 25, 
+		width: Constants.deviceWidth - 70, 
 		left: 10,
-		width: Constants.deviceWidth - 70,
-		text: step.text.replace(/(<([^>]+)>)/ig, "")
+		showVerticalScrollIndicator: false,
+		showHorizontalScrollIndicator: true,
+		top: 62
 	});
-	var instructionHelper = Ti.UI.createLabel({
-		top: 70,
-		left: 10,
-		width: Constants.deviceWidth - 70,
-		text: helperInstructionText.replace(/(<([^>]+)>)/ig, ""),
-		font: {fontStyle: 'italic'}
-	});
+	for (var incident in incidents)
+		incidentRow.add(createIncidentRowElement(incident, incidents[incident]));
 
-	row.add(descriptionImage);
-	row.add(distance);
-	row.add(instruction);
-	row.add(instructionHelper);
+
+	if (descriptionImage) row.add(descriptionImage);
+	row.add(incidentRow);
+	row.add(Ti.UI.createLabel({bottom: 5, right: 10, text: step.distance}));
+	row.add(Ti.UI.createLabel({top: 10, left: 10, width: Constants.deviceWidth - 70, text: step.text.replace(/(<([^>]+)>)/ig, "")}));
+	row.add(Ti.UI.createLabel({bottom: 5, left: 10, width: Constants.deviceWidth - 70, text: helperInstructionText.replace(/(<([^>]+)>)/ig, ""), font: {fontStyle: 'italic'}}));
+
 	return row;
+
+	// Helper functions
+	function createIncidentRowElement(index, incident){
+		var view = Ti.UI.createView({
+			backgroundColor: 'yellow',
+			height: 22, width: 22,
+			left: 26*index,
+			borderRadius: 11
+		});
+
+		view.add(Ti.UI.createImageView({
+			image: IncidentTypeModel.IMAGES_ARRAY[incident],
+			width: '70%', height: '70%'
+		}));
+
+		return view;
+	};
 };
 
 module.exports = RouteListComponent;

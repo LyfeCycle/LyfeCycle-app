@@ -26,6 +26,7 @@ var FreeRideController = require('/controllers/FreeRideController');
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
 var IncidentTypeModel = require('/models/IncidentTypeModel');
+var ManeuverModel = require('/models/ManeuverModel');
 
 // ***** Client Requires *****
 var IncidentClient = require('/clients/IncidentClient');

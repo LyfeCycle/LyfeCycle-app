@@ -21,3 +21,15 @@ module.exports.IMAGES = {
 	construction: '/images/incidents/construction.png',
 	blockedBikeLane: '/images/incidents/no_lane.png'
 };
+
+module.exports.IMAGES_ARRAY = [
+	'/images/incidents/bus.png',
+	'/images/incidents/bike_crash.png',
+	'/images/incidents/bike_lock.png',
+	'/images/incidents/danger.png',
+	'/images/incidents/dooring.png',
+	'/images/incidents/traffic.png',
+	'/images/incidents/traffic_accident.png',
+	'/images/incidents/construction.png',
+	'/images/incidents/no_lane.png'
+];
