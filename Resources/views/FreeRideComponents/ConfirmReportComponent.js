@@ -12,7 +12,7 @@ ConfirmReportComponent.prototype.createOverlay = function(){
 	});
 
 	main.addEventListener('click', function(){
-		reportController.closeConfirmModal();
+		freeRideController.closeConfirmModal();
 	});
 
 	return main;
@@ -79,12 +79,12 @@ ConfirmReportComponent.prototype.createConfirmReportComponent = function(){
 	// Events
 
 	yes.addEventListener('click', function(){
-		reportController.confirmReport();
-		reportController.closeConfirmModal();
+		freeRideController.confirmReport();
+		freeRideController.closeConfirmModal();
 	});
 
 	no.addEventListener('click', function(){
-		reportController.closeConfirmModal();
+		freeRideController.closeConfirmModal();
 	});
 
 	modal.add(yes);

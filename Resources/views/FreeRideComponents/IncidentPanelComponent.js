@@ -112,11 +112,11 @@ IncidentPanelComponent.prototype.generateIcon = function(key, num, backgroundCol
 	mainCircle.addEventListener('click', function (e){
 		if (this.backgroundColor === 'yellow') {
 			self.clearPanelChildren();
-			reportController.selectIncident();
+			freeRideController.selectIncident();
 		} else {
 			self.clearPanelChildren();
 			this.backgroundColor = 'yellow';
-			reportController.selectIncident(this.id);
+			freeRideController.selectIncident(this.id);
 		}
 	});
 
@@ -127,7 +127,7 @@ IncidentPanelComponent.prototype.clearPanelChildren = function(){
 	for (var key in this.panel.children) {
 		this.panel.children[key].backgroundColor = this.backgroundColor;
 	}
-	reportController.selectIncident();
+	freeRideController.selectIncident();
 };
 
 module.exports = IncidentPanelComponent;

@@ -1,6 +1,6 @@
 function HomeMenuView() {
 	this.mapButton;
-	this.reportButton;
+	this.freeRideButton;
 	this.socialButton;
 	this.view = this.createHomeView();
 };
@@ -8,7 +8,7 @@ function HomeMenuView() {
 HomeMenuView.prototype.createHomeView = function(){
 
 	this.mapButton = createButton('Maps', '/images/compass-black.png', '10%');
-	this.reportButton = createButton('Reports', '/images/traffic-cone-black.png', '30%');
+	this.freeRideButton = createButton('Free Ride', '/images/traffic-cone-black.png', '30%');
 	this.socialButton = createButton('Social', '/images/comment-black.png', '50%');
 
 	var main = Ti.UI.createView({
@@ -19,7 +19,7 @@ HomeMenuView.prototype.createHomeView = function(){
 	});
 
 	main.add(this.mapButton);
-	main.add(this.reportButton);
+	main.add(this.freeRideButton);
 	main.add(this.socialButton);
 
 	// Events
@@ -28,7 +28,7 @@ HomeMenuView.prototype.createHomeView = function(){
 		windowController.goToDirectionWindow();
 	});
 
-	this.reportButton.addEventListener('click', function() {
+	this.freeRideButton.addEventListener('click', function() {
 		windowController.goToReportWindow();
 	});
 

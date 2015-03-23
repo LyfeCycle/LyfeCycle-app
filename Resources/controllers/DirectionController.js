@@ -32,6 +32,7 @@ DirectionController.prototype.getDirections = function(endLocation) {
 			try {
 				var jsonSteps = json['routes'][0]['legs'][0]['steps'], steps = [], polyline = [];
 				for (i in jsonSteps) {
+					// console.log(jsonSteps[i]);
 					directionView.mapComponent.decodePolyline(jsonSteps[i]['polyline']['points'], polyline);
 					steps.push(StepModel.validStep(jsonSteps[i]));
 				}

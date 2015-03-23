@@ -22,7 +22,7 @@ ReportButtonComponent.prototype.createReportButtonComponent = function(){
 
 	// Events
 	main.addEventListener('click', function(){
-		reportController.reportIncident();
+		freeRideController.reportIncident();
 	});
 
 	return main;

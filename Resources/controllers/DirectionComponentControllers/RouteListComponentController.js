@@ -7,7 +7,7 @@ RouteListComponentController.prototype.showList = function(stepsObject){
 	var directionSection = Ti.UI.createTableViewSection({ headerTitle: 'Directions' });
 	for (var i = 0; i < stepsObject['steps'].length; i++)
 		directionSection.add(directionView.routeListComponent.createDirectionRow(stepsObject['steps'][i]));
-	directionView.routeListComponent.view.setData([directionView.routeListComponent.tableHeader, directionSection]);
+	directionView.routeListComponent.table.setData([directionSection]);
 	directionView.routeListComponent.view.show();
 };
 

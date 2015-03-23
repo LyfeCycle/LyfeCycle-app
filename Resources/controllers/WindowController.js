@@ -31,7 +31,7 @@ function WindowController() {
 	this.directionWindow.add(directionView.view);
 	this.loginWindow.add(loginView.view);
 	this.socialWindow.add(socialView.view);
-	this.reportWindow.add(reportView.view);
+	this.reportWindow.add(freeRideView.view);
 	this.enableLocationServicesWindow.add(enableLocationView.view);
 
 	// Create listeners to grab current window
@@ -40,8 +40,9 @@ function WindowController() {
 	this.loginWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
 	this.socialWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.directionWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
-	this.reportWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); 
-		reportController.addNearbyIncidents(); 
+	this.reportWindow.addEventListener('open', function (e){ self.currentWindow = e.source; 
+		sideMenuController.closeSideMenu(); 
+		freeRideController.addNearbyIncidents(); 
 	});
 	this.enableLocationServicesWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 
@@ -50,6 +51,7 @@ function WindowController() {
 WindowController.prototype.goToHomeWindow = function() {
 	topBar.setText('Home');
 	this.homeWindow.open();
+	sideMenuController.closeSideMenu(); 
 };
 
 WindowController.prototype.goToDirectionWindow = function() {
@@ -57,29 +59,35 @@ WindowController.prototype.goToDirectionWindow = function() {
 	directionController.showCurrentLocation();
 	directionController.setUserPin();
 	this.directionWindow.open();
+	sideMenuController.closeSideMenu(); 
 };
 
 WindowController.prototype.goToSocialWindow = function() {
 	topBar.setText('Social');
 	this.socialWindow.open();
 	socialController.refreshProfileCardTable();
+	sideMenuController.closeSideMenu(); 
 };
 
 WindowController.prototype.goToSettingsWindow = function() {
 	topBar.setText('Settings');
 	this.settingsWindow.open();
+	sideMenuController.closeSideMenu(); 
 };
 
 WindowController.prototype.goToLoginWindow = function() {
 	this.loginWindow.open();
+	sideMenuController.closeSideMenu(); 
 };
 
 WindowController.prototype.goToReportWindow = function() {
 	this.reportWindow.open();
+	sideMenuController.closeSideMenu(); 
 };
 
 WindowController.prototype.goToEnableLocationWindow = function(){
 	this.enableLocationServicesWindow.open();
+	sideMenuController.closeSideMenu(); 
 };
 
 module.exports = WindowController;

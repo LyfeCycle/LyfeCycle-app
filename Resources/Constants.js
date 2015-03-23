@@ -14,7 +14,7 @@ module.exports.topBarHeight = '12%';
 module.exports.viewHeight = '88%';
 
 // HomeView
-module.exports.homeViewButtonWidth = module.exports.deviceWidth * 0.7;
+module.exports.homeViewButtonWidth = module.exports.deviceWidth * 0.8;
 module.exports.bannerHeight = 110;
 
 // DirectionsController
