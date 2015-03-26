@@ -46,6 +46,12 @@ LoginView.prototype.createLoginView = function() {
 		font: {fontSize: 25, fontFamily: Constants.fontKG}
 	});
 
+	// Facebook style login button
+	var fbLoginButton = fb.createLoginButton({
+		top : Constants.deviceHeight/2 + 50,
+    	style : fb.BUTTON_STYLE_WIDE
+	});
+
 	loginButtonBG.add(loginButton);
 
 	loginButtonBG.addEventListener('click',function (e){
@@ -53,10 +59,12 @@ LoginView.prototype.createLoginView = function() {
 		windowController.goToHomeWindow();
 	});
 
+	
 	main.add(icon);
-	main.add(userNameTextField);
-	main.add(phoneNumberTextField);
-	main.add(loginButtonBG);
+	//main.add(userNameTextField);
+	//main.add(phoneNumberTextField);
+	//main.add(loginButtonBG);
+	main.add(fbLoginButton);
 
 	return main;
 };

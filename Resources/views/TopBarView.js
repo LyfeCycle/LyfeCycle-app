@@ -40,7 +40,7 @@ TopBarView.prototype.createSideMenuButton = function(){
 	return Ti.UI.createImageView({
 		image: '/images/sidemenu.png',
 		width: '10%',
-		bottom: '14%',
+		bottom: '18%',
 		left: 5
 	});
 };

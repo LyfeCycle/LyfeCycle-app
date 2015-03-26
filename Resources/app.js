@@ -1,5 +1,9 @@
 var MapModule = require('ti.map');
 
+var fb = require('facebook');
+fb.appid = 382800148589176;
+fb.permissions = ['publish_stream'];
+
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');
 var Settings = require('./Settings');
@@ -58,6 +62,7 @@ var userClient = new UserClient();
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');
+usedBefore = true;
 if (Ti.Geolocation.locationServicesEnabled) {	
 	gpsLocationController.initGPS();
 	if (usedBefore){

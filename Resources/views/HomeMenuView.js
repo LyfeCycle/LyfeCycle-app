@@ -18,6 +18,27 @@ HomeMenuView.prototype.createHomeView = function(){
 		bottom: 0
 	});
 
+	var transparentLayer = Ti.UI.createView({
+		height: Constants.viewHeight,
+		opacity: 1.0
+	});
+
+	var startLat = 42.3520314;
+    var startLong = -71.1255678;
+	var delta = 0.005;
+
+	var backgroundMap = MapModule.createView({
+		mapType: MapModule.NORMAL_TYPE,
+	    animate:false,
+	    regionFit:true,
+	    opacity:0.5,
+	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},
+	    top: 0,
+	    height: Constants.deviceHeight
+	});
+
+	main.add(backgroundMap);
+	main.add(transparentLayer);
 	main.add(this.mapButton);
 	main.add(this.freeRideButton);
 	main.add(this.socialButton);
