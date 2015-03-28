@@ -5,7 +5,6 @@ var BackgroundRouteController = require('/controllers/RouteControllers/Backgroun
 function RouteController(){
 	this.routeEndLocation;
 	this.routeDuration;
-	this.backgroundRouteController = new BackgroundRouteController();
 
 	// Set all intial values to empty
 	Ti.App.Properties.setBool('currentRide', false);
@@ -40,7 +39,8 @@ RouteController.prototype.endRoute = function(){
 };
 
 RouteController.prototype.checkIfUserIsAtEndLocation = function(){
-
+	gpsLocationController.getCurrentLatitude();
+	gpsLocationController.getCurrentLongitude();
 };
 
 module.exports = RouteController;
