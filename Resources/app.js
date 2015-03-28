@@ -26,6 +26,7 @@ var DirectionController = require('/controllers/DirectionController');
 var SocialController = require('/controllers/SocialController');
 var SideMenuController = require('/controllers/SideMenuController');
 var FreeRideController = require('/controllers/FreeRideController');
+var RouteController = require('/controllers/RouteController');
 
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
@@ -54,6 +55,7 @@ var directionController = new DirectionController();
 var socialController = new SocialController();
 var sideMenuController = new SideMenuController();
 var freeRideController = new FreeRideController();
+var routeController = new RouteController();
 var windowController = new WindowController();
 
 // ***** Clients Objects *****

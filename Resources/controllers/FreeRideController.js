@@ -10,7 +10,7 @@ function FreeRideController(){
 	// Set up event listener for the FreeRide map view
 	freeRideView.freeRideMapComponent.view.addEventListener('longpress', function (source){		
 		if (self.currentIncidentKey) {
-			self.currentIncident = freeRideView.freeRideMapComponent.addCurrentReportedIncidentToMap(self.currentIncidentKey, source);
+			self.currentIncident = self.freeRideMapComponentController.addCurrentReportedIncidentToMap(self.currentIncidentKey, source);
 			self.currentIncidentCoordinates = getMapCoordinates(source.x, source.y);
 		}
 	});
@@ -103,7 +103,7 @@ FreeRideController.prototype.toggleFreeRideButton = function(){
 
 FreeRideController.prototype.fromDirectionWindow = function(polyline){
 	// Place polyline on the map
-	freeRideView.freeRideMapComponent.addPolyline(polyline);
+	this.freeRideMapComponentController.addPolyline(polyline);
 	// Put modal about incidents
 	freeRideView.fromDirectionComponent.render('','');
 	// Show 'done' button
@@ -112,7 +112,7 @@ FreeRideController.prototype.fromDirectionWindow = function(polyline){
 };
 
 FreeRideController.prototype.closeFromDirectionWindow = function(){
-	freeRideView.freeRideMapComponent.removePolyline();
+	this.freeRideMapComponentController.removePolyline();
 	freeRideView.doneButtonComponent.hide();
 	freeRideView.freeRideButtonComponent.render();
 };

@@ -38,6 +38,7 @@ DirectionController.prototype.getDirections = function(endLocation) {
 				}
 				addDirectionsToMapComponent({'steps':steps, 'end_destination_text': endLocation, 'polyline_route': polyline});
 				addDirectionsToRouteListComponent({'steps':steps, 'end_destination_text': endLocation, 'polyline_route': polyline});
+				addDirectionsToRouteController(json['routes'][0]['legs'][0]);
 			} catch(err) { alert("Could not get location! "); console.log(err); };
 		};
 
@@ -50,6 +51,10 @@ DirectionController.prototype.getDirections = function(endLocation) {
 		function addDirectionsToRouteListComponent(stepsObject){
 			self.routeListComponentController.showList(stepsObject);
 		};
+
+		function addDirectionsToRouteController(jsonInfo){
+			routeController.prepRoute(jsonInfo);
+		}
 };
 
 DirectionController.prototype.showCurrentLocation = function(){

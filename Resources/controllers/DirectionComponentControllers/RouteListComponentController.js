@@ -53,15 +53,18 @@ RouteListComponentController.prototype.toggleRide = function(){
 RouteListComponentController.prototype.startRide = function(){
 	directionView.routeListComponent.startButton.children[0].setText('Stop');
 	directionView.routeListComponent.startButton.setBackgroundColor('red');
-	directionView.routeListComponent.activeRouteBar.setVisible(true);
+	directionView.routeListComponent.activeRouteBar.render();
+	// Start route in RouteController
+	routeController.startRoute();
 };
 
 RouteListComponentController.prototype.endRide = function(){
 	directionView.routeListComponent.startButton.children[0].setText('Go!');
 	directionView.routeListComponent.startButton.setBackgroundColor('yellow');
-	directionView.routeListComponent.activeRouteBar.setVisible(false);
+	directionView.routeListComponent.activeRouteBar.hide();
 	this.hideList();
-	// Remove list
+	routeController.endRoute();
+	// Stop route in RouteController
 };
 
 
