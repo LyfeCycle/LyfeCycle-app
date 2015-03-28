@@ -1,9 +1,9 @@
-function ReportMapComponent(){
+function FreeRideMapComponent(){
 	this.currentPolyline;
 	this.view = this.createReportMapView();
 };
 
-ReportMapComponent.prototype.createReportMapView = function(){
+FreeRideMapComponent.prototype.createReportMapView = function(){
 	var startLat = 42.3520314;
     var startLong = -71.1255678;
 	var delta = 0.005;
@@ -24,7 +24,7 @@ ReportMapComponent.prototype.createReportMapView = function(){
 	return map;
 };
 
-ReportMapComponent.prototype.addIncident = function(incident){
+FreeRideMapComponent.prototype.addIncident = function(incident){
 	var annotation = MapModule.createAnnotation({
 		latitude: incident.latitude,
 		longitude: incident.longitude,
@@ -33,18 +33,18 @@ ReportMapComponent.prototype.addIncident = function(incident){
 	this.view.addAnnotation(annotation);
 };
 
-ReportMapComponent.prototype.addPolyline = function(polyline){
+FreeRideMapComponent.prototype.addPolyline = function(polyline){
 	if (this.currentPolyline) this.view.removeRoute(this.currentPolyline);
 	this.currentPolyline = polyline;
 	this.view.addRoute(this.currentPolyline);
 };
 
-ReportMapComponent.prototype.removePolyline = function(){
+FreeRideMapComponent.prototype.removePolyline = function(){
 	if (this.currentPolyline) this.view.removeRoute(this.currentPolyline);
 	this.currentPolyline = null;
 };
 
-ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key, source){
+FreeRideMapComponent.prototype.addCurrentReportedIncidentToMap = function(key, source){
 
 	var incident = Ti.UI.createView({
 		height: 52,
@@ -91,4 +91,4 @@ ReportMapComponent.prototype.addCurrentReportedIncidentToMap = function(key, sou
 	return incident;
 };
 
-module.exports = ReportMapComponent;
+module.exports = FreeRideMapComponent;

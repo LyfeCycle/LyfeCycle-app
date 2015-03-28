@@ -5,17 +5,17 @@ function FreeRideController(){
 
 	var self = this;
 	// Set up event listener for the FreeRide map view
-	freeRideView.reportMapComponent.view.addEventListener('longpress', function (source){		
+	freeRideView.freeRideMapComponent.view.addEventListener('longpress', function (source){		
 		if (self.currentIncidentKey) {
-			self.currentIncident = freeRideView.reportMapComponent.addCurrentReportedIncidentToMap(self.currentIncidentKey, source);
+			self.currentIncident = freeRideView.freeRideMapComponent.addCurrentReportedIncidentToMap(self.currentIncidentKey, source);
 			self.currentIncidentCoordinates = getMapCoordinates(source.x, source.y);
 		}
 	});
 
 	function getMapCoordinates(x, y) {
-		var region = freeRideView.reportMapComponent.view.actualRegion || freeRideView.reportMapComponent.view.region;
-	    var widthInPixels = freeRideView.reportMapComponent.view.rect.width;
-	    var heightInPixels = freeRideView.reportMapComponent.view.rect.height;
+		var region = freeRideView.freeRideMapComponent.view.actualRegion || freeRideView.freeRideMapComponent.view.region;
+	    var widthInPixels = freeRideView.freeRideMapComponent.view.rect.width;
+	    var heightInPixels = freeRideView.freeRideMapComponent.view.rect.height;
 	    // should invert because of the pixel reference frame
 	    heightDegPerPixel = -region.latitudeDelta / heightInPixels; 
 	    widthDegPerPixel = region.longitudeDelta / widthInPixels;
@@ -30,7 +30,7 @@ FreeRideController.prototype.selectIncident = function(key){
 		this.currentIncidentKey = key;
 	} else {
 		// This means that no incident is selected
-		if (this.currentIncident) freeRideView.reportMapComponent.view.remove(this.currentIncident);
+		if (this.currentIncident) freeRideView.freeRideMapComponent.view.remove(this.currentIncident);
 		this.currentIncident = null;
 		this.currentIncidentKey = null;
 		this.currentIncidentCoordinates = null;
@@ -49,7 +49,7 @@ FreeRideController.prototype.confirmReport = function(){
 		var type = this.currentIncident.id;
 		var coords = getMapCoordinates();
 		incidentClient.postIncident(type, coords.lat, coords.lon);
-		freeRideView.reportMapComponent.view.remove(this.currentIncident);
+		freeRideView.freeRideMapComponent.view.remove(this.currentIncident);
 		this.currentIncident = null;
 		this.currentIncidentKey = null;
 		this.currentIncidentCoordinates = null;
@@ -83,7 +83,7 @@ FreeRideController.prototype.addNearbyIncidents = function(){
 		console.log("INCIDENTS");
 		console.log(results);
 		for (var key in results) {
-			freeRideView.reportMapComponent.addIncident(results[key]);
+			freeRideView.freeRideMapComponent.addIncident(results[key]);
 		}
 	});
 };
@@ -100,16 +100,18 @@ FreeRideController.prototype.toggleFreeRideButton = function(){
 
 FreeRideController.prototype.fromDirectionWindow = function(polyline){
 	// Place polyline on the map
-	freeRideView.reportMapComponent.addPolyline(polyline);
+	freeRideView.freeRideMapComponent.addPolyline(polyline);
 	// Put modal about incidents
 	freeRideView.fromDirectionComponent.render('','');
 	// Show 'done' button
 	freeRideView.doneButtonComponent.render();
+	freeRideView.freeRideButtonComponent.hide();
 };
 
 FreeRideController.prototype.closeFromDirectionWindow = function(){
-	freeRideView.reportMapComponent.removePolyline();
+	freeRideView.freeRideMapComponent.removePolyline();
 	freeRideView.doneButtonComponent.hide();
+	freeRideView.freeRideButtonComponent.render();
 };
 
 

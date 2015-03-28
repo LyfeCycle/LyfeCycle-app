@@ -35,6 +35,8 @@ GPSLocationController.prototype.initGPS = function(){
             self.currentLatitude = e.coords.latitude;
             self.currentLongitude = e.coords.longitude;
             self.currentLocationTimestamp = e.coords.timestamp;
+            directionController.mapComponentController.showCurrentLocation();
+            
         }
     });
 };

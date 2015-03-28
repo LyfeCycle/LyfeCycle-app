@@ -6,10 +6,9 @@ DoneButtonComponent.prototype.createDoneButtonComponent = function(){
 	var main = Ti.UI.createView({
 		width: '40%',
 		height: '9%',
-		bottom: -6,
+		bottom: '-10%',
 		borderRadius: 8,
-		backgroundColor: Constants.darkGreen,
-		visible: false
+		backgroundColor: Constants.darkGreen
 	});
 
 	var label = Ti.UI.createLabel({
@@ -21,10 +20,7 @@ DoneButtonComponent.prototype.createDoneButtonComponent = function(){
 
 	main.add(label);
 
-	// Events
-	// main.addEventListener('click', function(){
-	// 	freeRideController.reportIncident();
-	// });
+	// Events 
 	main.addEventListener('click', function(){
 		freeRideController.closeFromDirectionWindow();
 	});
@@ -33,11 +29,18 @@ DoneButtonComponent.prototype.createDoneButtonComponent = function(){
 };
 
 DoneButtonComponent.prototype.render = function(){
-	this.view.show();
+	this.view.animate(Ti.UI.createAnimation({
+		bottom: -6,
+		duration: 100
+	}));
 };
 
 DoneButtonComponent.prototype.hide = function(){
-	this.view.hide();
+	// this.view.hide();
+	this.view.animate(Ti.UI.createAnimation({
+		bottom: '-10%',
+		duration: 100
+	}));
 };
 
 module.exports = DoneButtonComponent;

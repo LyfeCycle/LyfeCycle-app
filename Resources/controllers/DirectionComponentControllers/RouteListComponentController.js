@@ -37,7 +37,7 @@ RouteListComponentController.prototype.hideList = function(){
 	windowController.goToFreeRideWindow(polyline);
 	directionView.routeListComponent.table.setData([]);
 	directionView.routeListComponent.view.hide();
-	directionView.routeListComponent.view.setBottom(Constant.mapComponentHeightNegative);
+	directionView.routeListComponent.view.setBottom(Constants.mapComponentHeightNegative);
 	directionController.mapComponentController.removePolyline();
 	directionController.mapComponentController.removeRouteAnnotations();
 	directionController.mapComponentController.maximizeMapComponent();

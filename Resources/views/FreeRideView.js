@@ -1,4 +1,4 @@
-var ReportMapComponent = require('/views/FreeRideComponents/ReportMapComponent');
+var FreeRideMapComponent = require('/views/FreeRideComponents/FreeRideMapComponent');
 var IncidentPanelComponent = require('/views/FreeRideComponents/IncidentPanelComponent');
 var DoneButtonComponent = require('/views/FreeRideComponents/DoneButtonComponent');
 var ConfirmReportComponent = require('/views/FreeRideComponents/ConfirmReportComponent');
@@ -7,7 +7,7 @@ var FromDirectionComponent = require('/views/FreeRideComponents/FromDirectionCom
 
 function FreeRideView(){
 	this.incidentPanelComponent = new IncidentPanelComponent();
-	this.reportMapComponent = new ReportMapComponent(); 
+	this.freeRideMapComponent = new FreeRideMapComponent(); 
 	this.doneButtonComponent = new DoneButtonComponent();
 	this.freeRideButtonComponent = new FreeRideButtonComponent();
 	this.confirmReportComponent = new ConfirmReportComponent();
@@ -22,7 +22,7 @@ FreeRideView.prototype.createFreeRideView = function(top){
 		bottom: 0
 	});
 
-	main.add(this.reportMapComponent.view);
+	main.add(this.freeRideMapComponent.view);
 	main.add(this.incidentPanelComponent.view);
 	main.add(this.freeRideButtonComponent.view);
 	main.add(this.doneButtonComponent);

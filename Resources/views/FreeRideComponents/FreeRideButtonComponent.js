@@ -30,5 +30,21 @@ FreeRideButtonComponent.prototype.createFreeRideButtonComponent = function(){
 	return view;
 };
 
+FreeRideButtonComponent.prototype.hide = function(){
+	this.view.animate(Ti.UI.createAnimation({
+		left: -120,
+		bottom: -120,
+		duration: 100
+	}));
+};
+
+FreeRideButtonComponent.prototype.render = function(){
+	this.view.animate(Ti.UI.createAnimation({
+		left: -55,
+		bottom: -55,
+		duration: 100
+	}));
+};
+
 module.exports = FreeRideButtonComponent;
 
