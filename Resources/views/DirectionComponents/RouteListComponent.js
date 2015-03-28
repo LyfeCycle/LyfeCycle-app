@@ -63,13 +63,7 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 	});
 
 	// Yellow active ride bar
-	this.activeRouteBar = Ti.UI.createView({
-		width: '100%',
-		height: activeRouteBarHeight,
-		backgroundColor: 'yellow',
-		visible: false,
-		top: 0
-	});
+	this.activeRouteBar = createActiveRouteBar();
 
 	var activeLabel = Ti.UI.createLabel({
 		font: {fontFamily: Constants.fontKG, fontSize: 10, fontStyle: 'italic'},
@@ -79,11 +73,11 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 	});
 
 	this.startButton.add(startLabel);
-	this.activeRouteBar.add(activeLabel);
+	this.activeRouteBar.view.add(activeLabel);
 	this.tableHeader.add(destination);
 	this.tableHeader.add(this.startButton);
 	this.tableHeader.add(this.cancelButton);
-	this.view.add(this.activeRouteBar);
+	this.view.add(this.activeRouteBar.view);
 	this.view.add(this.tableHeader);
 
 	// Events
@@ -94,6 +88,32 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 	this.cancelButton.addEventListener('click', function(){
 		directionController.routeListComponentController.cancelList();
 	});
+
+	function createActiveRouteBar(){
+		var bar = this;
+		bar.view = Ti.UI.createView({
+			width: '100%',
+			height: activeRouteBarHeight,
+			backgroundColor: 'yellow',
+			top: activeRouteBarHeight
+		});
+
+		bar.render = function(){
+			console.log("RENDERING");
+			bar.view.animate(Ti.UI.createAnimation({
+				top: 0, duration: 50
+			}));
+		};
+
+		bar.hide = function(){
+			console.log("CLOSING");
+			bar.view.animate(Ti.UI.createAnimation({
+				top: activeRouteBarHeight, duration: 50
+			}));
+		}
+
+		return bar;
+	};
 };
 
 RouteListComponent.prototype.createDirectionRow = function(step) {
