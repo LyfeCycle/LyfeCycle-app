@@ -1,7 +1,10 @@
+var FreeRideMapComponentController = require('/controllers/FreeRideComponentControllers/FreeRideMapComponentController');
+
 function FreeRideController(){
 	this.currentIncident = null;
 	this.currentIncidentKey = null;
 	this.currentIncidentCoordinates = null;
+	this.freeRideMapComponentController = new FreeRideMapComponentController();
 
 	var self = this;
 	// Set up event listener for the FreeRide map view
