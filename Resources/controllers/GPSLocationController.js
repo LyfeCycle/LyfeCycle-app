@@ -13,7 +13,10 @@ GPSLocationController.prototype.initGPS = function(){
 
     Ti.Geolocation.getCurrentPosition(function (e) { // Gets starting position
         if (e.error) {
-            console.log('Couldn\'t get location');
+            console.log('Couldn\'t get location - filled in fake coordinates');
+            self.currentLatitude = 42.3520314;
+            self.currentLongitude -71.1255678;
+            self.currentLocationTimestamp = new Date();
         } else {
            	self.currentLatitude = e.coords.latitude;
             self.currentLongitude = e.coords.longitude;
@@ -24,7 +27,10 @@ GPSLocationController.prototype.initGPS = function(){
     // Updates when location changes
     Ti.Geolocation.addEventListener('location', function (e) {
         if (e.error) {
-            console.log('Couldn\'t get location');
+            console.log('Couldn\'t get location - filled in fake coordinates');
+            self.currentLatitude = 42.3520314;
+            self.currentLongitude -71.1255678;
+            self.currentLocationTimestamp = new Date();
         } else {
             self.currentLatitude = e.coords.latitude;
             self.currentLongitude = e.coords.longitude;

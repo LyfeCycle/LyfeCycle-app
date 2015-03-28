@@ -24,7 +24,7 @@ MapComponentController.prototype.setNewDelta = function(steps){
 	var delta = ltDiff > lgDiff ? ltDiff: lgDiff;
 	directionView.mapComponent.view.setLocation({
         animate : true,
-        latitude: (end_location.latitude + gpsLocationController.getCurrentLatitude() - 0.015)/2,
+        latitude: (end_location.latitude + gpsLocationController.getCurrentLatitude())/2,
         longitude: (end_location.longitude + gpsLocationController.getCurrentLongitude())/2,
         latitudeDelta: delta*1.7,
         longitudeDelta: delta*1.7
@@ -65,6 +65,18 @@ MapComponentController.prototype.setRouteAnnotations = function(steps){
 MapComponentController.prototype.removeRouteAnnotations = function(){
 	if (this.currentLocationAnnotation) directionView.mapComponent.view.removeAnnotation(this.currentLocationAnnotation);
 	if (this.destinationLocationAnnotation) directionView.mapComponent.view.removeAnnotation(this.destinationLocationAnnotation);
+};
+
+MapComponentController.prototype.minimizeMapComponent = function(){
+	directionView.mapComponent.view.animate(Ti.UI.createAnimation({
+		height: 200, duration: 100
+	}));
+};
+
+MapComponentController.prototype.maximizeMapComponent = function(){
+	directionView.mapComponent.view.animate(Ti.UI.createAnimation({
+		height: Constants.deviceHeight, duration: 100
+	}));
 };
 
 module.exports = MapComponentController;

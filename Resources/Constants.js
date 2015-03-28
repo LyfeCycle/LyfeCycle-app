@@ -23,4 +23,8 @@ module.exports.bannerHeight = 110;
 module.exports.GoogleDirectionsStartReq = 'https://maps.googleapis.com/maps/api/directions/json?origin=';
 module.exports.GoogleDirectionsEndReq = '&key=' + APIConstants.GoogleDirectionsKey + '&avoid=highways&mode=bicycling&sensor=false';
 
+// MapComponent
+module.exports.mapComponentHeight = '70%';
+module.exports.mapComponentHeightNegative = '-70%';
+
 // module.exports.standardFont = module.exports.fontMillion;

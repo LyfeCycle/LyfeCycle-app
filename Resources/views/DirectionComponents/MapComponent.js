@@ -1,8 +1,8 @@
-function MapComponent(top) {
-	this.view = this.createMapView(top);
+function MapComponent() {
+	this.view = this.createMapView();
 }
 
-MapComponent.prototype.createMapView = function(top) {
+MapComponent.prototype.createMapView = function() {
 	var startLat = 42.3520314;
     var startLong = -71.1255678;
 	var delta = 0.005;
@@ -12,8 +12,8 @@ MapComponent.prototype.createMapView = function(top) {
 	    animate:true,
 	    regionFit:true,
 	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},
-	    top: top,
-	    height: Constants.deviceHeight - top
+	    top: 0,
+	    height: '100%'
 	});
 };
 

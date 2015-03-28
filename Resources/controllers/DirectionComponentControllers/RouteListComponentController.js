@@ -9,15 +9,38 @@ RouteListComponentController.prototype.showList = function(stepsObject){
 		directionSection.add(directionView.routeListComponent.createDirectionRow(stepsObject['steps'][i]));
 	directionView.routeListComponent.table.setData([directionSection]);
 	directionView.routeListComponent.view.show();
+	directionView.routeListComponent.view.animate(Ti.UI.createAnimation({
+		bottom: 0, duration: 100
+	}));
+	directionController.mapComponentController.minimizeMapComponent();
+};
+
+RouteListComponentController.prototype.cancelList = function(){
+	var closeAnimation = Ti.UI.createAnimation({
+		bottom: Constants.mapComponentHeightNegative,
+		duration: 100
+	});
+
+	directionController.mapComponentController.maximizeMapComponent();
+	directionView.routeListComponent.view.animate(closeAnimation);
+
+	closeAnimation.addEventListener('complete', function(){
+		directionView.routeListComponent.table.setData([]);
+		directionView.routeListComponent.view.hide();
+		directionController.mapComponentController.removePolyline();
+		directionController.mapComponentController.removeRouteAnnotations();
+	});
 };
 
 RouteListComponentController.prototype.hideList = function(){
+	var polyline = directionController.mapComponentController.currentPolyline;
+	windowController.goToFreeRideWindow(polyline);
 	directionView.routeListComponent.table.setData([]);
 	directionView.routeListComponent.view.hide();
-	var polyline = directionController.mapComponentController.currentPolyline;
+	directionView.routeListComponent.view.setBottom(Constant.mapComponentHeightNegative);
 	directionController.mapComponentController.removePolyline();
 	directionController.mapComponentController.removeRouteAnnotations();
-	windowController.goToFreeRideWindow(polyline);
+	directionController.mapComponentController.maximizeMapComponent();
 };
 
 RouteListComponentController.prototype.toggleRide = function(){

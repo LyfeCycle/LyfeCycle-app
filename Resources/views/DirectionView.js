@@ -15,7 +15,7 @@ DirectionView.prototype.createDirectionView = function() {
 	});
 
 	this.routeListComponent = new RouteListComponent();
-	this.mapComponent = new MapComponent(0);
+	this.mapComponent = new MapComponent();
 	this.navSearchComponent = new NavSearchComponent();
 
 	main.add(this.mapComponent.view);

@@ -8,7 +8,8 @@ function RouteListComponent() {
 
 RouteListComponent.prototype.createDirectionTable = function() {
 	var main = Ti.UI.createView({
-		top: 190,
+		bottom: Constants.mapComponentHeightNegative,
+		height: Constants.mapComponentHeight,
 		width: Constants.deviceWidth,
 		visible: false
 	})
@@ -42,11 +43,18 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 	this.startButton = Ti.UI.createView({
 		height: '80%',
 		width: Constants.deviceWidth*.2,
-		right: 10,
+		right: Constants.deviceWidth*.1 + 5,
 		backgroundColor: 'yellow',
 		borderColor: 'black',
 		borderWidth: 2,
 		borderRadius: 5
+	});
+	this.cancelButton = Ti.UI.createLabel({
+		height: '80%',
+		right: 10,
+		color: 'black',
+		text: 'X',
+		font: {fontFamily: Constants.fontKG, fontSize: 20}
 	});
 	var startLabel = Ti.UI.createLabel({
 		text: 'Go!',
@@ -74,12 +82,17 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 	this.activeRouteBar.add(activeLabel);
 	this.tableHeader.add(destination);
 	this.tableHeader.add(this.startButton);
+	this.tableHeader.add(this.cancelButton);
 	this.view.add(this.activeRouteBar);
 	this.view.add(this.tableHeader);
 
 	// Events
 	this.startButton.addEventListener('click', function(){
 		directionController.routeListComponentController.toggleRide();
+	});
+
+	this.cancelButton.addEventListener('click', function(){
+		directionController.routeListComponentController.cancelList();
 	});
 };
 

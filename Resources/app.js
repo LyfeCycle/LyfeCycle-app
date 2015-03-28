@@ -67,7 +67,8 @@ if (Ti.Geolocation.locationServicesEnabled) {
 	gpsLocationController.initGPS();
 	if (usedBefore){
 		Ti.App.Properties.setBool('usedBefore', true);
-		sessionController.Login();
+		// sessionController.Login();
+		windowController.goToHomeWindow();
 	} else windowController.goToHomeWindow();
 } else {
     windowController.goToEnableLocationWindow();
