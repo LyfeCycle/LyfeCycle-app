@@ -62,4 +62,17 @@ module.exports.registerForPush = function(){
             // Update location
         }
     });
+
+    Ti.App.iOS.addEventListener('notification', function(e) {
+        if (e.userInfo && "id" in e.userInfo){
+            Ti.App.Properties.setObject('timeEndActual', new Date());
+        }
+        // Reset badge number to nothing
+        if (e.badge > 0) {
+            Ti.App.iOS.scheduleLocalNotification({
+                date: new Date(new Date().getTime()),
+                badge: -1
+            });
+        }
+    });
 };

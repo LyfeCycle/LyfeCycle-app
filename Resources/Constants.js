@@ -1,4 +1,6 @@
 module.exports.backendURL = 'http://lyfecycle-api.herokuapp.com/';
+module.exports.baseURL = 'http://lyfecycle-api.herokuapp.com/';
+module.exports.timeout = 6000;
 
 
 // Device Stats

@@ -81,14 +81,14 @@ FreeRideController.prototype.closeConfirmModal = function(){
 };	
 
 FreeRideController.prototype.addNearbyIncidents = function(){
-	console.log("GET INCIDENTS");
-	incidentClient.getAllIncidents(function (results){
-		console.log("INCIDENTS");
-		console.log(results);
-		for (var key in results) {
-			freeRideView.freeRideMapComponent.addIncident(results[key]);
-		}
-	});
+	var self = this;
+	// incidentClient.getAllIncidents(function (results){
+		// console.log("INCIDENTS");
+		// console.log(results);
+		// for (var key in results) {
+		// 	self.freeRideMapComponentController.addIncident(results[key]);
+		// }
+	// });
 };
 
 FreeRideController.prototype.toggleFreeRideButton = function(){
@@ -105,7 +105,7 @@ FreeRideController.prototype.fromDirectionWindow = function(polyline){
 	// Place polyline on the map
 	this.freeRideMapComponentController.addPolyline(polyline);
 	// Put modal about incidents
-	freeRideView.fromDirectionComponent.render('','');
+	freeRideView.fromDirectionComponent.render(Ti.App.Properties.getObject('timeStarted'), Ti.App.Properties.getObject('timeEndActual'), Ti.App.Properties.getObject('timeEndPredicted'));
 	// Show 'done' button
 	freeRideView.doneButtonComponent.render();
 	freeRideView.freeRideButtonComponent.hide();

@@ -1,5 +1,5 @@
 function IncidentClient(){
-	this.url = Settings.baseURL;
+	this.url = Constants.baseURL;
 };
 
 IncidentClient.prototype.postIncident = function(type, latitude, longitude){
@@ -14,7 +14,7 @@ IncidentClient.prototype.postIncident = function(type, latitude, longitude){
 	});
 	console.log(json);
 	var client = Ti.Network.createHTTPClient({
-			timeout: Settings.timeout,
+			timeout: Constants.timeout,
 			onload: function(e){},
 			onerror: function(e){alert("Couldn't connect!!");}
 	});
@@ -26,7 +26,7 @@ IncidentClient.prototype.postIncident = function(type, latitude, longitude){
 
 IncidentClient.prototype.getAllIncidents = function(callback){
 	var client = Ti.Network.createHTTPClient({
-			timeout: Settings.timeout,
+			timeout: Constants.timeout,
 			onload: function(e){
 				callback(JSON.parse(this.responseText));
 			},

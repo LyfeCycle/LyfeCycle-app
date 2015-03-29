@@ -6,7 +6,6 @@ fb.permissions = ['publish_stream'];
 
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');
-var Settings = require('./Settings');
 var Constants = require('./Constants');
 var HomeMenuView = require('/views/HomeMenuView');
 var DirectionView = require('/views/DirectionView');

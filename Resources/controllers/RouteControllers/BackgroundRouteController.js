@@ -14,6 +14,7 @@ if (currentRide) {
             	// Register user has finished ridein Properties
             	completedRide = true;
             	Ti.App.Properties.setBool('completedRide', true);
+            	Ti.App.Properties.setObject('timeEndActual', new Date());
             	Ti.App.iOS.scheduleLocalNotification({
 				    alertAction: "report incidents",
 				    alertBody: "You finished your ride!",
@@ -35,11 +36,12 @@ if (currentRide) {
 			    badge: 1,
 			    date: endTime,
 			    sound: "/alert.wav",
-			    userInfo: {"path":"/controllers/RouteControllers/OpenLocalNotification.js"}
+			    userInfo: {"id": "finish"}
 			}); 
 		}
 	});
 
+	Ti.App.Properties.setBool('completedRide', true);
 	Ti.App.iOS.scheduleLocalNotification({
 	    alertAction: "complete ride",
 	    alertBody: "Did you finish your ride?",

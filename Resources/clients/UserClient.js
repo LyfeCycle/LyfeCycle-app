@@ -1,10 +1,10 @@
 function UserClient() {
-	this.url = Settings.baseURL;
+	this.url = Constants.baseURL;
 };
 
 UserClient.prototype.getAllUsers = function(callback){
 	var client = Ti.Network.createHTTPClient({
-			timeout: Settings.timeout,
+			timeout: Constants.timeout,
 			onload: function(e){
 				callback(JSON.parse(this.responseText));
 			},

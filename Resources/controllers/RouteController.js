@@ -15,6 +15,7 @@ function RouteController(){
 	Ti.App.Properties.setDouble('endLong', 0);
 	Ti.App.Properties.setObject('timeStarted', null);
 	Ti.App.Properties.setObject('timeEndPredicted', null);
+	Ti.App.Properties.setObject('timeEndActual', null);
 	Ti.App.Properties.setList('polyline', []);
 	Ti.App.Properties.setBool('completedRide', false);
 
@@ -28,7 +29,8 @@ RouteController.prototype.prepRoute = function(routeJson){
 };
 
 RouteController.prototype.startRoute = function(){
-	var startTime = new Date(), endTime = new Date(startTime.getSeconds() + this.routeDuration);
+	var startTime = new Date();
+	var endTime = new Date(startTime.getTime() + this.routeDuration*1000);
 	Ti.App.Properties.setBool('currentRide', true);
 	Ti.App.Properties.setDouble('endLat', this.routeEndLocation.lat);
 	Ti.App.Properties.setDouble('endLong', this.routeEndLocation.lng);
@@ -44,6 +46,7 @@ RouteController.prototype.endRoute = function(){
 	Ti.App.Properties.setDouble('startLat', 0);
 	Ti.App.Properties.setObject('timeStarted', null);
 	Ti.App.Properties.setObject('timeEndPredicted', null);
+	Ti.App.Properties.setObject('timeEndActual', null);
 	Ti.App.Properties.setList('polyline', []);
 	Ti.App.Properties.setBool('completedRide', false);
 	this.routeEndLocation = false;
