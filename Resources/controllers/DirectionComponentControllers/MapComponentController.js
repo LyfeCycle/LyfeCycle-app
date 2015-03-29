@@ -1,5 +1,6 @@
 function MapComponentController(){
 	this.currentPolyline;
+	this.currentPolylineStringList;
 	this.currentLocationAnnotation;
 	this.destinationLocationAnnotation;
 };
@@ -32,6 +33,7 @@ MapComponentController.prototype.setNewDelta = function(steps){
 };
 
 MapComponentController.prototype.setPolyline = function(steps){
+	this.currentPolylineStringList = steps['polyline_route'];
 	this.currentPolyline = MapModule.createRoute({points: steps['polyline_route'], color: 'blue', width: 4});
 	directionView.mapComponent.view.addRoute(this.currentPolyline);
 };
@@ -39,6 +41,7 @@ MapComponentController.prototype.setPolyline = function(steps){
 MapComponentController.prototype.removePolyline = function(){
 	if (this.currentPolyline) directionView.mapComponent.view.removeRoute(this.currentPolyline);
 	this.currentPolyline = null;
+	this.currentPolylineStringList = null;
 }
 
 MapComponentController.prototype.setRouteAnnotations = function(steps){

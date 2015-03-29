@@ -109,6 +109,7 @@ FreeRideController.prototype.fromDirectionWindow = function(polyline){
 	// Show 'done' button
 	freeRideView.doneButtonComponent.render();
 	freeRideView.freeRideButtonComponent.hide();
+	routeController.endRoute();
 };
 
 FreeRideController.prototype.closeFromDirectionWindow = function(){

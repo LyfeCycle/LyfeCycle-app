@@ -36,7 +36,8 @@ GPSLocationController.prototype.initGPS = function(){
             self.currentLongitude = e.coords.longitude;
             self.currentLocationTimestamp = e.coords.timestamp;
             directionController.mapComponentController.showCurrentLocation();
-            
+            if (routeController.checkIfUserIsAtEndLocation()) 
+                directionController.routeListComponentController.endRide(); // End ride here, how to 
         }
     });
 };

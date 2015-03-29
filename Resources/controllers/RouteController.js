@@ -1,10 +1,13 @@
 // This Controller stores the information for each current route to the Ti App Properties. 
 // This is the actual handler for every route, and abstracts it from any UI components
-var BackgroundRouteController = require('/controllers/RouteControllers/BackgroundRouteController');
+// Calculations from this crappy article: http://classroom.synonym.com/convert-latitude-longtitude-feet-2724.html
 
 function RouteController(){
 	this.routeEndLocation;
 	this.routeDuration;
+	this.currentRide = false;
+	this.endLatitudeRange = 0.00082307035;
+	this.endLongitudeRange = 0.00082308541;
 
 	// Set all intial values to empty
 	Ti.App.Properties.setBool('currentRide', false);
@@ -12,13 +15,16 @@ function RouteController(){
 	Ti.App.Properties.setDouble('endLong', 0);
 	Ti.App.Properties.setObject('timeStarted', null);
 	Ti.App.Properties.setObject('timeEndPredicted', null);
+	Ti.App.Properties.setList('polyline', []);
+	Ti.App.Properties.setBool('completedRide', false);
+
 };
 
 // This is the info for a potential route - it's from when the directions are initially got, an this waits for 
 // the start of the route to be confirmed
 RouteController.prototype.prepRoute = function(routeJson){
 	this.routeDuration = routeJson.duration.value;
-	this.routeEndLocation  = routeJson.end_location;
+	this.routeEndLocation = routeJson.end_location;
 };
 
 RouteController.prototype.startRoute = function(){
@@ -28,6 +34,8 @@ RouteController.prototype.startRoute = function(){
 	Ti.App.Properties.setDouble('endLong', this.routeEndLocation.lng);
 	Ti.App.Properties.setObject('timeStarted', startTime);
 	Ti.App.Properties.setObject('timeEndPredicted', endTime);
+	Ti.App.Properties.setList('polyline', directionController.mapComponentController.currentPolylineStringList);
+	this.currentRide = true;
 };
 
 RouteController.prototype.endRoute = function(){
@@ -36,11 +44,21 @@ RouteController.prototype.endRoute = function(){
 	Ti.App.Properties.setDouble('startLat', 0);
 	Ti.App.Properties.setObject('timeStarted', null);
 	Ti.App.Properties.setObject('timeEndPredicted', null);
+	Ti.App.Properties.setList('polyline', []);
+	Ti.App.Properties.setBool('completedRide', false);
+	this.routeEndLocation = false;
+	this.currentRide = false;
 };
 
 RouteController.prototype.checkIfUserIsAtEndLocation = function(){
-	gpsLocationController.getCurrentLatitude();
-	gpsLocationController.getCurrentLongitude();
+	if (this.currentRide) {	
+		if (Math.abs(gpsLocationController.getCurrentLatitude()-this.routeEndLocation.lat) > this.endLatitudeRange) 
+			return false;
+		else if (Math.abs(gpsLocationController.getCurrentLongitude()-this.routeEndLocation.lng) > this.endLongitudeRange)
+			return false;
+		else 
+			return true;
+	} else return false;
 };
 
 module.exports = RouteController;

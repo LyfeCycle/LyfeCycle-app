@@ -3,22 +3,60 @@ var currentRide = Ti.App.Properties.getBool('currentRide');
 var endLat = Ti.App.Properties.getDouble('endLat');
 var endLong = Ti.App.Properties.getDouble('endLong');
 var endTime = Ti.App.Properties.getObject('timeEndPredicted');
+var polyline = Ti.App.Properties.getString('polyline');
+var endLatitudeRange = 0.00082307035;
+var endLongitudeRange = 0.00082308541;
 
 if (currentRide) {
+	Ti.Geolocation.addEventListener('location', function (e) {
+        if (!e.error) {
+            if (checkIfUserIsAtEndLocation(e.coords)) {
+            	// Register user has finished ridein Properties
+            	completedRide = true;
+            	Ti.App.Properties.setBool('completedRide', true);
+            	Ti.App.iOS.scheduleLocalNotification({
+				    alertAction: "report incidents",
+				    alertBody: "You finished your ride!",
+				    badge: 1,
+				    sound: "/alert.wav",
+				    userInfo: {"path":"/controllers/RouteControllers/OpenLocalNotification.js"}
+				}); 
+				Ti.App.currentService.stop();
+            }
+        }
+    });
 
 	// If closes, schedule push notification
-	Ti.App.currentService.addEventListener('stop',function(){
-		var notification = Ti.App.iOS.scheduleLocalNotification({
-		    alertAction: "complete ride",
-		    // Alert will display the following message
-		    alertBody: "Did you finish your ride?",
-		    // The badge value in the icon will be changed to 1
-		    badge: 1,
-		    // Alert will be sent in three seconds
-		    date: endTime,
-		    // The following sound file will be played
-		    sound: "/alert.wav",
-		    userInfo: {"path":"/controllers/RouteControllers/OpenLocalNotification.js"}
-		}); 
+	var listener = Ti.App.currentService.addEventListener('stop',function(){
+		if (!Ti.App.Properties.getBool('completedRide')) {
+			var notification = Ti.App.iOS.scheduleLocalNotification({
+			    alertAction: "complete ride",
+			    alertBody: "Did you finish your ride?",
+			    badge: 1,
+			    date: endTime,
+			    sound: "/alert.wav",
+			    userInfo: {"path":"/controllers/RouteControllers/OpenLocalNotification.js"}
+			}); 
+		}
 	});
+
+	Ti.App.iOS.scheduleLocalNotification({
+	    alertAction: "complete ride",
+	    alertBody: "Did you finish your ride?",
+	    badge: 1,
+	    date: new Date(new Date().getTime() + 3000),
+	    sound: "/alert.wav",
+	    userInfo: {"path":"/controllers/RouteControllers/OpenLocalNotification.js"}
+	}); 
+
+	function checkIfUserIsAtEndLocation(coords) {
+		if (this.currentRide) {
+			if (Math.abs(coords.latitude-endLat) > endLatitudeRange) 
+				return false;
+			else if (Math.abs(coords.longitude-endLong) > endLongitudeRange)
+				return false;
+			else 
+				return true;
+		} else return false;
+	}
 }

@@ -27,6 +27,7 @@ var SocialController = require('/controllers/SocialController');
 var SideMenuController = require('/controllers/SideMenuController');
 var FreeRideController = require('/controllers/FreeRideController');
 var RouteController = require('/controllers/RouteController');
+var NotificationsController = require('/controllers/NotificationsController');
 
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
@@ -61,6 +62,10 @@ var windowController = new WindowController();
 // ***** Clients Objects *****
 var incidentClient = new IncidentClient();
 var userClient = new UserClient();
+
+// Register the background service
+Ti.App.iOS.registerBackgroundService({url:'/controllers/RouteControllers/BackgroundRouteController.js'});
+NotificationsController.registerForPush();
 
 // Uncomment the next line to test Login Screen
 var usedBefore = Ti.App.Properties.getBool('usedBefore');
