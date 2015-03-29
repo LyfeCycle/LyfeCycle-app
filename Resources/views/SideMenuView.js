@@ -33,6 +33,7 @@ SideMenuView.prototype.generateSideMenuView = function(){
 	main.add(generateTableRow('Maps', 1));
 	main.add(generateTableRow('Free Ride', 2));
 	main.add(generateTableRow('Social', 3));
+	main.add(generateTableRow('Profile',4));
 	return main;
 
 	// HELPER FUNCTIONS
@@ -94,6 +95,10 @@ SideMenuView.prototype.generateSideMenuView = function(){
 				case 'Social':
 					console.log("GO TO SOCIAL");
 					windowController.goToSocialWindow();
+					break;
+				case 'Profile':
+					console.log("GO TO PROFILE");
+					windowController.goToProfileWindow();
 					break;
 			}
 		});

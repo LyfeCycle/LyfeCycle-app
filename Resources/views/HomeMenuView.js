@@ -23,16 +23,18 @@ HomeMenuView.prototype.createHomeView = function(){
 		opacity: 1.0
 	});
 
-	var startLat = 42.3520314;
-    var startLong = -71.1255678;
-	var delta = 0.005;
+	console.log('create home view');
 
 	var backgroundMap = MapModule.createView({
 		mapType: MapModule.NORMAL_TYPE,
-	    animate:false,
-	    regionFit:true,
-	    opacity:0.5,
-	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},
+	    animate: false,
+	    regionFit: true,
+	    userLocation: true,
+	    opacity: 0.5,
+	    region: {latitude: gpsLocationController.getCurrentLatitude(),
+	    		longitude: gpsLocationController.getCurrentLongitude(),
+	    		latitudeDelta: 0.001,
+	    		longitudeDelta: 0.001},
 	    top: 0,
 	    height: Constants.deviceHeight
 	});

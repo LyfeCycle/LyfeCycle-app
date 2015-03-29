@@ -1,8 +1,32 @@
+// ***** GPS *****
 var MapModule = require('ti.map');
+var GPSLocationController = require('/controllers/GPSLocationController');
+var gpsLocationController = new GPSLocationController();
+if (Ti.Geolocation.locationServicesEnabled) {
+		gpsLocationController.initGPS();
+} else {
+    windowController.goToEnableLocationWindow();
+}
 
+// ***** Facebook *****
 var fb = require('facebook');
 fb.appid = 382800148589176;
-fb.permissions = ['publish_stream'];
+fb.permissions = ['public_profile'];
+
+// ***** HTTP Client *****
+ var client = Ti.Network.createHTTPClient({
+     // function called when the response data is available
+     onload : function(e) {
+         Ti.API.info("Received text: " + this.responseText);
+         alert('success');
+     },
+     // function called when an error occurs, including a timeout
+     onerror : function(e) {
+         Ti.API.debug(e.error);
+         alert('Error connecting to the server.');
+     },
+     timeout : 5000  // in milliseconds
+ });
 
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');
@@ -15,12 +39,12 @@ var EnableLocationView = require('/views/EnableLocationServicesView');
 var SocialView = require('/views/SocialView');
 var SideMenuView = require('/views/SideMenuView');
 var FreeRideView = require('/views/FreeRideView');
+var ProfileView = require('/views/ProfileView');
 
 // ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
 var CrashDetectController = require('/controllers/CrashDetectController');
 var WindowController = require('/controllers/WindowController');
-var GPSLocationController = require('/controllers/GPSLocationController');
 var DirectionController = require('/controllers/DirectionController');
 var SocialController = require('/controllers/SocialController');
 var SideMenuController = require('/controllers/SideMenuController');
@@ -47,11 +71,11 @@ var enableLocationView = new EnableLocationView();
 var socialView = new SocialView();
 var sideMenuView = new SideMenuView();
 var freeRideView = new FreeRideView();
+var profileView = new ProfileView();
 
 // ***** Controller Objects *****
 var sessionController = new SessionController();
 var crashDetectController = new CrashDetectController();
-var gpsLocationController = new GPSLocationController();
 var directionController = new DirectionController();
 var socialController = new SocialController();
 var sideMenuController = new SideMenuController();
@@ -68,16 +92,12 @@ var userClient = new UserClient();
 Ti.App.iOS.registerBackgroundService({url:'/controllers/RouteControllers/BackgroundRouteController.js'});
 NotificationsController.registerForPush();
 
-// Uncomment the next line to test Login Screen
+// After initialization, initialize login process
 var usedBefore = Ti.App.Properties.getBool('usedBefore');
 usedBefore = true;
-if (Ti.Geolocation.locationServicesEnabled) {	
-	gpsLocationController.initGPS();
-	if (usedBefore){
+
+if (usedBefore){
 		Ti.App.Properties.setBool('usedBefore', true);
 		sessionController.Login();
 		// windowController.goToHomeWindow();
 	} else windowController.goToHomeWindow();
-} else {
-    windowController.goToEnableLocationWindow();
-}

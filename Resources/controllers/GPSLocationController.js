@@ -5,6 +5,7 @@ function GPSLocationController(){
 };
 
 GPSLocationController.prototype.initGPS = function(){
+    console.log('init gps');
     var self = this;
 	Ti.Geolocation.purpose = 'Get Current Location';
     Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST;
@@ -12,6 +13,7 @@ GPSLocationController.prototype.initGPS = function(){
     Ti.Geolocation.preferredProvider = Ti.Geolocation.PROVIDER_GPS;
 
     Ti.Geolocation.getCurrentPosition(function (e) { // Gets starting position
+        console.log('getCurrentPosition');
         if (e.error) {
             console.log('Couldn\'t get location - filled in fake coordinates');
             self.currentLatitude = 42.3520314;
