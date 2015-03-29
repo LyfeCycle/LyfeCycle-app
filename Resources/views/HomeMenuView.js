@@ -2,34 +2,38 @@ function HomeMenuView() {
 	this.mapButton;
 	this.freeRideButton;
 	this.socialButton;
+	this.transparentLayer;
+	this.backgroundMap;
+	this.main;
 	this.view = this.createHomeView();
 };
 
 HomeMenuView.prototype.createHomeView = function(){
+	var self = this;
 
 	this.mapButton = createButton('Maps', '/images/compass-black.png', '10%');
 	this.freeRideButton = createButton('Free Ride', '/images/traffic-cone-black.png', '30%');
 	this.socialButton = createButton('Social', '/images/comment-black.png', '50%');
 
-	var main = Ti.UI.createView({
+	this.main = Ti.UI.createView({
 		height: Constants.viewHeight,
 		width: '100%',
 		backgroundColor: '#ddd',
 		bottom: 0
 	});
 
-	var transparentLayer = Ti.UI.createView({
+	this.transparentLayer = Ti.UI.createView({
 		height: Constants.viewHeight,
 		opacity: 1.0
 	});
 
 	console.log('create home view');
 
-	var backgroundMap = MapModule.createView({
+	this.backgroundMap = MapModule.createView({
 		mapType: MapModule.NORMAL_TYPE,
 	    animate: false,
 	    regionFit: true,
-	    userLocation: true,
+	    userLocation: false,
 	    opacity: 0.5,
 	    region: {latitude: gpsLocationController.getCurrentLatitude(),
 	    		longitude: gpsLocationController.getCurrentLongitude(),
@@ -39,11 +43,17 @@ HomeMenuView.prototype.createHomeView = function(){
 	    height: Constants.deviceHeight
 	});
 
-	main.add(backgroundMap);
-	main.add(transparentLayer);
-	main.add(this.mapButton);
-	main.add(this.freeRideButton);
-	main.add(this.socialButton);
+	this.backgroundMap.addEventListener('locUpdate', function(e) {
+		console.log("locUpdate caught");
+		self.backgroundMap.region = {latitude: gpsLocationController.getCurrentLatitude(),
+									longitude: gpsLocationController.getCurrentLongitude()}
+	});
+
+	this.main.add(this.backgroundMap);
+	this.main.add(this.transparentLayer);
+	this.main.add(this.mapButton);
+	this.main.add(this.freeRideButton);
+	this.main.add(this.socialButton);
 
 	// Events
 
@@ -59,7 +69,7 @@ HomeMenuView.prototype.createHomeView = function(){
 		windowController.goToSocialWindow();
 	});
 
-	return main;
+	return this.main;
 
 
 	function createButton(title, img, top, callback) {

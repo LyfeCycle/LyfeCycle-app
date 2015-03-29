@@ -24,6 +24,7 @@ GPSLocationController.prototype.initGPS = function(){
             self.currentLongitude = e.coords.longitude;
             self.currentLocationTimestamp = e.coords.timestamp;
         }
+        homeMenuView.backgroundMap.fireEvent('locUpdate');
     });
 
     // Updates when location changes

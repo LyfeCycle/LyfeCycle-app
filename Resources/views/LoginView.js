@@ -83,7 +83,7 @@ LoginView.prototype.createLoginView = function() {
 		var param = {"name": fb.getUid(),
 					"homeLatitude": neighborhoodTextField.value,
 					"homeLongitude": ""}
-		httpclient.send(JSON.stringify(param));
+		//httpclient.send(JSON.stringify(param));
 
 		windowController.goToHomeWindow();
 	});
