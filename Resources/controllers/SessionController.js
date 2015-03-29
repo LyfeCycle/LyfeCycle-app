@@ -8,6 +8,7 @@ function Session() {
 		if (e.success) {
 			this.logged_in_state = true;
 			windowController.goToHomeWindow();
+			console.log('fb third_party_id: ', fb.getUid());
 		}
 	});
 	fb.addEventListener('logout', function(e) {

@@ -20,7 +20,7 @@ TopBarView.prototype.createTopBarView = function() {
 	main.add(this.sideMenuButton);
 
 	this.sideMenuButton.addEventListener('click', function(){
-		console.log("Registering clicjk");
+		console.log("Registering click");
 		sideMenuController.toggleSideMenu();
 	});
 

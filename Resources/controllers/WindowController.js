@@ -2,7 +2,7 @@ function WindowController() {
 	var self = this;
 	// Create windows for all sections of the app
 	this.homeWindow = Titanium.UI.createWindow();
-	this.settingsWindow = Titanium.UI.createWindow();
+	this.profileWindow = Titanium.UI.createWindow();
 	this.loginWindow = Titanium.UI.createWindow();
 	this.socialWindow = Titanium.UI.createWindow();
 	this.directionWindow = Titanium.UI.createWindow();
@@ -36,7 +36,7 @@ function WindowController() {
 
 	// Create listeners to grab current window
 	this.homeWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
-	this.settingsWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
+	this.profileWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.loginWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
 	this.socialWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.directionWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
@@ -75,9 +75,9 @@ WindowController.prototype.goToSocialWindow = function() {
 	sideMenuController.closeSideMenu(); 
 };
 
-WindowController.prototype.goToSettingsWindow = function() {
-	topBar.setText('Settings');
-	this.settingsWindow.open();
+WindowController.prototype.goToProfileWindow = function() {
+	topBar.setText('Profile');
+	this.profileWindow.open();
 	sideMenuController.closeSideMenu(); 
 };
 
