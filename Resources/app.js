@@ -27,6 +27,7 @@ var SideMenuController = require('/controllers/SideMenuController');
 var FreeRideController = require('/controllers/FreeRideController');
 var RouteController = require('/controllers/RouteController');
 var NotificationsController = require('/controllers/NotificationsController');
+var IncidentController = require('/controllers/IncidentController');
 
 // ***** Model Requires *****
 var StepModel = require('/models/StepModel');
@@ -56,6 +57,7 @@ var socialController = new SocialController();
 var sideMenuController = new SideMenuController();
 var freeRideController = new FreeRideController();
 var routeController = new RouteController();
+var incidentController = new IncidentController();
 var windowController = new WindowController();
 
 // ***** Clients Objects *****

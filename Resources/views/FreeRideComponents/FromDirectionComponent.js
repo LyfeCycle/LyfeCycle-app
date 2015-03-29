@@ -76,13 +76,13 @@ FromDirectionComponent.prototype.createRideCompletitionModal = function(){
 		font: {fontFamily: Constants.fontKG, fontSize: 16}
 	});
 	this.leftTime = Ti.UI.createLabel({
-		top: '30%',
+		top: '60%',
 		width: '100%',
 		textAlign: 'center',
 		font: {fontFamily: Constants.fontKG, fontSize: 16},
 	});
 	this.rightTime = Ti.UI.createLabel({
-		top: '30%',
+		top: '60%',
 		width: '100%',
 		textAlign: 'center',
 		font: {fontFamily: Constants.fontKG, fontSize: 16},

@@ -13,7 +13,8 @@ MapComponent.prototype.createMapView = function() {
 	    regionFit:true,
 	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},
 	    top: 0,
-	    height: '100%'
+	    height: '100%',
+        id: 0
 	});
 };
 

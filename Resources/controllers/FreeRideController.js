@@ -81,14 +81,7 @@ FreeRideController.prototype.closeConfirmModal = function(){
 };	
 
 FreeRideController.prototype.addNearbyIncidents = function(){
-	var self = this;
-	// incidentClient.getAllIncidents(function (results){
-		// console.log("INCIDENTS");
-		// console.log(results);
-		// for (var key in results) {
-		// 	self.freeRideMapComponentController.addIncident(results[key]);
-		// }
-	// });
+	
 };
 
 FreeRideController.prototype.toggleFreeRideButton = function(){
