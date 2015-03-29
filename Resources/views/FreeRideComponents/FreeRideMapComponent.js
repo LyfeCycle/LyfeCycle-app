@@ -17,7 +17,8 @@ FreeRideMapComponent.prototype.createReportMapView = function(){
 	    regionFit:true,
 	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},
 	    top: 0,
-	    height: Constants.deviceHeight
+	    height: Constants.deviceHeight,
+	    id: 1
 	});
 
 	return map;
