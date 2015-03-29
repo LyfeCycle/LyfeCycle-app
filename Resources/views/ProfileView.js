@@ -2,6 +2,8 @@ function ProfileView() {
 	this.view = this.createProfileView();
 	this.profileData;
 	this.nameLabel;
+	this.totalMilesLabel;
+	this.totalMilesValue;
 };
 
 ProfileView.prototype.createProfileView = function(){
@@ -49,7 +51,25 @@ ProfileView.prototype.createProfileView = function(){
 		font: {fontFamily: Constants.fontKG, fontSize: 20}
 	});
 
+	this.totalMilesLabel = Ti.UI.createLabel({
+		text: 'Total Miles: ',
+		color: 'red',
+		top: '40%',
+		left: '10%',
+		font: {fontFamily: Constants.fontKG, fontSize: 16}
+	});
+
+	this.totalMilesValue = Ti.UI.createLabel({
+		text: "42069",
+		color: 'white',
+		top: '40%',
+		left: '52%',
+		font: {fontFamily: Constants.fontKG, fontSize: 16}
+	});
+
 	view.add(this.nameLabel);
+	view.add(this.totalMilesLabel);
+	view.add(this.totalMilesValue);
 
 	main.add(view);
 

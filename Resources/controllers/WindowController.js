@@ -23,7 +23,7 @@ function WindowController() {
 	this.socialWindow.add(sideMenuView.view);
 	this.freeRideWindow.add(sideMenuView.view);
 	this.profileWindow.add(sideMenuView.view)
-	
+
 	this.homeWindow.add(sideMenuView.overlay);
 	this.directionWindow.add(sideMenuView.overlay);
 	this.socialWindow.add(sideMenuView.overlay);
@@ -42,7 +42,7 @@ function WindowController() {
 	// Create listeners to grab current window
 	this.homeWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.profileWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
-	this.loginWindow.addEventListener('open', function (e){ self.currentWindow = e.source; });
+	this.loginWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.socialWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.directionWindow.addEventListener('open', function (e){ self.currentWindow = e.source; sideMenuController.closeSideMenu(); });
 	this.freeRideWindow.addEventListener('open', function (e){ self.currentWindow = e.source; 

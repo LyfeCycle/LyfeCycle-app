@@ -15,7 +15,7 @@ LoginView.prototype.createLoginView = function() {
 		image: '/images/bike_wheel.png'
 	});
 
-	var userNameTextField = Ti.UI.createTextField({
+	var neighborhoodTextField = Ti.UI.createTextField({
 		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		color: '#336699',
 		top: Constants.deviceHeight/2 - 50,
@@ -33,7 +33,7 @@ LoginView.prototype.createLoginView = function() {
 		height: 40
 	});
 
-	var loginButtonBG = Titanium.UI.createView({
+	var createAccountButtonBG = Titanium.UI.createView({
 		top: Constants.deviceHeight/2 + 50,
 		height: 50,
 		width: Constants.deviceWidth - 200,
@@ -41,29 +41,54 @@ LoginView.prototype.createLoginView = function() {
 		borderRadius: 10
 	});
 
-	var loginButton = Titanium.UI.createLabel({
-		text: 'Login',
+	var createAccountButton = Titanium.UI.createLabel({
+		text: 'Create Account',
 		font: {fontSize: 25, fontFamily: Constants.fontKG}
 	});
 
-	// Facebook style login button
+	createAccountButtonBG.add(createAccountButton);
+
+	// Facebook login/logout
 	var fbLoginButton = fb.createLoginButton({
 		top : Constants.deviceHeight/2 + 50,
     	style : fb.BUTTON_STYLE_WIDE
 	});
 
-	loginButtonBG.add(loginButton);
+	fb.addEventListener('login', function(e) {
+		if (e.success) {
+			Titanium.API.info("Facebook authentication");
+			//windowController.goToHomeWindow();
 
-	loginButtonBG.addEventListener('click',function (e){
-		Titanium.API.info("You clicked the button");
+			// If user already exists in database..
+			// windowController.goToHomeWindow();
+			// else
+			// show the text field for new user signup
+			console.log('fb third_party_id: ', fb.getUid());
+			main.add(neighborhoodTextField);
+			main.add(createAccountButtonBG);
+		}
+	});
+	fb.addEventListener('logout', function(e) {
+	    this.logged_in_state = false;
+	    console.log("herro");
+	    windowController.goToLoginWindow();
+	});
+
+
+	createAccountButtonBG.addEventListener('click',function (e){
+		Titanium.API.info("Creating new user");
+		// Submit request to server to create a new user.
+		httpclient.open("POST", "http://lyfecycle-api.herokuapp.com/users");
+		httpclient.setRequestHeader("content-type", "application/json");
+		var param = {"name": fb.getUid(),
+					"homeLatitude": neighborhoodTextField.value,
+					"homeLongitude": ""}
+		httpclient.send(JSON.stringify(param));
+
 		windowController.goToHomeWindow();
 	});
 
-	
 	main.add(icon);
-	//main.add(userNameTextField);
-	//main.add(phoneNumberTextField);
-	//main.add(loginButtonBG);
 	main.add(fbLoginButton);
 
 	return main;
