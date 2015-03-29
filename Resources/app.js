@@ -8,10 +8,25 @@ if (Ti.Geolocation.locationServicesEnabled) {
     windowController.goToEnableLocationWindow();
 }
 
-// ***** Facebook ******
+// ***** Facebook *****
 var fb = require('facebook');
 fb.appid = 382800148589176;
 fb.permissions = ['public_profile'];
+
+// ***** HTTP Client *****
+ var client = Ti.Network.createHTTPClient({
+     // function called when the response data is available
+     onload : function(e) {
+         Ti.API.info("Received text: " + this.responseText);
+         alert('success');
+     },
+     // function called when an error occurs, including a timeout
+     onerror : function(e) {
+         Ti.API.debug(e.error);
+         alert('Error connecting to the server.');
+     },
+     timeout : 5000  // in milliseconds
+ });
 
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');
@@ -24,6 +39,7 @@ var EnableLocationView = require('/views/EnableLocationServicesView');
 var SocialView = require('/views/SocialView');
 var SideMenuView = require('/views/SideMenuView');
 var FreeRideView = require('/views/FreeRideView');
+var ProfileView = require('/views/ProfileView');
 
 // ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
@@ -55,6 +71,7 @@ var enableLocationView = new EnableLocationView();
 var socialView = new SocialView();
 var sideMenuView = new SideMenuView();
 var freeRideView = new FreeRideView();
+var profileView = new ProfileView();
 
 // ***** Controller Objects *****
 var sessionController = new SessionController();

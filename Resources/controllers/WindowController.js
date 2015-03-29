@@ -15,16 +15,20 @@ function WindowController() {
 	this.directionWindow.add(topBar.view);
 	this.socialWindow.add(topBar.view);
 	this.freeRideWindow.add(topBar.view);
+	this.profileWindow.add(topBar.view);
 
 	// Add side menu & overlay
 	this.homeWindow.add(sideMenuView.view);
 	this.directionWindow.add(sideMenuView.view);
 	this.socialWindow.add(sideMenuView.view);
 	this.freeRideWindow.add(sideMenuView.view);
+	this.profileWindow.add(sideMenuView.view)
+	
 	this.homeWindow.add(sideMenuView.overlay);
 	this.directionWindow.add(sideMenuView.overlay);
 	this.socialWindow.add(sideMenuView.overlay);
 	this.freeRideWindow.add(sideMenuView.overlay);
+	this.profileWindow.add(sideMenuView.overlay);
 
 	// Add views to appropriate windows
 	this.homeWindow.add(homeMenuView.view);
@@ -32,6 +36,7 @@ function WindowController() {
 	this.loginWindow.add(loginView.view);
 	this.socialWindow.add(socialView.view);
 	this.freeRideWindow.add(freeRideView.view);
+	this.profileWindow.add(profileView.view);
 	this.enableLocationServicesWindow.add(enableLocationView.view);
 
 	// Create listeners to grab current window
