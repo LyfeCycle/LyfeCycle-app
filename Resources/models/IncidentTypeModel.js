@@ -10,6 +10,18 @@ module.exports.TYPES = {
 	blockedBikeLane: 8
 };
 
+module.exports.TYPES_ARRAY = [
+	'busStop',
+	'crash',
+	'bikeRack',
+	'dangerPoint',
+	'dooring',
+	'traffic',
+	'trafficAccident',
+	'construction',
+	'blockedBikeLane'
+];
+
 module.exports.IMAGES = {
 	busStop: '/images/incidents/bus.png',
 	crash: '/images/incidents/bike_crash.png',

@@ -41,7 +41,8 @@ if (currentRide) {
 		}
 	});
 
-	Ti.App.Properties.setBool('completedRide', true);
+	// Line below is for testing
+	// Ti.App.Properties.setBool('completedRide', true);
 	Ti.App.iOS.scheduleLocalNotification({
 	    alertAction: "complete ride",
 	    alertBody: "Did you finish your ride?",

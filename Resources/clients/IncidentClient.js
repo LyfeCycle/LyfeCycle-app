@@ -24,6 +24,19 @@ IncidentClient.prototype.postIncident = function(type, latitude, longitude){
 	client.send(json);
 };
 
+IncidentClient.prototype.postIncidents = function(incidentArray){
+	console.log(typeof incidentArray);
+	var jsonString = JSON.stringify(incidentArray);
+	var client = Ti.Network.createHTTPClient({
+			timeout: Constants.timeout,
+			onload: function(e){console.log("GOt IT")},
+			onerror: function(e){alert(e);}
+	});
+	client.open("POST", this.url + 'locations');
+	client.setRequestHeader("Content-Type","application/json");
+	client.send(jsonString);
+};
+
 IncidentClient.prototype.getAllIncidents = function(callback){
 	var client = Ti.Network.createHTTPClient({
 			timeout: Constants.timeout,
