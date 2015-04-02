@@ -32,7 +32,6 @@ ProfileView.prototype.createProfileView = function(){
 
 	fb.requestWithGraphPath('me', {}, 'GET', function(e) {
 		if (e.success) {
-			console.log(e.result);
 			self.profileData = JSON.parse(e.result);
 			self.nameLabel.text = self.profileData["name"];
 		} else if (e.error) {
