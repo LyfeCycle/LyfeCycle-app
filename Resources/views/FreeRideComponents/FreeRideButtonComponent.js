@@ -17,7 +17,7 @@ FreeRideButtonComponent.prototype.createFreeRideButtonComponent = function(){
 		font: {fontFamily: Constants.fontKG, fontSize: 15},
 		transform: Ti.UI.create2DMatrix({rotate: 45}),
 		top: 20,
-		right: 10
+		right: 5
 	});
 
 	view.add(this.label);

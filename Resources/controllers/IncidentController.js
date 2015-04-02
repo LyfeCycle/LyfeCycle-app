@@ -29,6 +29,10 @@ IncidentController.prototype.setIncidentListener = function(mapView){
 			self.clusterPoints(mapView, topLat, bottomLat, leftLong, rightLong);
 		else
 			self.addRawAnnotations(mapView);
+		// Add any incident reporting incidents
+		if (mapView.id === 1 && freeRideController.currentIncidents.length > 0)
+			for (var incident in freeRideController.currentIncidents)
+				freeRideView.freeRideMapComponent.view.addAnnotation(freeRideController.currentIncidents[incident]);
 	});
 };
 
@@ -40,7 +44,7 @@ IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat
 	if ((mapView.id === 0 ? this.prevDirectionDelta : this.prevFreeRideDelta) > (Math.abs(leftLong) - Math.abs(rightLong))) {
 		for (var key in this.allIncidents) {
 			if (this.pointInRegion(topLat, bottomLat, leftLong, rightLong, this.allIncidents[key])) {
-				grid[(Math.abs(this.allIncidents[key].latitude) - Math.abs(topLat))/latThird][(Math.abs(this.allIncidents[key].longitude) - Math.abs(leftLong))/longThird]++;
+				grid[Math.floor((Math.abs(this.allIncidents[key].latitude) - Math.abs(topLat))/latThird)][Math.floor((Math.abs(this.allIncidents[key].longitude) - Math.abs(leftLong))/longThird)]++;
 			}
 		}
 		drawGrid(mapView, grid);
@@ -60,7 +64,6 @@ IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat
 		for (var i = 0; i < grid_.length; i++) {
 			for (var j = 0; j < grid_[i].length; j++) {
 				var size = (grid_[i][j] > 100) ? 100 : grid_[i][j];
-				console.log("SIZE " + size);
 				var view = Ti.UI.createView({
 					height: size, width: size, backgroundColor: 'rgba(255,0,0,0.6)', borderRadius: size/2
 				});
@@ -127,6 +130,18 @@ IncidentController.prototype.pointInRegion = function(topRegion, bottomRegion, l
 	if (point.latitude < bottomRegion || point.latitude > topRegion) return false;
 	if (point.longitude < leftRegion || point.longitude > rightRegion) return false;
 	return true;
+};
+
+IncidentController.prototype.mockReportedIncidents = function(annotations){
+	for (var anno in annotations) {
+		freeRideView.freeRideMapComponent.view.addAnnotation(
+			MapModule.createAnnotation({
+				latitude: annotations[anno].latitude,
+				longitude: annotations[anno].longitude,
+				image: IncidentTypeModel.IMAGES[annotations[anno].id]
+			})
+		);
+	}
 };
 
 module.exports = IncidentController;

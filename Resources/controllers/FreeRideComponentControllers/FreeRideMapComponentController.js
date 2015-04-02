@@ -35,7 +35,7 @@ FreeRideMapComponentController.prototype.removePolyline = function(){
 	this.currentPolyline = null;
 };
 
-FreeRideMapComponentController.prototype.addCurrentReportedIncidentToMap = function(key, source){
+FreeRideMapComponentController.prototype.addCurrentReportedIncidentToMap = function(key, coords){
 
 	var incident = Ti.UI.createView({
 		height: 52,
@@ -69,17 +69,30 @@ FreeRideMapComponentController.prototype.addCurrentReportedIncidentToMap = funct
 	incident.add(arrow);
 	incident.add(circle);
 
-	freeRideView.freeRideMapComponent.view.add(incident);
+	var filename = Titanium.Filesystem.tempDirectory + "/" + makeFilename() + ".png";
+	Titanium.Filesystem.getFile(filename).write(incident.toImage());
+	
+	var incidentAnnotation = MapModule.createAnnotation({
+		latitude: coords.lat,
+		longitude: coords.lon,
+		image: filename,
+		id: key
+	});
 
-	// Animations
-	incident.animate(
-		Ti.UI.createAnimation({
-			duration: 150,
-			top: source.y - Constants.deviceHeight*0.11,
-			left: 40
-		})
-	);
-	return incident;
+	if (freeRideController.currentIncident) {
+		freeRideView.freeRideMapComponent.view.removeAnnotation(freeRideController.currentIncident);
+		freeRideController.currentIncident = null;
+	}
+	freeRideView.freeRideMapComponent.view.addAnnotation(incidentAnnotation);
+	return incidentAnnotation;
+
+	function makeFilename() {
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	    for( var i=0; i < 5; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+	    return text;
+	}
 };
 
 module.exports = FreeRideMapComponentController;

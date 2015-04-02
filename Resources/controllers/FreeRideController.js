@@ -1,19 +1,20 @@
 var FreeRideMapComponentController = require('/controllers/FreeRideComponentControllers/FreeRideMapComponentController');
 
 function FreeRideController(){
-	this.currentIncident = null;
+	this.currentIncidents = [];
 	this.currentIncidentKey = null;
 	this.currentIncidentCoordinates = null;
 	this.freeRideMapComponentController = new FreeRideMapComponentController();
 
 	var self = this;
 	// Set up event listener for the FreeRide map view
-	freeRideView.freeRideMapComponent.view.addEventListener('longpress', function (source){		
+	freeRideView.freeRideMapComponent.view.addEventListener('longpress', function (source){	
 		if (self.currentIncidentKey) {
-			self.currentIncident = self.freeRideMapComponentController.addCurrentReportedIncidentToMap(self.currentIncidentKey, source);
 			self.currentIncidentCoordinates = getMapCoordinates(source.x, source.y);
+			self.currentIncidents.push(self.freeRideMapComponentController.addCurrentReportedIncidentToMap(self.currentIncidentKey, self.currentIncidentCoordinates));
 		}
 	});
+
 
 	function getMapCoordinates(x, y) {
 		var region = freeRideView.freeRideMapComponent.view.actualRegion || freeRideView.freeRideMapComponent.view.region;
@@ -33,27 +34,33 @@ FreeRideController.prototype.selectIncident = function(key){
 		this.currentIncidentKey = key;
 	} else {
 		// This means that no incident is selected
-		if (this.currentIncident) freeRideView.freeRideMapComponent.view.remove(this.currentIncident);
-		this.currentIncident = null;
 		this.currentIncidentKey = null;
 		this.currentIncidentCoordinates = null;
 	}
 };
 
 FreeRideController.prototype.reportIncident = function(){
-	if (this.currentIncident)
+	if (this.currentIncidents.length > 0)
 		this.openConfirmModal();
 };
 
 FreeRideController.prototype.confirmReport = function(){
-
+	var json = [];
 	// Send report to backend
-	if (this.currentIncident) {
-		var type = this.currentIncident.id;
-		var coords = getMapCoordinates();
-		incidentClient.postIncident(type, coords.lat, coords.lon);
-		freeRideView.freeRideMapComponent.view.remove(this.currentIncident);
-		this.currentIncident = null;
+	if (this.currentIncidents.length > 0) {
+		for (var incident in this.currentIncidents) {
+			var type = this.currentIncidents[incident].id;
+			json.push(
+					{  name: 'fromApp', 
+					   latitude: this.currentIncidents[incident].latitude,
+					   longitude: this.currentIncidents[incident].longitude,
+					   tag: this.currentIncidents[incident].id
+					});
+			freeRideView.freeRideMapComponent.view.removeAnnotation(this.currentIncidents[incident]);
+		}
+		incidentClient.postIncidents(json);
+		incidentController.mockReportedIncidents(this.currentIncidents);
+		this.currentIncidents = [];
 		this.currentIncidentKey = null;
 		this.currentIncidentCoordinates = null;
 		freeRideView.incidentPanelComponent.clearPanelChildren();
@@ -87,8 +94,18 @@ FreeRideController.prototype.addNearbyIncidents = function(){
 FreeRideController.prototype.toggleFreeRideButton = function(){
 	if (freeRideView.freeRideButtonComponent.label.text == 'Start!') {
 		freeRideView.freeRideButtonComponent.label.setText('Finish');
+		freeRideView.activeRideBar.render();
+		freeRideView.reportButtonComponent.hide();
+		freeRideView.clearButtonComponent.hide();
+		for (var incident in freeRideController.currentIncidents){
+			freeRideView.freeRideMapComponent.view.removeAnnotation(freeRideController.currentIncidents[incident]);
+		}
+		freeRideController.currentIncidents = [];
 	} else {
 		freeRideView.freeRideButtonComponent.label.setText('Start!');
+		freeRideView.activeRideBar.hide();
+		freeRideView.reportButtonComponent.render();
+		freeRideView.clearButtonComponent.render();
 	}
 };
 
@@ -102,6 +119,7 @@ FreeRideController.prototype.fromDirectionWindow = function(polyline){
 	// Show 'done' button
 	freeRideView.doneButtonComponent.render();
 	freeRideView.freeRideButtonComponent.hide();
+	freeRideView.reportButtonComponent.hide();
 	routeController.endRoute();
 };
 
@@ -109,6 +127,7 @@ FreeRideController.prototype.closeFromDirectionWindow = function(){
 	this.freeRideMapComponentController.removePolyline();
 	freeRideView.doneButtonComponent.hide();
 	freeRideView.freeRideButtonComponent.render();
+	freeRideView.reportButtonComponent.render();
 };
 
 
