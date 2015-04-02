@@ -13,19 +13,6 @@ var fb = require('facebook');
 fb.appid = 382800148589176;
 fb.permissions = ['public_profile'];
 
-// ***** HTTP Client *****
- var httpclient = Ti.Network.createHTTPClient({
-     // function called when the response data is available
-     onload : function(e) {
-         Ti.API.info("Received text: " + this.responseText);
-     },
-     // function called when an error occurs, including a timeout
-     onerror : function(e) {
-         Ti.API.debug(e.error);
-     },
-     timeout : 5000  // in milliseconds
- });
-
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');
 var Constants = require('./Constants');

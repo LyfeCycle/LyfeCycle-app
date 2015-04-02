@@ -53,40 +53,76 @@ LoginView.prototype.createLoginView = function() {
 		top : Constants.deviceHeight/2 + 50,
     	style : fb.BUTTON_STYLE_WIDE
 	});
-
 	fb.addEventListener('login', function(e) {
 		if (e.success) {
 			Titanium.API.info("Facebook authentication");
-			//windowController.goToHomeWindow();
-
-			// If user already exists in database..
-			// windowController.goToHomeWindow();
-			// else
-			// show the text field for new user signup
-			console.log('fb third_party_id: ', fb.getUid());
-			main.add(neighborhoodTextField);
-			main.add(createAccountButtonBG);
+			console.log("checking");
+			var httpclient = Ti.Network.createHTTPClient({
+				// function called when the response data is available
+				onload : function(e) {
+					console.log("why isn't this being called")
+					Ti.API.info("Received text: " + this.responseText);
+					windowController.goToHomeWindow();
+				},
+				// function called when an error occurs, including a timeout
+				onerror : function(e) {
+					Ti.API.info(e);
+					console.log("why is this being called");
+					main.add(neighborhoodTextField);
+					main.add(createAccountButtonBG);
+				},
+					timeout : 5000  // in milliseconds
+			});
+			httpclient.open("GET", "http://lyfecycle-api.herokuapp.com/users/find");
+			httpclient.setRequestHeader("content-type", "application/json");
+			var param = {"facebookId": fb.getUid()}
+			console.log(JSON.stringify(param));
+			httpclient.send(JSON.stringify(param));
 		}
 	});
 	fb.addEventListener('logout', function(e) {
 	    this.logged_in_state = false;
-	    console.log("herro");
 	    windowController.goToLoginWindow();
 	});
-
+	/* END FB */
 
 	createAccountButtonBG.addEventListener('click',function (e){
 		Titanium.API.info("Creating new user");
-		// Submit request to server to create a new user.
-		httpclient.open("POST", "http://lyfecycle-api.herokuapp.com/users");
-		httpclient.setRequestHeader("content-type", "application/json");
-		var param = {"name": fb.getUid(),
-					"homeLatitude": neighborhoodTextField.value,
-					"homeLongitude": ""}
-		//httpclient.send(JSON.stringify(param));
-
-		windowController.goToHomeWindow();
+		// Get user's name for database entry
+		fb.requestWithGraphPath('me', {}, 'GET', function (e) {
+			if (e.success) {
+				var name = JSON.parse(e.result)["name"];
+				fbCompleted(name);
+			} else if (e.error) {
+				console.log(e.error);
+			} else {
+				console.log('Unknown fb response');
+			}
+		});
 	});
+
+	function fbCompleted(name) {
+		var httpclient2 = Ti.Network.createHTTPClient({
+			// function called when the response data is available
+			onload : function(e) {
+				Ti.API.info("Received text: " + this.responseText);
+				windowController.goToHomeWindow();
+			},
+			// function called when an error occurs, including a timeout
+			onerror : function(e) {
+				Ti.API.debug(e.error);
+			},
+				timeout : 5000  // in milliseconds
+		});
+		// Submit request to server to create a new user.
+		httpclient2.open("POST", "http://lyfecycle-api.herokuapp.com/users");
+		httpclient2.setRequestHeader("content-type", "application/json");
+		var param = {"name": name,
+					"facebookId": fb.getUid(),
+					"neighborhoodName": neighborhoodTextField.value}
+		// httpclient2.send(JSON.stringify(param));
+		windowController.goToHomeWindow();
+	}
 
 	main.add(icon);
 	main.add(fbLoginButton);

@@ -4,6 +4,7 @@ function ProfileView() {
 	this.nameLabel;
 	this.totalMilesLabel;
 	this.totalMilesValue;
+	this.profilePicture;
 };
 
 ProfileView.prototype.createProfileView = function(){
@@ -32,7 +33,6 @@ ProfileView.prototype.createProfileView = function(){
 
 	fb.requestWithGraphPath('me', {}, 'GET', function(e) {
 		if (e.success) {
-			console.log(e.result);
 			self.profileData = JSON.parse(e.result);
 			self.nameLabel.text = self.profileData["name"];
 		} else if (e.error) {
@@ -41,6 +41,15 @@ ProfileView.prototype.createProfileView = function(){
 			console.log('Unknown fb response');
 		}
 	});
+
+	var profilePicLink = "https://graph.facebook.com/" + fb.getUid()+"/picture";
+
+	this.profilePicture = Ti.UI.createImageView({
+		image: profilePicLink,
+		left: '10%',
+		top: '7%',
+	});
+
 
 	this.nameLabel = Ti.UI.createLabel({
 		top: '7%',
@@ -70,6 +79,7 @@ ProfileView.prototype.createProfileView = function(){
 	view.add(this.nameLabel);
 	view.add(this.totalMilesLabel);
 	view.add(this.totalMilesValue);
+	view.add(this.profilePicture);
 
 	main.add(view);
 
