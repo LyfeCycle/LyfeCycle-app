@@ -1,10 +1,12 @@
-var TopBarView = function() {
+var TopBarView = function(name) {
+	this.name = name;
 	this.sideMenuButton = this.createSideMenuButton();
-	this.barLabel = this.createBarLabel();
+	this.barLabel = this.createBarLabel(name);
 	this.view = this.createTopBarView();
 };
 
 TopBarView.prototype.createTopBarView = function() {
+	var self = this;
 	var main = Ti.UI.createView({
 		backgroundColor: Constants.green,
 		width: '100%',
@@ -19,9 +21,31 @@ TopBarView.prototype.createTopBarView = function() {
 	main.add(bikeIcon);
 	main.add(this.sideMenuButton);
 
-	this.sideMenuButton.addEventListener('click', function(){
+	main.addEventListener('click', function(){
 		console.log("Registering click");
-		sideMenuController.toggleSideMenu();
+		if (self.name) {
+			switch (self.name) {
+				case 'HOME':
+					windowController.homeSideMenu.render();
+					break;
+				case 'DIRECTION':
+					windowController.directionSideMenu.render();
+					break;
+				case 'SOCIAL':
+					windowController.socialSideMenu.render();
+					break;
+				case 'FREE RIDE':
+					windowController.freeRideSideMenu.render();
+					break;
+				case 'PROFILE':
+					windowController.profileSideMenu.render();
+					break;
+				default:
+					break;
+			}
+		} else {
+			sideMenuController.toggleSideMenu();
+		}
 	});
 
 	return main;
@@ -45,10 +69,13 @@ TopBarView.prototype.createSideMenuButton = function(){
 	});
 };
 
-TopBarView.prototype.createBarLabel = function(){
+TopBarView.prototype.createBarLabel = function(name){
+	var text;
+	if (name) text = name;
+	else 'LyfeCycle';
 	return Ti.UI.createLabel({
 		font: {fontSize:28, fontFamily: Constants.fontMillion},
-		text: 'LyfeCycle',
+		text: name,
 		top: '40%'
 	});
 };

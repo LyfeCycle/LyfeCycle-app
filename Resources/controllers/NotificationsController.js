@@ -56,7 +56,10 @@ module.exports.registerForPush = function(){
     // Occurs when the app opens back up
      Ti.App.addEventListener('resume',function(e){
         if (Ti.App.Properties.getBool('completedRide')) {
-            windowController.goToFreeRideWindow(MapModule.createRoute({points: Ti.App.Properties.getList('polyline'), color: 'blue', width: 4}));
+            if (Ti.App.Properties.getList('polyline')) 
+                windowController.goToFreeRideWindow(MapModule.createRoute({points: Ti.App.Properties.getList('polyline'), color: 'blue', width: 4}));
+            else 
+                windowController.goToFreeRideWindow();
         } else {
             directionController.mapComponentController.showCurrentLocation();
             // Update location

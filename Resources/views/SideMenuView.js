@@ -2,6 +2,29 @@ var SideMenuView = function(){
 	this.viewWidth = 100;
 	this.overlay = this.generateOverlay();
 	this.view = this.generateSideMenuView();
+	this.isOpen = false;
+
+	// Animations
+	this.openAnimation = Ti.UI.createAnimation({
+		left: 0,
+		duration: 200,
+		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
+	});
+	this.closeAnimation = Ti.UI.createAnimation({
+		left: -100,
+		duration: 200,
+		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
+	});
+	this.showOverlay = Ti.UI.createAnimation({
+		opacity: 1.0,
+		duration: 100,
+		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
+	});
+	this.hideOverlay = Ti.UI.createAnimation({
+		opacity: 0.0,
+		duration: 100,
+		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
+	});
 };
 
 SideMenuView.prototype.generateOverlay = function(){
@@ -105,6 +128,22 @@ SideMenuView.prototype.generateSideMenuView = function(){
 
 		return row;
 	};
+};
+
+SideMenuView.prototype.close = function(){
+	if (this.isOpen) {
+		this.overlay.animate(this.hideOverlay);
+		this.view.animate(this.closeAnimation);
+		this.isOpen = false;
+	}
+};
+
+SideMenuView.prototype.render = function(){
+	if (!this.isOpen) {
+		this.overlay.animate(this.showOverlay);
+		this.view.animate(this.openAnimation);
+		this.isOpen = true;
+	}
 };
 
 module.exports = SideMenuView;
