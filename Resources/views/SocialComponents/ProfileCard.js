@@ -8,7 +8,7 @@ function ProfileCard(userObj){
 	this.neighborhood = userObj.neighborhoodName;
 	// this.totalTime = userObj.totalTime;
 	// this.achievements = userObj.achievements;
-	this.profPic = 'https://graph.facebook.com/' + userObj._id + '/picture';
+	this.profPic = 'https://graph.facebook.com/' + userObj.facebookId + '/picture';
 	console.log(this.profPic);
 	this.view = this.generateProfileCard();
 	this.fullProfileView = new FullProfileView(userObj);
@@ -30,7 +30,7 @@ ProfileCard.prototype.generateProfileCard = function(){
 	});
 
 	var profPic = Ti.UI.createImageView({
-		top: '7%',
+		top: '3.5%',
 		left:'10%',
 		image: this.profPic,
 		width: '15%'
