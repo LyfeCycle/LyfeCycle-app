@@ -4,6 +4,7 @@ function ProfileView() {
 	this.nameLabel;
 	this.totalMilesLabel;
 	this.totalMilesValue;
+	this.profilePicture;
 };
 
 ProfileView.prototype.createProfileView = function(){
@@ -41,6 +42,15 @@ ProfileView.prototype.createProfileView = function(){
 		}
 	});
 
+	var profilePicLink = "https://graph.facebook.com/" + fb.getUid()+"/picture";
+
+	this.profilePicture = Ti.UI.createImageView({
+		image: profilePicLink,
+		left: '10%',
+		top: '7%',
+	});
+
+
 	this.nameLabel = Ti.UI.createLabel({
 		top: '7%',
 		right: '10%',
@@ -69,6 +79,7 @@ ProfileView.prototype.createProfileView = function(){
 	view.add(this.nameLabel);
 	view.add(this.totalMilesLabel);
 	view.add(this.totalMilesValue);
+	view.add(this.profilePicture);
 
 	main.add(view);
 

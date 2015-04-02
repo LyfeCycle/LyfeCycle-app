@@ -121,6 +121,7 @@ LoginView.prototype.createLoginView = function() {
 					"facebookId": fb.getUid(),
 					"neighborhoodName": neighborhoodTextField.value}
 		// httpclient2.send(JSON.stringify(param));
+		windowController.goToHomeWindow();
 	}
 
 	main.add(icon);
