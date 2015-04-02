@@ -1,8 +1,11 @@
 function LoginView() {
 	this.view = this.createLoginView();
+	this.fbId = fb.getUid();
 };
 
 LoginView.prototype.createLoginView = function() {
+	var self = this;
+
 	var main = Ti.UI.createView({
 		height: '100%',
 		width: '100%',
@@ -60,24 +63,31 @@ LoginView.prototype.createLoginView = function() {
 			var httpclient = Ti.Network.createHTTPClient({
 				// function called when the response data is available
 				onload : function(e) {
-					console.log("why isn't this being called")
 					Ti.API.info("Received text: " + this.responseText);
-					windowController.goToHomeWindow();
+					if (this.responseText == "[]") {
+						main.add(neighborhoodTextField);
+						main.add(createAccountButtonBG);
+					}
+					else if (JSON.parse(this.responseText)[0]["facebookId"] == self.fbId) {
+						windowController.goToHomeWindow();
+					}
+					else {
+						main.add(neighborhoodTextField);
+						main.add(createAccountButtonBG);
+					}
+					
 				},
 				// function called when an error occurs, including a timeout
 				onerror : function(e) {
 					Ti.API.info(e);
-					console.log("why is this being called");
-					main.add(neighborhoodTextField);
-					main.add(createAccountButtonBG);
+					
 				},
 					timeout : 5000  // in milliseconds
 			});
-			httpclient.open("GET", "http://lyfecycle-api.herokuapp.com/users/find");
+			console.log("fbid" + self.fbId);
+			httpclient.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + self.fbId);
 			httpclient.setRequestHeader("content-type", "application/json");
-			var param = {"facebookId": fb.getUid()}
-			console.log(JSON.stringify(param));
-			httpclient.send(JSON.stringify(param));
+			httpclient.send();
 		}
 	});
 	fb.addEventListener('logout', function(e) {
@@ -120,8 +130,7 @@ LoginView.prototype.createLoginView = function() {
 		var param = {"name": name,
 					"facebookId": fb.getUid(),
 					"neighborhoodName": neighborhoodTextField.value}
-		// httpclient2.send(JSON.stringify(param));
-		windowController.goToHomeWindow();
+		httpclient2.send(JSON.stringify(param));
 	}
 
 	main.add(icon);
