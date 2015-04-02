@@ -28,6 +28,7 @@ function SocialController(){
 };
 
 SocialController.prototype.refreshProfileCardTable = function(type){
+	var self = this;
 	if (type) {
 		console.log("Grab the profiles via REST call based on type");
 		switch (type) {
@@ -40,7 +41,7 @@ SocialController.prototype.refreshProfileCardTable = function(type){
 	else {
 		console.log("Grab all profiles (or default page) view REST call");
 		userClient.getAllUsers(function (results) {
-			console.log(results);
+			self.addRows(results);
 		});
 	}
 	
@@ -48,7 +49,8 @@ SocialController.prototype.refreshProfileCardTable = function(type){
 
 SocialController.prototype.addRows = function(users) {
 	for (var key in users) {
-		socialView.scrollingProfileCardsComponent.addRowToTable(new ProfileCard(mockUsers[key]));
+		var r = new ProfileCard(users[key]);
+		socialView.scrollingProfileCardsComponent.addRowToTable(new ProfileCard(users[key]));
 	}
 }
 

@@ -27,6 +27,7 @@ IncidentClient.prototype.postIncident = function(type, latitude, longitude){
 IncidentClient.prototype.postIncidents = function(incidentArray){
 	console.log(typeof incidentArray);
 	var jsonString = JSON.stringify(incidentArray);
+	console.log(jsonString);
 	var client = Ti.Network.createHTTPClient({
 			timeout: Constants.timeout,
 			onload: function(e){console.log("GOt IT")},
