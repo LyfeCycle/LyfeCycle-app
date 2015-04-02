@@ -139,7 +139,11 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 
 	// Add incidents to bottom
 	// top: 70, height: 15
-	var incidents = [0, 3, 5]; // This is mocked, and will be gotten from the JSON
+	var jjj = Math.ceil(Math.random()*6);
+	var incidents = []; 
+	for (var i = 0; i < jjj; i++)
+		incidents.push(Math.floor(Math.random()*9));
+	// var incidents = [0, 3, 5]; // This is mocked, and will be gotten from the JSON
 	var incidentRow = Ti.UI.createScrollView({
 		contentHeight: 15, 
 		height: 25, 

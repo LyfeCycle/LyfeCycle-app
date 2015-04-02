@@ -8,7 +8,8 @@ ClearButtonComponent.prototype.createClearButtonComponent = function(){
 		left: -55,
 		width: 110, height: 110,
 		backgroundColor: Constants.green,
-		borderRadius: 55
+		borderRadius: 55,
+		zIndex: 0
 	});
 
 	this.label = Ti.UI.createLabel({
