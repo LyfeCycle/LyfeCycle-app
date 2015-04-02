@@ -1,4 +1,7 @@
+var SettingsComponent = require('/views/ProfileComponents/SettingsComponent');
+
 function ProfileView() {
+	this.settingsComponent = new SettingsComponent('40%', 200);
 	this.view = this.createProfileView();
 	this.profileData;
 	this.nameLabel;
@@ -16,7 +19,7 @@ ProfileView.prototype.createProfileView = function(){
 
 	// Facebook style login button
 	var fbLoginButton = fb.createLoginButton({
-		top : Constants.deviceHeight/2 + 50,
+		bottom : '2%',
     	style : fb.BUTTON_STYLE_WIDE
 	});
 
@@ -24,7 +27,7 @@ ProfileView.prototype.createProfileView = function(){
 
 	var view = Ti.UI.createView({
 		height: 180,
-		width: '100%',
+		width: '90%',
 		borderColor: '#555',
 		borderWidth: 3,
 		backgroundColor: '#888',
@@ -49,7 +52,6 @@ ProfileView.prototype.createProfileView = function(){
 		left: '10%',
 		top: '7%',
 	});
-
 
 	this.nameLabel = Ti.UI.createLabel({
 		top: '7%',
@@ -81,6 +83,7 @@ ProfileView.prototype.createProfileView = function(){
 	view.add(this.totalMilesValue);
 	view.add(this.profilePicture);
 
+	main.add(this.settingsComponent.view);
 	main.add(view);
 
 	return main;

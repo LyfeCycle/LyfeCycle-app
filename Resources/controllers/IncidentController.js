@@ -1,3 +1,5 @@
+var IncidentTypeModel = require('/models/IncidentTypeModel');
+
 function IncidentController(){
 	// These will always be the longitude delta
 	this.prevFreeRideDelta = 0;
@@ -114,7 +116,7 @@ IncidentController.prototype.addRawAnnotations = function(mapView, topLat, botto
 		// zoomed out. Clear annotations and start again
 		this.getAllIncidents(function() {
 			for (var key in self.allIncidents) {
-				if (self.pointInRegion(topLat, bottomLat, leftLong, rightLong, self.allIncidents[key])) {
+				if (self.pointInRegion(topLat, bottomLat, leftLong, rightLong, self.allIncidents[key], key)) {
 					mapView.addAnnotation(MapModule.createAnnotation({
 						latitude: self.allIncidents[key].latitude,
 						longitude: self.allIncidents[key].longitude,
@@ -126,7 +128,8 @@ IncidentController.prototype.addRawAnnotations = function(mapView, topLat, botto
 	}
 };
 
-IncidentController.prototype.pointInRegion = function(topRegion, bottomRegion, leftRegion, rightRegion, point){
+IncidentController.prototype.pointInRegion = function(topRegion, bottomRegion, leftRegion, rightRegion, point, key){
+	if (!settingsController.settingsArray[IncidentTypeModel.TYPES[point.tag]]) return false;
 	if (point.latitude < bottomRegion || point.latitude > topRegion) return false;
 	if (point.longitude < leftRegion || point.longitude > rightRegion) return false;
 	return true;
