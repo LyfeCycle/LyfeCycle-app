@@ -38,7 +38,7 @@
                 <string>UIStatusBarStyleDefault</string>
                 <key>NSLocationAlwaysUsageDescription</key>
                 <string>
-                    LyfeCycle needs your GPS location to track your routes and provide directions.
+                    LyfeCycle needs your location to provide you information in your area.
                 </string>
             </dict>
         </plist>

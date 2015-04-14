@@ -52,7 +52,7 @@ TopBarView.prototype.createTopBarView = function() {
 
 	function createLogoIcon() {
 		return Ti.UI.createImageView({
-			image: '/images/bike_wheel.png',
+			image: '/images/bike_wheel_very_small.png',
 			bottom: '7%',
 			width: '12%',
 			right: 5
@@ -62,7 +62,7 @@ TopBarView.prototype.createTopBarView = function() {
 
 TopBarView.prototype.createSideMenuButton = function(){
 	return Ti.UI.createImageView({
-		image: '/images/sidemenu.png',
+		image: '/images/menu_small.png',
 		width: '10%',
 		bottom: '18%',
 		left: 5
@@ -74,9 +74,10 @@ TopBarView.prototype.createBarLabel = function(name){
 	if (name) text = name;
 	else 'LyfeCycle';
 	return Ti.UI.createLabel({
-		font: {fontSize:32, fontFamily: Constants.font},
+		font: {fontSize:36, fontFamily: Constants.font},
 		text: name,
-		top: '35%'
+		top: '32%',
+		color: 'black'
 	});
 };
 
