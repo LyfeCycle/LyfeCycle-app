@@ -1,5 +1,5 @@
 var SideMenuView = function(){
-	this.viewWidth = 100;
+	this.viewWidth = Constants.deviceWidth-75;
 	this.overlay = this.generateOverlay();
 	this.view = this.generateSideMenuView();
 	this.isOpen = false;
@@ -11,7 +11,7 @@ var SideMenuView = function(){
 		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
 	});
 	this.closeAnimation = Ti.UI.createAnimation({
-		left: -100,
+		left: -1*this.viewWidth,
 		duration: 200,
 		curve: Ti.UI.ANIMATION_CURVE_EASE_IN
 	});
@@ -63,7 +63,7 @@ SideMenuView.prototype.generateSideMenuView = function(){
 
 	function generateTableRow(name, index){
 		var autoTop = 50;
-		var height = 30;
+		var height = 75;
 		var row = Ti.UI.createView({
 			height: height,
 			width: '100%',
@@ -75,7 +75,7 @@ SideMenuView.prototype.generateSideMenuView = function(){
 			Ti.UI.createLabel({
 				text: name,
 				color: 'white',
-				font: {fontSize: 14},
+				font: {fontSize: 36},
 				width: '100%',
 				textAlign: 'center'
 			})
