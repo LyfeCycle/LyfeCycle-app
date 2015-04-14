@@ -52,18 +52,28 @@ SideMenuView.prototype.generateSideMenuView = function(){
 		zIndex: 100
 	});
 
-	main.add(generateTableRow('Home', 0));
-	main.add(generateTableRow('Maps', 1));
-	main.add(generateTableRow('Free Ride', 2));
-	main.add(generateTableRow('Social', 3));
-	main.add(generateTableRow('Profile',4));
+	var logo = Ti.UI.createLabel({
+		text: 'lyfecycle',
+		font: {fontSize: 50, fontFamily: Constants.font},
+		top: 50,
+		color: 'white',
+		textAlign: 'center'
+	});
+
+	main.add(logo);
+	main.add(generateTableRow('home', 0));
+	main.add(generateTableRow('maps', 1));
+	main.add(generateTableRow('free ride', 2));
+	main.add(generateTableRow('social', 3));
+	main.add(generateTableRow('profile',4));
+
 	return main;
 
 	// HELPER FUNCTIONS
 
 	function generateTableRow(name, index){
-		var autoTop = 50;
-		var height = 75;
+		var autoTop = 150;
+		var height = 60;
 		var row = Ti.UI.createView({
 			height: height,
 			width: '100%',
@@ -75,9 +85,10 @@ SideMenuView.prototype.generateSideMenuView = function(){
 			Ti.UI.createLabel({
 				text: name,
 				color: 'white',
-				font: {fontSize: 36},
+				font: {fontSize: 32, fontFamily: Constants.font},
 				width: '100%',
-				textAlign: 'center'
+				textAlign: 'left',
+				left: 25
 			})
 		);
 
@@ -103,23 +114,23 @@ SideMenuView.prototype.generateSideMenuView = function(){
 
 		row.addEventListener('click', function(){
 			switch (row.id) {
-				case 'Home':
+				case 'home':
 					console.log("GO TO HOME");
 					windowController.goToHomeWindow();
 					break;
-				case 'Maps':
+				case 'maps':
 					console.log("GO TO MAPS");
 					windowController.goToDirectionWindow();
 					break;
-				case 'Free Ride':
+				case 'free ride':
 					console.log("GO TO REPORTS");
 					windowController.goToFreeRideWindow();
 					break;
-				case 'Social':
+				case 'social':
 					console.log("GO TO SOCIAL");
 					windowController.goToSocialWindow();
 					break;
-				case 'Profile':
+				case 'profile':
 					console.log("GO TO PROFILE");
 					windowController.goToProfileWindow();
 					break;

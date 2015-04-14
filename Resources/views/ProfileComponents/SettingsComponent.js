@@ -58,7 +58,7 @@ SettingsComponent.prototype.createSettingsComponent = function(height, top){
 			textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
 			width: '80%',
 			left: 60,
-			font: {fontStyle: Constants.fontKG, fontSize: 18}
+			font: {fontStyle: Constants.font, fontSize: 18}
 		});
 
 

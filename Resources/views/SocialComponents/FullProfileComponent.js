@@ -39,7 +39,7 @@ FullProfileComponent.prototype.generateFullProfile = function(){
 		width: '68%',
 		height: '9%',
 		textAlign: 'right',
-		font: {fontFamily: Constants.fontKG, fontSize: 20}
+		font: {fontFamily: Constants.font, fontSize: 20}
 	});
 
 	var neighborhood = Ti.UI.createLabel({
@@ -56,7 +56,7 @@ FullProfileComponent.prototype.generateFullProfile = function(){
 		color: 'white',
 		top: '20%',
 		left: '10%',
-		font: {fontFamily: Constants.fontKG, fontSize: 14}
+		font: {fontFamily: Constants.font, fontSize: 14}
 	});
 
 	var totalTimeValue = Ti.UI.createLabel({
@@ -64,7 +64,7 @@ FullProfileComponent.prototype.generateFullProfile = function(){
 		color: 'white',
 		top: '20%',
 		right: '10%',
-		font: {fontFamily: Constants.fontKG, fontSize: 14}
+		font: {fontFamily: Constants.font, fontSize: 14}
 	});
 
 	var bio = Ti.UI.createLabel({

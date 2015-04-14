@@ -25,19 +25,19 @@ TopBarView.prototype.createTopBarView = function() {
 		console.log("Registering click");
 		if (self.name) {
 			switch (self.name) {
-				case 'HOME':
+				case 'home':
 					windowController.homeSideMenu.render();
 					break;
-				case 'DIRECTION':
+				case 'directions':
 					windowController.directionSideMenu.render();
 					break;
-				case 'SOCIAL':
+				case 'social':
 					windowController.socialSideMenu.render();
 					break;
-				case 'FREE RIDE':
+				case 'free ride':
 					windowController.freeRideSideMenu.render();
 					break;
-				case 'PROFILE':
+				case 'profile':
 					windowController.profileSideMenu.render();
 					break;
 				default:
@@ -74,9 +74,9 @@ TopBarView.prototype.createBarLabel = function(name){
 	if (name) text = name;
 	else 'LyfeCycle';
 	return Ti.UI.createLabel({
-		font: {fontSize:28, fontFamily: Constants.fontMillion},
+		font: {fontSize:32, fontFamily: Constants.font},
 		text: name,
-		top: '40%'
+		top: '35%'
 	});
 };
 

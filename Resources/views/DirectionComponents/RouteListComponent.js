@@ -54,7 +54,7 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 		right: 10,
 		color: 'black',
 		text: 'X',
-		font: {fontFamily: Constants.fontKG, fontSize: 20}
+		font: {fontFamily: Constants.font, fontSize: 20}
 	});
 	var startLabel = Ti.UI.createLabel({
 		text: 'Go!',
@@ -66,7 +66,7 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 	this.activeRouteBar = createActiveRouteBar();
 
 	var activeLabel = Ti.UI.createLabel({
-		font: {fontFamily: Constants.fontKG, fontSize: 10, fontStyle: 'italic'},
+		font: {fontFamily: Constants.font, fontSize: 10, fontStyle: 'italic'},
 		text: 'Currently on route',
 		left: 10,
 		color: 'black'

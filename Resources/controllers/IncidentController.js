@@ -70,7 +70,7 @@ IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat
 					height: size, width: size, backgroundColor: 'rgba(255,0,0,0.6)', borderRadius: size/2
 				});
 				var viewText = Ti.UI.createLabel({
-					text: grid_[i][j] + '', color: 'white', font: {fontFamily: Constants.fontKG, fontSize: 12}
+					text: grid_[i][j] + '', color: 'white', font: {fontFamily: Constants.font, fontSize: 12}
 				});
 				var filename = Titanium.Filesystem.tempDirectory + "/" + i + "_grid_" + j + ".png";
 				var filenameText = Titanium.Filesystem.tempDirectory + "/" + i + "_text_" + j + ".png";

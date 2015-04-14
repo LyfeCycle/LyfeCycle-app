@@ -12,7 +12,7 @@ ReportButtonComponent.prototype.createReportButtonComponent = function(){
 	});
 
 	var label = Ti.UI.createLabel({
-		font: {fontFamily: Constants.fontKG, fontSize: 20},
+		font: {fontFamily: Constants.font, fontSize: 20},
 		text: 'Report',
 		top: -3,
 		color: 'white'

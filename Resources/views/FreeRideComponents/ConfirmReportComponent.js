@@ -32,7 +32,7 @@ ConfirmReportComponent.prototype.createConfirmReportComponent = function(){
 	modal.add(
 		Ti.UI.createLabel({
 			color: 'white',
-			font: {fontFamily: Constants.fontKG, fontSize: 20},
+			font: {fontFamily: Constants.font, fontSize: 20},
 			top: 1,
 			text: 'Are you sure?'
 		})
@@ -52,7 +52,7 @@ ConfirmReportComponent.prototype.createConfirmReportComponent = function(){
 	yes.add(
 		Ti.UI.createLabel({
 			color: 'white',
-			font: {fontFamily: Constants.fontKG, fontSize: 20},
+			font: {fontFamily: Constants.font, fontSize: 20},
 			text: 'Yes'
 		})
 	);
@@ -71,7 +71,7 @@ ConfirmReportComponent.prototype.createConfirmReportComponent = function(){
 	no.add(
 		Ti.UI.createLabel({
 			color: 'white',
-			font: {fontFamily: Constants.fontKG, fontSize: 20},
+			font: {fontFamily: Constants.font, fontSize: 20},
 			text: 'No'
 		})
 	);

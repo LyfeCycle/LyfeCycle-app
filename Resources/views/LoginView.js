@@ -38,7 +38,7 @@ LoginView.prototype.createLoginView = function() {
 
 	var createAccountButton = Titanium.UI.createLabel({
 		text: 'Create',
-		font: {fontSize: 25, fontFamily: Constants.fontKG}
+		font: {fontSize: 25, fontFamily: Constants.font}
 	});
 
 	createAccountButtonBG.add(createAccountButton);

@@ -8,9 +8,7 @@ module.exports.deviceWidth = Titanium.Platform.displayCaps.platformWidth;
 module.exports.deviceHeight = Titanium.Platform.displayCaps.platformHeight;
 
 // Global Constants
-module.exports.fontKG = 'KGHAPPY';
-module.exports.fontMillion = 'THE MILLION MILE MAN';
-module.exports.standardFont = module.exports.fontKG;
+module.exports.font = 'Triomphe';
 module.exports.green = '#9ae588';
 module.exports.darkGreen = '#89d477';
 module.exports.cream = '#F1ECD6';
@@ -29,4 +27,4 @@ module.exports.GoogleDirectionsEndReq = '&key=' + APIConstants.GoogleDirectionsK
 module.exports.mapComponentHeight = '70%';
 module.exports.mapComponentHeightNegative = '-70%';
 
-// module.exports.standardFont = module.exports.fontMillion;
+// module.exports.standardFont = module.exports.font;

@@ -11,9 +11,9 @@ function HomeMenuView() {
 HomeMenuView.prototype.createHomeView = function(){
 	var self = this;
 
-	this.mapButton = createButton('Maps', '/images/compass-black.png', '10%');
-	this.freeRideButton = createButton('Free Ride', '/images/traffic-cone-black.png', '30%');
-	this.socialButton = createButton('Social', '/images/comment-black.png', '50%');
+	this.mapButton = createButton('maps', '/images/compass-black.png', '15%');
+	this.freeRideButton = createButton('free ride', '/images/traffic-cone-black.png', '35%');
+	this.socialButton = createButton('social', '/images/comment-black.png', '55%');
 
 	this.main = Ti.UI.createView({
 		height: Constants.viewHeight,
@@ -105,7 +105,7 @@ HomeMenuView.prototype.createHomeView = function(){
 		var label = Ti.UI.createLabel({
 			text: title,
 			left: 100,
-			font: {fontSize: 25, fontFamily: Constants.standardFont}
+			font: {fontSize: 42, fontFamily: Constants.font}
 		});
 
 		imgViewBg.add(imgView);
@@ -139,7 +139,7 @@ HomeMenuView.prototype.createHomeView = function(){
 			// left: imgLeft + imgSize + 10,
 			text: 'LyfeCycle',
 			right: imgLeft,
-			font: {fontSize: 42, fontFamily: Constants.fontMillion}
+			font: {fontSize: 42, fontFamily: Constants.font}
 		});
 
 		view.add(imgView);

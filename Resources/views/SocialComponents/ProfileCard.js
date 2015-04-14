@@ -46,7 +46,8 @@ ProfileCard.prototype.generateProfileCard = function(){
 		width: '68%',
 		height: '9%',
 		textAlign: 'right',
-		font: {fontFamily: Constants.fontKG, fontSize: 20}
+		font: {fontFamily: Constants.font, fontSize: 20},
+		color: 'white'
 	});
 
 	var neighborhood = Ti.UI.createLabel({
@@ -55,7 +56,7 @@ ProfileCard.prototype.generateProfileCard = function(){
 		color: 'red',
 		top: '52%',
 		left: '10%',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 
 	var line = Ti.UI.createView({
@@ -67,10 +68,10 @@ ProfileCard.prototype.generateProfileCard = function(){
 
 	var totalMilesLabel = Ti.UI.createLabel({
 		text: 'Total Miles: ',
-		color: 'red',
+		color: 'white',
 		top: '40%',
 		left: '10%',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 
 	var totalMilesValue = Ti.UI.createLabel({
@@ -78,23 +79,23 @@ ProfileCard.prototype.generateProfileCard = function(){
 		color: 'white',
 		top: '40%',
 		left: '52%',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 
 	var neighborhoodLabel = Ti.UI.createLabel({
 		text: 'Neighborhood: ',
-		color: 'red',
+		color: 'white',
 		top: '52%',
 		left: '10%',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 
 	var neighborhoodValue = Ti.UI.createLabel({
 		text: this.neighborhood,
 		color: 'white',
 		top: '52%',
-		left: '65%',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		left: '52%',
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 
 	view.add(profPic);

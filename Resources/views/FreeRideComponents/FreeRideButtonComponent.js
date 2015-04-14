@@ -14,7 +14,7 @@ FreeRideButtonComponent.prototype.createFreeRideButtonComponent = function(){
 	this.label = Ti.UI.createLabel({
 		color: 'white',
 		text: 'Start!',
-		font: {fontFamily: Constants.fontKG, fontSize: 15},
+		font: {fontFamily: Constants.font, fontSize: 15},
 		transform: Ti.UI.create2DMatrix({rotate: 45}),
 		top: 20,
 		right: 5

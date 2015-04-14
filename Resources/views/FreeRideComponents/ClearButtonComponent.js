@@ -15,7 +15,7 @@ ClearButtonComponent.prototype.createClearButtonComponent = function(){
 	this.label = Ti.UI.createLabel({
 		color: 'white',
 		text: 'Clear',
-		font: {fontFamily: Constants.fontKG, fontSize: 15},
+		font: {fontFamily: Constants.font, fontSize: 15},
 		transform: Ti.UI.create2DMatrix({rotate: -45}),
 		bottom: 20,
 		right: 5

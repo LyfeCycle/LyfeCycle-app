@@ -22,13 +22,13 @@ FromDirectionComponent.prototype.createRideCompletitionModal = function(){
 		text: 'Awesome!',
 		textAlign: 'center',
 		color: 'red',
-		font: {fontFamily: Constants.fontKG, fontSize: 20}
+		font: {fontFamily: Constants.font, fontSize: 20}
 	});
 	var subtitle = Ti.UI.createLabel({
 		top: '9%',
 		text: 'Ride Complete!',
 		textAlign: 'center',
-		font: {fontFamily: Constants.fontKG, fontSize: 17}
+		font: {fontFamily: Constants.font, fontSize: 17}
 	});
 	var horizontalBar = Ti.UI.createView({
 		width: '80%',
@@ -66,35 +66,35 @@ FromDirectionComponent.prototype.createRideCompletitionModal = function(){
 		text: 'Predicted Time',
 		width: '100%',
 		textAlign: 'center',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 	var rightTitle = Ti.UI.createLabel({
 		top: '10%',
 		text: 'Real Time',
 		width: '100%',
 		textAlign: 'center',
-		font: {fontFamily: Constants.fontKG, fontSize: 16}
+		font: {fontFamily: Constants.font, fontSize: 16}
 	});
 	this.leftTime = Ti.UI.createLabel({
 		top: '60%',
 		width: '100%',
 		textAlign: 'center',
-		font: {fontFamily: Constants.fontKG, fontSize: 16},
+		font: {fontFamily: Constants.font, fontSize: 16},
 	});
 	this.rightTime = Ti.UI.createLabel({
 		top: '60%',
 		width: '100%',
 		textAlign: 'center',
-		font: {fontFamily: Constants.fontKG, fontSize: 16},
+		font: {fontFamily: Constants.font, fontSize: 16},
 	});
 	this.result = Ti.UI.createLabel({
-		font: {fontFamily: Constants.fontKG, fontSize: 18},
+		font: {fontFamily: Constants.font, fontSize: 18},
 		textAlign: 'center',
 		width: '95%',
 		bottom: '28%'
 	});
 	var thanksText = Ti.UI.createLabel({
-		font: {fontFamily: Constants.fontKG, fontSize: 15},
+		font: {fontFamily: Constants.font, fontSize: 15},
 		textAlign: 'center',
 		text: 'Thanks for riding with us.\nPlease report any incidents on your route.',
 		width: '95%',

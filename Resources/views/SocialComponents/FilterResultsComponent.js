@@ -35,7 +35,7 @@ FilterResultsComponent.prototype.createFilterPage = function(filterInfo, key){
 	});
 
 	var title = Ti.UI.createLabel({
-		font: {fontSize: 24, fontFamily: Constants.fontKG},
+		font: {fontSize: 24, fontFamily: Constants.font},
 		text: filterInfo.title,
 		color: 'white'
 	});
@@ -45,7 +45,7 @@ FilterResultsComponent.prototype.createFilterPage = function(filterInfo, key){
 		left: '5%',
 		text: '<',
 		color: 'white',
-		font: {fontFamily: Constants.fontMillion, fontSize: 30}
+		font: {fontFamily: Constants.font, fontSize: 30}
 	});
 
 	var rightArrow = Ti.UI.createLabel({
@@ -53,7 +53,7 @@ FilterResultsComponent.prototype.createFilterPage = function(filterInfo, key){
 		right: '5%',
 		text: '>',
 		color: 'white',
-		font: {fontFamily: Constants.fontMillion, fontSize: 30}
+		font: {fontFamily: Constants.font, fontSize: 30}
 	});
 
 	main.add(title);

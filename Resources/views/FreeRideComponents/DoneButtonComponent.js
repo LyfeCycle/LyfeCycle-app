@@ -12,7 +12,7 @@ DoneButtonComponent.prototype.createDoneButtonComponent = function(){
 	});
 
 	var label = Ti.UI.createLabel({
-		font: {fontFamily: Constants.fontKG, fontSize: 20},
+		font: {fontFamily: Constants.font, fontSize: 20},
 		text: 'Done',
 		top: -3,
 		color: 'white'

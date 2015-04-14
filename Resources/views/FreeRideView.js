@@ -51,7 +51,7 @@ FreeRideView.prototype.createActiveRideBar = function(){
 	});
 
 	var activeLabel = Ti.UI.createLabel({
-		font: {fontFamily: Constants.fontKG, fontSize: 10, fontStyle: 'italic'},
+		font: {fontFamily: Constants.font, fontSize: 10, fontStyle: 'italic'},
 		text: 'Currently in Freeride Mode',
 		right: 10,
 		color: 'black'

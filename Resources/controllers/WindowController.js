@@ -122,11 +122,11 @@ function WindowController() {
 	this.currentWindow = null;
 
 	// Add top bar
-	this.homeWindow.add(new TopBarView('HOME').view);
-	this.directionWindow.add(new TopBarView('DIRECTION').view);
-	this.socialWindow.add(new TopBarView('SOCIAL').view);
-	this.freeRideWindow.add(new TopBarView('FREE RIDE').view);
-	this.profileWindow.add(new TopBarView('PROFILE').view);
+	this.homeWindow.add(new TopBarView('home').view);
+	this.directionWindow.add(new TopBarView('directions').view);
+	this.socialWindow.add(new TopBarView('social').view);
+	this.freeRideWindow.add(new TopBarView('free ride').view);
+	this.profileWindow.add(new TopBarView('profile').view);
 
 	this.homeSideMenu = new SideMenuView();
 	this.directionSideMenu = new SideMenuView();

@@ -19,13 +19,13 @@ EnableLocationServicesView.prototype.createEnableLocationServicesView = function
 	});
 
 	var title = Ti.UI.createLabel({
-		font: {fontSize: 44, fontFamily: Constants.fontMillion},
+		font: {fontSize: 44, fontFamily: Constants.font},
 		text: 'LyfeCycle',
 		top: '40%'
 	});
 
 	var directions = Ti.UI.createLabel({
-		font: {fontSize: 22, fontFamily: Constants.fontKG},
+		font: {fontSize: 22, fontFamily: Constants.font},
 		text: 'Please enable Location Services to use LyfeCycle',
 		bottom: '20%',
 		textAlign: 'center',
