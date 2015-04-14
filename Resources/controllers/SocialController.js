@@ -1,26 +1,3 @@
-var mockUsers = 
-[{
-	name: 'Kevin Mannix',
-	miles: 457.3,
-	neighborhood: 'Allston',
-	totalTime: '130:55',
-	achievements: [],
-	profPic: '/images/kevin.png'
-}, {
-	name: 'Alex Wong',
-	miles: 133.9,
-	neighborhood: 'Kenmore',
-	totalTime: '170:12',
-	achievements: [],
-	profPic: '/images/alex.jpg'
-}, {
-	name: 'Deven Dayal',
-	miles: 861.2,
-	neighborhood: 'Brighton',
-	totalTime: '209:28',
-	achievements: [],
-	profPic: '/images/deven.jpg'
-}];
 var ProfileCard = require('/views/SocialComponents/ProfileCard');
 
 function SocialController(){

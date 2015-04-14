@@ -1,17 +1,19 @@
 var FullProfileView = require('/views/SocialComponents/FullProfileComponent');
 
 function ProfileCard(userObj){
-	console.log("PROFILE");
+	console.log("userObj:");
 	console.log(userObj);
 	this.name = userObj.name;
+	console.log(this.name);
 	this.miles = userObj.milesRidden;
 	this.neighborhood = userObj.neighborhoodName;
 	// this.totalTime = userObj.totalTime;
 	// this.achievements = userObj.achievements;
 	this.profPic = 'https://graph.facebook.com/' + userObj.facebookId + '/picture';
 	console.log(this.profPic);
-	this.view = this.generateProfileCard();
+	this.view = this.generateProfileCard().row;
 	this.fullProfileView = new FullProfileView(userObj);
+	this.profileCardView = this.generateProfileCard().view;
 };
 
 ProfileCard.prototype.generateProfileCard = function(){
@@ -26,7 +28,8 @@ ProfileCard.prototype.generateProfileCard = function(){
 		width: '100%',
 		borderColor: '#555',
 		borderWidth: 3,
-		backgroundColor: '#888'
+		backgroundColor: '#888',
+		top: '1%'
 	});
 
 	var profPic = Ti.UI.createImageView({
@@ -109,7 +112,11 @@ ProfileCard.prototype.generateProfileCard = function(){
 		self.fullProfileView.render();
 	});
 
-	return row;
+	return {
+        row: row,
+        view: view
+    };
 };
+
 
 module.exports = ProfileCard;

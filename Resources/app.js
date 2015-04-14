@@ -48,6 +48,10 @@ var ManeuverModel = require('/models/ManeuverModel');
 var IncidentClient = require('/clients/IncidentClient');
 var UserClient = require('/clients/UserClient');
 
+// ***** Clients Objects *****
+var incidentClient = new IncidentClient();
+var userClient = new UserClient();
+
 // ***** View Objects *****
 var homeMenuView = new HomeMenuView();
 var directionView = new DirectionView();
@@ -70,10 +74,6 @@ var routeController = new RouteController();
 var incidentController = new IncidentController();
 var settingsController = new SettingsController();
 var windowController = new WindowController();
-
-// ***** Clients Objects *****
-var incidentClient = new IncidentClient();
-var userClient = new UserClient();
 
 // Register the background service
 Ti.App.iOS.registerBackgroundService({url:'/controllers/RouteControllers/BackgroundRouteController.js'});

@@ -59,7 +59,6 @@ LoginView.prototype.createLoginView = function() {
 	fb.addEventListener('login', function(e) {
 		if (e.success) {
 			Titanium.API.info("Facebook authentication");
-			console.log("checking");
 			var httpclient = Ti.Network.createHTTPClient({
 				// function called when the response data is available
 				onload : function(e) {
@@ -84,7 +83,6 @@ LoginView.prototype.createLoginView = function() {
 				},
 					timeout : 5000  // in milliseconds
 			});
-			console.log("fbid" + self.fbId);
 			httpclient.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + self.fbId);
 			httpclient.setRequestHeader("content-type", "application/json");
 			httpclient.send();
