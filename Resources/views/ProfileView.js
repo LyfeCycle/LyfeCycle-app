@@ -13,10 +13,6 @@ ProfileView.prototype.createProfileView = function(){
 		width: '100%', height: Constants.viewHeight, bottom: 0, backgroundColor: '#ddd'
 	});
 
-	var view = Ti.UI.createView({
-		top: '1%'
-	});
-
 	// Facebook style login button
 	var fbLoginButton = fb.createLoginButton({
 		bottom : '2%',
@@ -28,11 +24,10 @@ ProfileView.prototype.createProfileView = function(){
 	userClient.getCurrentUser(function (results) {
 
 		var card = new ProfileCard(results);
-		view.add(card.profileCardView);
+		main.add(card.profileCardView);
 	});
 
 	main.add(this.settingsComponent.view);
-	main.add(view);
 
 	return main;
 };

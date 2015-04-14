@@ -24,16 +24,8 @@ LoginView.prototype.createLoginView = function() {
 		top: Constants.deviceHeight/2 - 50,
 		left: 30,
 		width: Constants.deviceWidth - 60,
-		height: 40
-	});
-
-	var phoneNumberTextField = Ti.UI.createTextField({
-		borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-		color: '#336699',
-		top: Constants.deviceHeight/2,
-		left: 30,
-		width: Constants.deviceWidth - 60,
-		height: 40
+		height: 40,
+		hintText: "Neighborhood"
 	});
 
 	var createAccountButtonBG = Titanium.UI.createView({
@@ -45,7 +37,7 @@ LoginView.prototype.createLoginView = function() {
 	});
 
 	var createAccountButton = Titanium.UI.createLabel({
-		text: 'Create Account',
+		text: 'Create',
 		font: {fontSize: 25, fontFamily: Constants.fontKG}
 	});
 
