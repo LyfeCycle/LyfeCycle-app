@@ -9,7 +9,7 @@ UserClient.prototype.getAllUsers = function(callback){
 			onload: function(e){
 				callback(JSON.parse(this.responseText));
 			},
-			onerror: function(e){alert("Couldn't connect!!");}
+			onerror: function(e){alert("Request to the LyfeCycle server timed out. Please exit the app and try again.");}
 	});
 
 	client.open("GET", this.url + 'users');
@@ -24,7 +24,7 @@ UserClient.prototype.getCurrentUser = function(callback){
 			onload: function(e){
 				callback(JSON.parse(this.responseText)[0]);
 			},
-			onerror: function(e){alert("Couldn't connect!!");}
+			onerror: function(e){alert("Request to the LyfeCycle server timed out. Please exit the app and try again");}
 	});
 
 	client.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + self.fbId);
