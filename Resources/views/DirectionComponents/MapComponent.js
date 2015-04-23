@@ -3,19 +3,20 @@ function MapComponent() {
 }
 
 MapComponent.prototype.createMapView = function() {
-	var startLat = 42.3520314;
-    var startLong = -71.1255678;
-	var delta = 0.005;
 
 	return MapModule.createView({
-		mapType: MapModule.NORMAL_TYPE,
-	    animate:true,
-	    regionFit:true,
-	    region: {latitude:startLat, longitude:startLong, latitudeDelta: delta, longitudeDelta: delta},
-	    top: 0,
-	    height: '100%',
-        id: 0
-	});
+        mapType: MapModule.NORMAL_TYPE,
+        animate:true,
+        regionFit:true,
+        region: {latitude: gpsLocationController.getCurrentLatitude(),
+                longitude: gpsLocationController.getCurrentLongitude(),
+                latitudeDelta: 0.001,
+                longitudeDelta: 0.001},
+        top: 0,
+        height: Constants.deviceHeight,
+        id: 1,
+        zIndex: 0
+    });
 };
 
 MapComponent.prototype.decodePolyline = function(encoded, polyline_steps_arr) {
