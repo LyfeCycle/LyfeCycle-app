@@ -5,11 +5,11 @@ function FreeRideMapComponentController(){
 FreeRideMapComponentController.prototype.showCurrentLocation = function(){
 	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
 		freeRideView.freeRideMapComponent.view.setLocation({
-	        animate : true,
+	        animate : false,
 	        latitude: gpsLocationController.getCurrentLatitude(),
 	        longitude: gpsLocationController.getCurrentLongitude(),
-	        latitudeDelta: 1,
-	        longitudeDelta: 1
+	        latitudeDelta: 0.005,
+	        longitudeDelta: 0.005
 	    });
 	}
 };

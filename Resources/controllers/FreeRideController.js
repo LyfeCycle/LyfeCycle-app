@@ -130,6 +130,10 @@ FreeRideController.prototype.closeFromDirectionWindow = function(){
 	freeRideView.reportButtonComponent.render();
 };
 
+FreeRideController.prototype.showCurrentLocation = function(){
+	this.freeRideMapComponentController.showCurrentLocation();
+};
+
 
 
 

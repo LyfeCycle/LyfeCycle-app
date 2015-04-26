@@ -74,7 +74,6 @@ WindowController.prototype.goToHomeWindow = function() {
 WindowController.prototype.goToDirectionWindow = function() {
 	topBar.setText('Directions');
 	if (gpsLocationController.currentLatitude && gpsLocationController.currentLongitude) {
-		directionController.showCurrentLocation();
 		directionController.setUserPin();
 		this.directionWindow.open();
 		this.homeWindow.hide();
@@ -82,12 +81,13 @@ WindowController.prototype.goToDirectionWindow = function() {
 		this.loginWindow.hide();
 		this.socialWindow.hide();
 		this.directionWindow.show();
+		directionController.showCurrentLocation();
 		this.freeRideWindow.hide();
 		this.homeSideMenu.close();
-	this.directionSideMenu.close();
-	this.socialSideMenu.close();
-	this.freeRideSideMenu.close();
-	this.profileSideMenu.close();
+		this.directionSideMenu.close();
+		this.socialSideMenu.close();
+		this.freeRideSideMenu.close();
+		this.profileSideMenu.close();
 		this.enableLocationServicesWindow.hide();
 		sideMenuController.closeSideMenu(); 
 	} else {
@@ -160,11 +160,12 @@ WindowController.prototype.goToFreeRideWindow = function(polyline) {
 		this.socialWindow.hide();
 		this.directionWindow.hide();
 		this.freeRideWindow.show();
+		freeRideController.showCurrentLocation();
 		this.homeSideMenu.close();
-	this.directionSideMenu.close();
-	this.socialSideMenu.close();
-	this.freeRideSideMenu.close();
-	this.profileSideMenu.close();
+		this.directionSideMenu.close();
+		this.socialSideMenu.close();
+		this.freeRideSideMenu.close();
+		this.profileSideMenu.close();
 		this.enableLocationServicesWindow.hide();
 		// this.freeRideWindow.show();
 		if (polyline) freeRideController.fromDirectionWindow(polyline);

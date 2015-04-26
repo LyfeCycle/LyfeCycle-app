@@ -8,7 +8,8 @@ MapComponent.prototype.createMapView = function() {
         mapType: MapModule.NORMAL_TYPE,
         animate:true,
         regionFit:true,
-        region: {latitude: gpsLocationController.getCurrentLatitude(),
+        region: {
+                latitude: gpsLocationController.getCurrentLatitude(),
                 longitude: gpsLocationController.getCurrentLongitude(),
                 latitudeDelta: 0.001,
                 longitudeDelta: 0.001},
