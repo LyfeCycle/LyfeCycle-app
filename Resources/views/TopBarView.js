@@ -22,7 +22,6 @@ TopBarView.prototype.createTopBarView = function() {
 	main.add(this.sideMenuButton);
 
 	main.addEventListener('click', function(){
-		console.log("Registering click");
 		if (self.name) {
 			switch (self.name) {
 				case 'home':

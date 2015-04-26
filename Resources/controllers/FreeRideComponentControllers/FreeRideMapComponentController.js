@@ -3,7 +3,6 @@ function FreeRideMapComponentController(){
 };
 
 FreeRideMapComponentController.prototype.showCurrentLocation = function(){
-	console.log("Current place: " +  gpsLocationController.getCurrentLatitude() + " " + gpsLocationController.getCurrentLongitude());
 	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
 		freeRideView.freeRideMapComponent.view.setLocation({
 	        animate : true,

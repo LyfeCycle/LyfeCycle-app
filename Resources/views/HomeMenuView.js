@@ -27,8 +27,6 @@ HomeMenuView.prototype.createHomeView = function(){
 		opacity: 1.0
 	});
 
-	console.log('create home view');
-
 	this.backgroundMap = MapModule.createView({
 		mapType: MapModule.NORMAL_TYPE,
 	    animate: false,
@@ -44,7 +42,6 @@ HomeMenuView.prototype.createHomeView = function(){
 	});
 
 	this.backgroundMap.addEventListener('locUpdate', function(e) {
-		console.log("locUpdate caught");
 		self.backgroundMap.region = {latitude: gpsLocationController.getCurrentLatitude(),
 									longitude: gpsLocationController.getCurrentLongitude()}
 	});

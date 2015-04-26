@@ -74,15 +74,12 @@ SettingsComponent.prototype.createSettingsComponent = function(height, top){
 		return row;
 
 		function generateRowName(index){
-			console.log(IncidentTypeModel.TYPES_ARRAY[index]);
 			var name = IncidentTypeModel.TYPES_ARRAY[index].split(/(?=[A-Z])/); 
 			name[0] = name[0].charAt(0).toUpperCase() + name[0].slice(1);
 			var capitalizedName = '';
 			for (var i = 0; i < name.length; i++) {
-				console.log(name[i]);
 				capitalizedName += name[i] + ' ';
 			}
-			console.log(capitalizedName);
 			return capitalizedName;
 		};
 	};

@@ -43,14 +43,12 @@ module.exports.registerForPush = function(){
     }
     // Process incoming push notifications
     function receivePush(e) {
-        console.log('Received push: ' + JSON.stringify(e));
     }
     // Save the device token for subsequent API calls
     function deviceTokenSuccess(e) {
         deviceToken = e.deviceToken;
     }
     function deviceTokenError(e) {
-        console.log('Failed to register for push notifications! ' + e.error);
     }
 
     // Occurs when the app opens back up

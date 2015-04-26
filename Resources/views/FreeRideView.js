@@ -58,14 +58,12 @@ FreeRideView.prototype.createActiveRideBar = function(){
 	});
 
 	bar.render = function(){
-		console.log("RENDERING");
 		bar.barView.animate(Ti.UI.createAnimation({
 			bottom: 0, duration: 50
 		}));
 	};
 
 	bar.hide = function(){
-		console.log("CLOSING");
 		bar.barView.animate(Ti.UI.createAnimation({
 			bottom: -10, duration: 50
 		}));

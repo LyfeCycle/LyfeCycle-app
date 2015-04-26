@@ -1,16 +1,12 @@
 var FullProfileView = require('/views/SocialComponents/FullProfileComponent');
 
 function ProfileCard(userObj){
-	console.log("userObj:");
-	console.log(userObj);
 	this.name = userObj.name;
-	console.log(this.name);
 	this.miles = userObj.milesRidden;
 	this.neighborhood = userObj.neighborhoodName;
 	// this.totalTime = userObj.totalTime;
 	// this.achievements = userObj.achievements;
 	this.profPic = 'https://graph.facebook.com/' + userObj.facebookId + '/picture';
-	console.log(this.profPic);
 	this.view = this.generateProfileCard().row;
 	this.fullProfileView = new FullProfileView(userObj);
 	this.profileCardView = this.generateProfileCard().view;
@@ -110,7 +106,7 @@ ProfileCard.prototype.generateProfileCard = function(){
 
 	// Events
 	row.addEventListener('click', function(){
-		self.fullProfileView.render();
+		// self.fullProfileView.render();
 	});
 
 	return {

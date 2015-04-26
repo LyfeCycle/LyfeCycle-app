@@ -99,14 +99,12 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 		});
 
 		bar.render = function(){
-			console.log("RENDERING");
 			bar.view.animate(Ti.UI.createAnimation({
 				top: 0, duration: 50
 			}));
 		};
 
 		bar.hide = function(){
-			console.log("CLOSING");
 			bar.view.animate(Ti.UI.createAnimation({
 				top: activeRouteBarHeight, duration: 50
 			}));

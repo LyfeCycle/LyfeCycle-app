@@ -78,8 +78,6 @@ function crashAlert() {
     var xhr = Ti.Network.createHTTPClient();
 
     xhr.onload = function(e) {
-        console.log('onload');
-        console.log('response: ' + this.responseText);
         // handle response, which at minimum will be an HTTP status code
     };
     xhr.open('POST','http://lyfecycle-api.herokuapp.com/locations');

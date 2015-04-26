@@ -115,23 +115,18 @@ SideMenuView.prototype.generateSideMenuView = function(){
 		row.addEventListener('click', function(){
 			switch (row.id) {
 				case 'home':
-					console.log("GO TO HOME");
 					windowController.goToHomeWindow();
 					break;
 				case 'maps':
-					console.log("GO TO MAPS");
 					windowController.goToDirectionWindow();
 					break;
 				case 'free ride':
-					console.log("GO TO REPORTS");
 					windowController.goToFreeRideWindow();
 					break;
 				case 'social':
-					console.log("GO TO SOCIAL");
 					windowController.goToSocialWindow();
 					break;
 				case 'profile':
-					console.log("GO TO PROFILE");
 					windowController.goToProfileWindow();
 					break;
 			}
