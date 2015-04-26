@@ -20,7 +20,8 @@ ProfileView.prototype.createProfileView = function(){
 	});
 	main.add(fbLoginButton);
 
-	// Generate profile card with current user
+	// Generate profile card with current user if signed in
+
 	userClient.getCurrentUser(function (results) {
 
 		var card = new ProfileCard(results);
