@@ -28,7 +28,6 @@ var ProfileView = require('/views/ProfileView');
 
 // ***** Controller Requires *****
 var SessionController = require('/controllers/SessionController');
-var CrashDetectController = require('/controllers/CrashDetectController');
 var WindowController = require('/controllers/WindowController');
 var DirectionController = require('/controllers/DirectionController');
 var SocialController = require('/controllers/SocialController');
@@ -65,7 +64,6 @@ var profileView = new ProfileView();
 
 // ***** Controller Objects *****
 var sessionController = new SessionController();
-var crashDetectController = new CrashDetectController();
 var directionController = new DirectionController();
 var socialController = new SocialController();
 var sideMenuController = new SideMenuController();
