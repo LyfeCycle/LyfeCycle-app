@@ -1,40 +1,37 @@
 // Login controller
-
 function Session() {
-	this.logged_in_state = false;
+	this.userExists = false;
 	this.fbId = fb.getUid();
 
 	fb.addEventListener('login', function(e) {
-		this.logged_in_state = true;
 		console.log("event listening: login");
 		sessionController.Login();
 	});
 
 	fb.addEventListener('logout', function(e) {
-		this.logged_in_state = false;
 		console.log("event listening: logout");
 		windowController.goToLoginWindow();
 	});
 };
 
-Session.prototype.getLoginStatus = function() {
-	if (logged_in_state == true) {
-		return true;
-	}
-	else return false;
-};
 
 Session.prototype.Login = function() {
 	var self = this;
 	if (fb.loggedIn) {
 		this.CheckUserExists(function (exists) {
 			if (exists) {
+				this.userExists = true;
 				windowController.goToHomeWindow();
 				console.log("user exists in database");
 			}
-			else
+			else {
+				this.userExists = false;
 				windowController.goToLoginWindow();
+			}
 		});
+	}
+	else {
+		windowController.goToLoginWindow();
 	}
 
 };
@@ -71,13 +68,5 @@ Session.prototype.CheckUserExists = function(callback) {
 Session.prototype.Logout = function() {
 	windowController.goToLoginWindow();
 };
-
-Session.prototype.setLoginStateTrue = function() {
-	this.logged_in_state = true;
-};
-
-Session.prototype.setLoginStateFalse = function() {
-	this.logged_in_state = false;
-}
 
 module.exports = Session;

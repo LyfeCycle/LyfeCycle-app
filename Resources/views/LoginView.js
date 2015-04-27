@@ -29,7 +29,7 @@ LoginView.prototype.createLoginView = function() {
 	});
 
 	var createAccountButtonBG = Titanium.UI.createView({
-		top: Constants.deviceHeight/2 + 50,
+		top: Constants.deviceHeight/2,
 		height: 50,
 		width: Constants.deviceWidth - 200,
 		backgroundColor: Constants.darkGreen,
@@ -45,9 +45,18 @@ LoginView.prototype.createLoginView = function() {
 
 	// Facebook login/logout
 	var fbLoginButton = fb.createLoginButton({
-		top : Constants.deviceHeight/2 + 50,
+		bottom : '2%',
     	style : fb.BUTTON_STYLE_WIDE
 	});
+
+	if (fb.loggedIn) {
+		main.add(neighborhoodTextField);
+		main.add(createAccountButtonBG);
+	}
+	else {
+		main.remove(neighborhoodTextField);
+		main.remove(createAccountButtonBG);
+	}
 
 	createAccountButtonBG.addEventListener('click',function (e){
 		Titanium.API.info("Creating new user");
