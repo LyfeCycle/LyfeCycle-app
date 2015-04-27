@@ -64,7 +64,8 @@ IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat
 	if ((mapView.id === 0 ? this.prevDirectionDelta : this.prevFreeRideDelta) > (Math.abs(leftLong) - Math.abs(rightLong))) {
 		for (var key in this.allIncidents) {
 			if (this.pointInRegion(topLat, bottomLat, leftLong, rightLong, this.allIncidents[key])) {
-				grid[Math.floor((Math.abs(this.allIncidents[key].latitude) - Math.abs(topLat))/latThird)][Math.floor((Math.abs(this.allIncidents[key].longitude) - Math.abs(leftLong))/longThird)]++;
+				if (Math.floor((Math.abs(this.allIncidents[key].latitude) - Math.abs(topLat))/latThird) < size && Math.floor((Math.abs(this.allIncidents[key].longitude) - Math.abs(leftLong))/longThird) < size)
+					grid[Math.floor((Math.abs(this.allIncidents[key].latitude) - Math.abs(topLat))/latThird)][Math.floor((Math.abs(this.allIncidents[key].longitude) - Math.abs(leftLong))/longThird)]++;
 			}
 		}
 		drawGrid(mapView, grid);
@@ -73,6 +74,7 @@ IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat
 		this.getAllIncidents(function() {
 			for (var key in self.allIncidents) {
 				if (self.pointInRegion(topLat, bottomLat, leftLong, rightLong, self.allIncidents[key])) {
+					if (Math.floor((Math.abs(self.allIncidents[key].latitude) - Math.abs(topLat))/latThird) < size && Math.floor((Math.abs(self.allIncidents[key].longitude) - Math.abs(leftLong))/longThird) < size)
 					grid[Math.floor((Math.abs(self.allIncidents[key].latitude) - Math.abs(topLat))/latThird) | 0][Math.floor((Math.abs(self.allIncidents[key].longitude) - Math.abs(leftLong))/longThird) | 0]++;
 				}
 			}
@@ -113,14 +115,14 @@ IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat
 						longitude: (leftLong > 0) ? leftLong + (longThird*j + longThird/2) : leftLong - (longThird*j + longThird/2),
 						image: filename
 					}));
-					if (grid_[i][j] > 17) {
+					// if (grid_[i][j] > 17) {
 						mapView_.addAnnotation(MapModule.createAnnotation({
 							title: grid_[i][j],
 							latitude: (topLat > 0) ? topLat + (latThird*i + latThird/2) : topLat + (latThird*i + latThird/2),
 							longitude: (leftLong > 0) ? leftLong + (longThird*j + longThird/2) : leftLong - (longThird*j + longThird/2),
 							image: filenameText
 						}));
-					}
+					// }
 				}
 			}
 		}
