@@ -5,6 +5,7 @@
 function RouteController(){
 	this.routeEndLocation;
 	this.routeDuration;
+	this.milage;
 	this.currentRide = false;
 	this.endLatitudeRange = 0.00082307035;
 	this.endLongitudeRange = 0.00082308541;
@@ -24,6 +25,7 @@ function RouteController(){
 // This is the info for a potential route - it's from when the directions are initially got, an this waits for 
 // the start of the route to be confirmed
 RouteController.prototype.prepRoute = function(routeJson){
+	this.milage = routeJson.distance.value;
 	this.routeDuration = routeJson.duration.value;
 	this.routeEndLocation = routeJson.end_location;
 };
@@ -51,7 +53,14 @@ RouteController.prototype.endRoute = function(){
 	Ti.App.Properties.setBool('completedRide', false);
 	this.routeEndLocation = false;
 	this.currentRide = false;
+	this.sendMilage();
 };
+
+RouteController.prototype.sendMilage = function() {
+	userClient.sendMilage(this.milage, function () {
+		this.milage = 0;
+	});
+}
 
 RouteController.prototype.checkIfUserIsAtEndLocation = function(){
 	if (this.currentRide) {	

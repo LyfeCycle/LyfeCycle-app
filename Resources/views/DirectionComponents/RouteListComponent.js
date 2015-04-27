@@ -115,6 +115,7 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 };
 
 RouteListComponent.prototype.createDirectionRow = function(step) {
+	var incidentArray = [false, false, false, false, false, false, false, false, false];
 	// Seperate helper instruction from main string if one exists
 	var helperInstructionText = step.text.indexOf('<div') > -1 ? step.text.match(/(<div.*>)(.*)(<\/div>)/)[0] : '';
 	if (helperInstructionText) step.text = step.text.substring(0, step.text.indexOf('<div'));
@@ -146,9 +147,12 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 		showHorizontalScrollIndicator: true,
 		top: 62
 	});
-	console.log(step);
-	for (var incident in step.alerts)
-		incidentRow.add(createIncidentRowElement(incident, step.alerts[incident]));
+	for (var incident in step.alerts) {
+		if (!incidentArray[IncidentTypeModel.TYPES[step.alerts[incident].tag]]) {
+			incidentRow.add(createIncidentRowElement(incident, step.alerts[incident]));
+			incidentArray[IncidentTypeModel.TYPES[step.alerts[incident].tag]] = true;
+		}
+	}
 
 
 	if (descriptionImage) row.add(descriptionImage);
@@ -169,7 +173,7 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 		});
 
 		view.add(Ti.UI.createImageView({
-			image: IncidentTypeModel.IMAGES_ARRAY[incident],
+			image: IncidentTypeModel.IMAGES[incident.tag],
 			width: '70%', height: '70%'
 		}));
 

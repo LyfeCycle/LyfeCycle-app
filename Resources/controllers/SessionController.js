@@ -4,12 +4,10 @@ function Session() {
 	this.fbId = fb.getUid();
 
 	fb.addEventListener('login', function(e) {
-		console.log("event listening: login");
 		sessionController.Login();
 	});
 
 	fb.addEventListener('logout', function(e) {
-		console.log("event listening: logout");
 		windowController.goToHomeWindow();
 		alert("You are now using LyfeCycle in offline mode!");
 	});
@@ -23,7 +21,6 @@ Session.prototype.Login = function() {
 			if (exists) {
 				this.userExists = true;
 				windowController.goToHomeWindow();
-				console.log("user exists in database");
 			}
 			else {
 				this.userExists = false;

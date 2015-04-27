@@ -6,7 +6,6 @@ function MapComponentController(){
 };
 
 MapComponentController.prototype.showCurrentLocation = function(){
-	console.log("SHOW CURRENT LOCATION");
 	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
 		directionView.mapComponent.view.setLocation({
 	        animate : false,

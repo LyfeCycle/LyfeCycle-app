@@ -35,4 +35,17 @@ UserClient.prototype.getCurrentUser = function(callback){
 
 };
 
+UserClient.prototype.sendMilage = function(milage, callback) {
+	var client = Ti.Network.createHTTPClient({
+			timeout: Constants.timeout,
+			onload: function(e){ callback() },
+			onerror: function(e){ alert(e);}
+	});
+	client.open("POST", this.url + 'users/change-mileage');
+	client.setRequestHeader("Content-Type","application/json");
+	this.getCurrentUser(function (user) {
+		client.send(JSON.stringify({"miles": milage, "userId": user._id}));
+	});
+}
+
 module.exports = UserClient;
