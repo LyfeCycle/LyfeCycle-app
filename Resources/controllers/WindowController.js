@@ -81,7 +81,6 @@ WindowController.prototype.goToDirectionWindow = function() {
 		this.loginWindow.hide();
 		this.socialWindow.hide();
 		this.directionWindow.show();
-		directionController.showCurrentLocation();
 		this.freeRideWindow.hide();
 		this.homeSideMenu.close();
 		this.directionSideMenu.close();
@@ -89,6 +88,7 @@ WindowController.prototype.goToDirectionWindow = function() {
 		this.freeRideSideMenu.close();
 		this.profileSideMenu.close();
 		this.enableLocationServicesWindow.hide();
+		directionController.showCurrentLocation();
 		sideMenuController.closeSideMenu(); 
 	} else {
 		alert("We couldn't get your location. Do you have GPS turned on or connection to the internet?");

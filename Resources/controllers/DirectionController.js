@@ -17,9 +17,11 @@ DirectionController.prototype.getDirections = function(endLocation) {
 	// SHOULD BE MOVED TO THE BACKEND
 		// To send to the backend, will send current location (long & lat) along with desination (will be an address string)
 		// From the API we should receive the directions, and any incidents that might occur along each step of the route
-	var requestURL =  Constants.GoogleDirectionsStartReq + gpsLocationController.getCurrentLatitude() + ',' 
-					+ gpsLocationController.getCurrentLongitude() + '&destination=' + endLocation + Constants.GoogleDirectionsEndReq;	  
-
+	var requestURL = "http://lyfecycle-api.herokuapp.com/locations/directions?startLat=" + 
+		gpsLocationController.getCurrentLatitude() + "&startLong=" + 
+		gpsLocationController.getCurrentLongitude() + "&destination=" + endLocation;
+	console.log("REQUEST URL");
+	console.log(encodeURI(requestURL));
 	// Request & callbacks
 	var client = Ti.Network.createHTTPClient({
 		onload: function(e) { addDirectionsToComponents(JSON.parse(this.responseText), endLocation); },
@@ -30,7 +32,7 @@ DirectionController.prototype.getDirections = function(endLocation) {
 	// ALL HELPER FUNCTIONS
 		function addDirectionsToComponents(json, endLocation) {
 			try {
-				var jsonSteps = json['routes'][0]['legs'][0]['steps'], steps = [], polyline = [];
+				var jsonSteps = json[0]['legs'][0]['steps'], steps = [], polyline = [];
 				for (i in jsonSteps) {
 					// console.log(jsonSteps[i]);
 					directionView.mapComponent.decodePolyline(jsonSteps[i]['polyline']['points'], polyline);
@@ -38,7 +40,7 @@ DirectionController.prototype.getDirections = function(endLocation) {
 				}
 				addDirectionsToMapComponent({'steps':steps, 'end_destination_text': endLocation, 'polyline_route': polyline});
 				addDirectionsToRouteListComponent({'steps':steps, 'end_destination_text': endLocation, 'polyline_route': polyline});
-				addDirectionsToRouteController(json['routes'][0]['legs'][0]);
+				addDirectionsToRouteController(json[0]['legs'][0]);
 			} catch(err) { alert("Could not get location! "); console.log(err); };
 		};
 

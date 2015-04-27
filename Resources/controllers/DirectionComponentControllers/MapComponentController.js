@@ -6,6 +6,7 @@ function MapComponentController(){
 };
 
 MapComponentController.prototype.showCurrentLocation = function(){
+	console.log("SHOW CURRENT LOCATION");
 	if (gpsLocationController.getCurrentLatitude() && gpsLocationController.getCurrentLongitude()) {
 		directionView.mapComponent.view.setLocation({
 	        animate : false,
@@ -54,8 +55,8 @@ MapComponentController.prototype.setRouteAnnotations = function(steps){
 		animate: true
 	});
 	this.destinationLocationAnnotation = MapModule.createAnnotation({
-		latitude: end_location.latitude,
-		longitude: end_location.longitude,
+		latitude: steps.polyline_route[steps.polyline_route.length-1].latitude,
+		longitude: steps.polyline_route[steps.polyline_route.length-1].longitude,
 		title: steps['end_destination_text'],
 		pincolor: MapModule.ANNOTATION_PURPLE,
 		animate: true

@@ -137,11 +137,6 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 
 	// Add incidents to bottom
 	// top: 70, height: 15
-	var jjj = Math.ceil(Math.random()*6);
-	var incidents = []; 
-	for (var i = 0; i < jjj; i++)
-		incidents.push(Math.floor(Math.random()*9));
-	// var incidents = [0, 3, 5]; // This is mocked, and will be gotten from the JSON
 	var incidentRow = Ti.UI.createScrollView({
 		contentHeight: 15, 
 		height: 25, 
@@ -151,8 +146,9 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 		showHorizontalScrollIndicator: true,
 		top: 62
 	});
-	for (var incident in incidents)
-		incidentRow.add(createIncidentRowElement(incident, incidents[incident]));
+	console.log(step);
+	for (var incident in step.alerts)
+		incidentRow.add(createIncidentRowElement(incident, step.alerts[incident]));
 
 
 	if (descriptionImage) row.add(descriptionImage);

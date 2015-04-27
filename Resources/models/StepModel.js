@@ -5,6 +5,7 @@ module.exports.validStep = function(stepJSON) {
 			'text': stepJSON['html_instructions'], 
 			'distance': stepJSON.distance['text'], 
 			'duration': stepJSON.duration['text'],
-			'maneuver': stepJSON['maneuver']
+			'maneuver': stepJSON['maneuver'],
+			'alerts': stepJSON['alerts']
 		   };
 }
