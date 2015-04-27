@@ -49,14 +49,9 @@ LoginView.prototype.createLoginView = function() {
     	style : fb.BUTTON_STYLE_WIDE
 	});
 
-	if (fb.loggedIn) {
-		main.add(neighborhoodTextField);
-		main.add(createAccountButtonBG);
-	}
-	else {
-		main.remove(neighborhoodTextField);
-		main.remove(createAccountButtonBG);
-	}
+	main.add(neighborhoodTextField);
+	main.add(createAccountButtonBG);
+
 
 	createAccountButtonBG.addEventListener('click',function (e){
 		Titanium.API.info("Creating new user");

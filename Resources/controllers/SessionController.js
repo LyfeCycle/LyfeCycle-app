@@ -10,7 +10,8 @@ function Session() {
 
 	fb.addEventListener('logout', function(e) {
 		console.log("event listening: logout");
-		windowController.goToLoginWindow();
+		windowController.goToHomeWindow();
+		alert("You are now using LyfeCycle in offline mode!");
 	});
 };
 
@@ -31,7 +32,8 @@ Session.prototype.Login = function() {
 		});
 	}
 	else {
-		windowController.goToLoginWindow();
+		windowController.goToHomeWindow();
+		alert("You are using LyfeCycle in offline mode. Login under 'Profile' to track your progress!");
 	}
 
 };
