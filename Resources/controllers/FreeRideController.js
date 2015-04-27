@@ -46,24 +46,29 @@ FreeRideController.prototype.reportIncident = function(){
 
 FreeRideController.prototype.confirmReport = function(){
 	var json = [];
-	// Send report to backend
-	if (this.currentIncidents.length > 0) {
-		for (var incident in this.currentIncidents) {
-			var type = this.currentIncidents[incident].id;
-			json.push(
-					{  name: 'fromApp', 
-					   latitude: String(this.currentIncidents[incident].latitude),
-					   longitude: String(this.currentIncidents[incident].longitude),
-					   tag: this.currentIncidents[incident].id
-					});
-			freeRideView.freeRideMapComponent.view.removeAnnotation(this.currentIncidents[incident]);
+	if (fb.loggedIn) {
+		// Send report to backend
+		if (this.currentIncidents.length > 0) {
+			for (var incident in this.currentIncidents) {
+				var type = this.currentIncidents[incident].id;
+				json.push(
+						{  name: 'fromApp', 
+						   latitude: String(this.currentIncidents[incident].latitude),
+						   longitude: String(this.currentIncidents[incident].longitude),
+						   tag: this.currentIncidents[incident].id
+						});
+				freeRideView.freeRideMapComponent.view.removeAnnotation(this.currentIncidents[incident]);
+			}
+			incidentClient.postIncidents(json);
+			incidentController.mockReportedIncidents(this.currentIncidents);
+			this.currentIncidents = [];
+			this.currentIncidentKey = null;
+			this.currentIncidentCoordinates = null;
+			freeRideView.incidentPanelComponent.clearPanelChildren();
 		}
-		incidentClient.postIncidents(json);
-		incidentController.mockReportedIncidents(this.currentIncidents);
-		this.currentIncidents = [];
-		this.currentIncidentKey = null;
-		this.currentIncidentCoordinates = null;
-		freeRideView.incidentPanelComponent.clearPanelChildren();
+	}
+	else {
+		alert("Please log in to report incidents!");
 	}
 };
 
@@ -133,10 +138,5 @@ FreeRideController.prototype.closeFromDirectionWindow = function(){
 FreeRideController.prototype.showCurrentLocation = function(){
 	this.freeRideMapComponentController.showCurrentLocation();
 };
-
-
-
-
-
 
 module.exports = FreeRideController;
