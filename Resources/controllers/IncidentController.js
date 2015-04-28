@@ -1,5 +1,5 @@
 var IncidentTypeModel = require('/models/IncidentTypeModel');
-var clusteringRange = 1.2;
+var clusteringRange = 2.2;
 
 function IncidentController(){
 	// These will always be the longitude delta
@@ -57,7 +57,7 @@ IncidentController.prototype.setIncidentListener = function(mapView){
 
 IncidentController.prototype.clusterPoints = function(mapView, topLat, bottomLat, leftLong, rightLong){
 	var self = this;
-	var size = 5;
+	var size = 9;
 	var grid = makeGrid(size);
 	var latThird = (Math.abs(bottomLat) - Math.abs(topLat))/size;
 	var longThird = (Math.abs(rightLong) - Math.abs(leftLong))/size;
