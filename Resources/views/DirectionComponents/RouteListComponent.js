@@ -115,6 +115,7 @@ RouteListComponent.prototype.createDirectionTableHeader = function(destinationTe
 };
 
 RouteListComponent.prototype.createDirectionRow = function(step) {
+	var index = 0;
 	var incidentArray = [false, false, false, false, false, false, false, false, false];
 	// Seperate helper instruction from main string if one exists
 	var helperInstructionText = step.text.indexOf('<div') > -1 ? step.text.match(/(<div.*>)(.*)(<\/div>)/)[0] : '';
@@ -149,8 +150,9 @@ RouteListComponent.prototype.createDirectionRow = function(step) {
 	});
 	for (var incident in step.alerts) {
 		if (!incidentArray[IncidentTypeModel.TYPES[step.alerts[incident].tag]]) {
-			incidentRow.add(createIncidentRowElement(incident, step.alerts[incident]));
+			incidentRow.add(createIncidentRowElement(index, step.alerts[incident]));
 			incidentArray[IncidentTypeModel.TYPES[step.alerts[incident].tag]] = true;
+			index++;
 		}
 	}
 
