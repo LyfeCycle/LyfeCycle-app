@@ -11,7 +11,8 @@ if (Ti.Geolocation.locationServicesEnabled) {
 // ***** Facebook *****
 var fb = require('facebook');
 fb.appid = 382800148589176;
-fb.permissions = ['public_profile'];
+// fb.permissions = ['public_profile']; - Rerequesting public_profile caused inablity to log in on actual device
+fb.forceDialogAuth = false;
 
 // ***** View Requires *****
 var APIConstants = require('./APIConstants');

@@ -57,7 +57,7 @@ WindowController.prototype.goToHomeWindow = function() {
 	topBar.setText('Home');
 	this.homeWindow.open();
 	this.homeWindow.show();
-	this.profileWindow.hide()
+	this.profileWindow.hide();
 	this.loginWindow.hide();
 	this.socialWindow.hide();
 	this.directionWindow.hide();
@@ -77,7 +77,7 @@ WindowController.prototype.goToDirectionWindow = function() {
 		directionController.setUserPin();
 		this.directionWindow.open();
 		this.homeWindow.hide();
-		this.profileWindow.hide()
+		this.profileWindow.hide();
 		this.loginWindow.hide();
 		this.socialWindow.hide();
 		this.directionWindow.show();
@@ -100,7 +100,7 @@ WindowController.prototype.goToSocialWindow = function() {
 	// this.socialWindow.show();
 	this.socialWindow.open();
 	this.homeWindow.hide();
-	this.profileWindow.hide()
+	this.profileWindow.hide();
 	this.loginWindow.hide();
 	this.socialWindow.show();
 	this.directionWindow.hide();
@@ -117,9 +117,15 @@ WindowController.prototype.goToSocialWindow = function() {
 
 WindowController.prototype.goToProfileWindow = function() {
 	topBar.setText('Profile');
+
+	// Hack to refresh window to make sure card reflects login state
+	profileView.refreshProfileView();
+	this.profileWindow.remove(profileView.view);
+	this.profileWindow.add(profileView.view);
+
 	this.profileWindow.open();
 	this.homeWindow.hide();
-	this.profileWindow.show()
+	this.profileWindow.show();
 	this.loginWindow.hide();
 	this.socialWindow.hide();
 	this.directionWindow.hide();

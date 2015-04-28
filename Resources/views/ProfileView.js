@@ -21,16 +21,22 @@ ProfileView.prototype.createProfileView = function(){
 	main.add(fbLoginButton);
 
 	// Generate profile card with current user if signed in
-
-	userClient.getCurrentUser(function (results) {
-
-		var card = new ProfileCard(results);
-		main.add(card.profileCardView);
-	});
-
+	if (fb.loggedIn) {
+		userClient.getCurrentUser(function (results) {
+			var card = new ProfileCard(results);
+			main.add(card.profileCardView);
+		});
+	}
+			
 	main.add(this.settingsComponent.view);
 
 	return main;
 };
+
+ProfileView.prototype.refreshProfileView = function(){
+	var self = this;
+
+	self.view = this.createProfileView();
+}
 
 module.exports = ProfileView;

@@ -1,29 +1,25 @@
 // Login controller
 function Session() {
-	this.userExists = false;
-	this.fbId = fb.getUid();
 
-	fb.addEventListener('login', function(e) {
+	// FB login/logout event listeners
+	fb.addEventListener('login', function (e) {
 		sessionController.Login();
 	});
 
-	fb.addEventListener('logout', function(e) {
+	fb.addEventListener('logout', function (e) {
 		windowController.goToHomeWindow();
-		alert("You are now using LyfeCycle in offline mode!");
+		alert("Logged out! You are now using LyfeCycle in offline mode!");
 	});
 };
 
 
 Session.prototype.Login = function() {
-	var self = this;
 	if (fb.loggedIn) {
 		this.CheckUserExists(function (exists) {
 			if (exists) {
-				this.userExists = true;
 				windowController.goToHomeWindow();
 			}
 			else {
-				this.userExists = false;
 				windowController.goToLoginWindow();
 			}
 		});
@@ -44,7 +40,7 @@ Session.prototype.CheckUserExists = function(callback) {
 			if (this.responseText == "[]") {
 				callback(false);
 			}
-			else if (JSON.parse(this.responseText)[0]["facebookId"] == self.fbId) {
+			else if (JSON.parse(this.responseText)[0]["facebookId"] == fb.getUid()) {
 				callback(true);
 			}
 			else {
@@ -58,7 +54,7 @@ Session.prototype.CheckUserExists = function(callback) {
 			timeout : 5000  // in milliseconds
 	});
 
-	httpclient.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + self.fbId);
+	httpclient.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + fb.getUid());
 	httpclient.setRequestHeader("content-type", "application/json");
 	httpclient.send();
 

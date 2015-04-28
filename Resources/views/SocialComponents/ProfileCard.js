@@ -1,6 +1,7 @@
 var FullProfileView = require('/views/SocialComponents/FullProfileComponent');
 
 function ProfileCard(userObj){
+	console.log("UserObj:" + userObj)
 	this.name = userObj.name;
 	this.miles = userObj.milesRidden;
 	this.neighborhood = userObj.neighborhoodName;

@@ -1,6 +1,6 @@
 function UserClient() {
 	this.url = Constants.baseURL;
-	this.fbId = fb.getUid();
+	this.fbId = fb.getUid(); // probably unnecessary, better to use fb.getUid() in the actual line
 };
 
 UserClient.prototype.getAllUsers = function(callback){
@@ -28,7 +28,7 @@ UserClient.prototype.getCurrentUser = function(callback){
 				onerror: function(e){alert("Request to the LyfeCycle server timed out. Please exit the app and try again");}
 		});
 
-		client.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + self.fbId);
+		client.open("GET", "http://lyfecycle-api.herokuapp.com/users/find?facebookId=" + fb.getUid());
 		client.setRequestHeader("content-type", "application/json");
 		client.send();
 	}
