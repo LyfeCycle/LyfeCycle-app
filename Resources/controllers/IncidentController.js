@@ -11,7 +11,7 @@ function IncidentController(){
 	this.bottomLat;
 	this.leftLong;
 	this.rightLong;
-	this.clusteringTolerance = 0.004;
+	this.clusteringTolerance = 0.010;
 	this.allIncidents = [];
 	this.setIncidentListener(directionView.mapComponent.view);
 	this.setIncidentListener(freeRideView.freeRideMapComponent.view);
