@@ -8,8 +8,8 @@ IncidentClient.prototype.postIncident = function(type, latitude, longitude){
 	console.log(longitude);
 	var json = JSON.stringify({
 		"name": type,
-		"latitude": latitude.toString(),
-		"longitude": longitude.toString(),
+		"latitude": latitude.parseFloat(),
+		"longitude": longitude.parseFloat(),
 		"tag": type
 	});
 	console.log(json);
@@ -25,12 +25,11 @@ IncidentClient.prototype.postIncident = function(type, latitude, longitude){
 };
 
 IncidentClient.prototype.postIncidents = function(incidentArray){
-	console.log(typeof incidentArray);
 	var jsonString = JSON.stringify(incidentArray);
 	console.log(jsonString);
 	var client = Ti.Network.createHTTPClient({
 			timeout: Constants.timeout,
-			onload: function(e){console.log("GOt IT")},
+			onload: function(e){console.log(e)},
 			onerror: function(e){alert(e);}
 	});
 	client.open("POST", this.url + 'locations');

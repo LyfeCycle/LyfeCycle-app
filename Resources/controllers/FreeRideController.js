@@ -53,12 +53,13 @@ FreeRideController.prototype.confirmReport = function(){
 				var type = this.currentIncidents[incident].id;
 				json.push(
 						{  name: 'fromApp', 
-						   latitude: String(this.currentIncidents[incident].latitude),
-						   longitude: String(this.currentIncidents[incident].longitude),
+						   latitude: parseFloat(this.currentIncidents[incident].latitude),
+						   longitude: parseFloat(this.currentIncidents[incident].longitude),
 						   tag: this.currentIncidents[incident].id
 						});
 				freeRideView.freeRideMapComponent.view.removeAnnotation(this.currentIncidents[incident]);
 			}
+			// Post incidents using IncidentClient
 			incidentClient.postIncidents(json);
 			incidentController.mockReportedIncidents(this.currentIncidents);
 			this.currentIncidents = [];
