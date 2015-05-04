@@ -72,7 +72,7 @@ HomeMenuView.prototype.createHomeView = function(){
 	function createButton(title, img, top, callback) {
 		var view = Ti.UI.createView({
 			top: top,
-			width: Constants.homeViewButtonWidth,
+			width: '90%',
 			height: 80
 		});
 
